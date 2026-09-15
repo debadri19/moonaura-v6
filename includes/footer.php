@@ -45,19 +45,19 @@ require_once __DIR__ . '/meta-pixel-functions.php';
 
                 <div class="footer-social">
 
-                    <a href="https://www.instagram.com/crystalsmoonaura" aria-label="Instagram">
+                    <a href="https://www.instagram.com/crystalsmoonaura" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
 
-                    <a href="https://www.facebook.com/crystalsmoonaura" aria-label="Facebook">
+                    <a href="https://www.facebook.com/crystalsmoonaura" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                         <i class="fa-brands fa-facebook-f"></i>
                     </a>
 
-                    <a href="https://wa.me/919242319596" aria-label="WhatsApp">
+                    <a href="https://wa.me/919242319596" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
                         <i class="fa-brands fa-whatsapp"></i>
                     </a>
 
-                    <a href="https://www.youtube.com/@crystalsmoonaura" aria-label="Youtube">
+                    <a href="https://www.youtube.com/@crystalsmoonaura" aria-label="Youtube" target="_blank" rel="noopener noreferrer">
                         <i class="fa-brands fa-youtube"></i>
                     </a>
 

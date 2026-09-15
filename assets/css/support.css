@@ -375,7 +375,8 @@
 
     display:grid;
 
-    grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,2fr);
+    /* Desktop column ratio: FAQ 35% / Contact 25% / Map 40% */
+    grid-template-columns:minmax(0,35fr) minmax(0,25fr) minmax(0,40fr);
 
     gap:28px;
 
@@ -508,6 +509,59 @@
     display:flex;
 
     flex-direction:column;
+
+    overflow-y:auto;
+
+    min-height:0;
+
+}
+
+/* MoonAura themed scrollbar (shared by desktop, tablet and mobile).
+   The ::-webkit-scrollbar rules drive Chromium/WebKit; the standard
+   scrollbar-width/scrollbar-color properties are scoped to Firefox only
+   via @supports so they never override the WebKit styling in Chromium. */
+
+.faq-list::-webkit-scrollbar{
+
+    width:10px;
+
+    height:10px;
+
+}
+
+.faq-list::-webkit-scrollbar-track{
+
+    background:rgba(91,46,145,.08);
+
+    border-radius:999px;
+
+}
+
+.faq-list::-webkit-scrollbar-thumb{
+
+    border:2px solid #ffffff;
+
+    border-radius:999px;
+
+    background:linear-gradient(180deg,var(--primary),var(--primary-dark));
+
+}
+
+.faq-list::-webkit-scrollbar-thumb:hover{
+
+    background:var(--primary-dark);
+
+}
+
+@supports not selector(::-webkit-scrollbar){
+
+    .faq-list{
+
+        scrollbar-width:thin;
+
+        scrollbar-color:var(--primary) rgba(91,46,145,.10);
+
+    }
 
 }
 
@@ -649,7 +703,7 @@
 
     display:flex;
 
-    align-items:flex-start;
+    align-items:center;
 
     gap:16px;
 
@@ -728,6 +782,8 @@
 .info-content{
 
     flex:1;
+
+    min-width:0;
 
     overflow-wrap:anywhere;
 
@@ -815,17 +871,61 @@
    RESPONSIVE
 =================================================================== */
 
-/* Desktop only: keep the FAQ column balanced with the taller map /
-   contact columns. On tablet/mobile (<=992px) the grid stacks and the
-   FAQ list grows to its natural height - no mobile sizing is applied. */
+/* Desktop only: the Contact column is the reference height. The FAQ and
+   Map columns are removed from intrinsic row sizing (their inner cards are
+   absolutely positioned to fill their stretched grid items) so all three
+   columns end on the same horizontal bottom line without growing Contact.
+   The FAQ list becomes the internal scroll area with clearance from the
+   themed scrollbar. On tablet/mobile (<=992px) the grid stacks and the
+   FAQ list uses a bounded, scrollable height instead. */
 
 @media(min-width:993px){
 
+    .support-faq{
+
+        position:relative;
+
+    }
+
+    .faq-card{
+
+        position:absolute;
+
+        inset:0;
+
+    }
+
     .faq-list{
+
+        flex:1 1 auto;
+
+        min-height:0;
 
         overflow-y:auto;
 
-        max-height:460px;
+        padding-right:16px;
+
+        scrollbar-gutter:stable;
+
+    }
+
+    .map-card{
+
+        min-height:0;
+
+    }
+
+    .map-card iframe{
+
+        position:absolute;
+
+        inset:0;
+
+        width:100%;
+
+        height:100%;
+
+        min-height:0;
 
     }
 
@@ -847,7 +947,50 @@
 
     }
 
+    /* Stacked layout: restore natural flow and give the FAQ a compact
+       internal scroll area (~4 questions visible at once). */
+
+    .support-faq{
+
+        position:static;
+
+    }
+
+    .faq-card{
+
+        position:static;
+
+        height:auto;
+
+    }
+
+    .faq-list{
+
+        flex:none;
+
+        max-height:300px;
+
+        padding-right:10px;
+
+    }
+
+    .faq-list::-webkit-scrollbar{
+
+        width:6px;
+
+        height:6px;
+
+    }
+
+    .map-card{
+
+        min-height:100%;
+
+    }
+
     .map-card iframe{
+
+        position:static;
 
         min-height:380px;
 
@@ -909,11 +1052,11 @@
 
     }
 
-    .info-card{
+    /* Contact cards keep the icon-left / content-right structure. */
 
-        flex-direction:column;
+    .faq-list{
 
-        align-items:flex-start;
+        max-height:260px;
 
     }
 

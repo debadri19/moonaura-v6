@@ -945,7 +945,8 @@ require_once __DIR__ . '/includes/functions.php';
 
                 <div class="policy-help-buttons">
 
-                    <a href="https://wa.me/919242319596" class="btn btn-primary">
+                    <a href="https://wa.me/919242319596" class="btn btn-primary"
+                    target="_blank" rel="noopener noreferrer">
 
                         <i class="fa-brands fa-whatsapp"></i>
 
@@ -954,7 +955,7 @@ require_once __DIR__ . '/includes/functions.php';
                     </a>
 
                     <a href="mailto:support@moonauracrystals.in"
-                    class="btn btn-outline">
+                    class="btn btn-outline" target="_blank" rel="noopener noreferrer">
 
                         <i class="fa-solid fa-envelope"></i>
 
