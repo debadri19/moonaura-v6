@@ -1,0 +1,1025 @@
+/* ===================================================================
+   MOONAURA CRYSTALS
+   Global Style CSS v2.0
+   Author: MoonAura Crystals
+=================================================================== */
+
+
+/* ===================================================================
+   01. RESET
+=================================================================== */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+body {
+
+    font-family: 'Poppins', sans-serif;
+
+    color: #222222;
+
+    background: #ffffff;
+
+    overflow-x: hidden;
+
+}
+
+img {
+
+    display: block;
+
+    max-width: 100%;
+
+    height: auto;
+
+}
+
+a {
+
+    color: inherit;
+
+    text-decoration: none;
+
+}
+
+button {
+
+    font: inherit;
+
+    border: none;
+
+    background: none;
+
+    cursor: pointer;
+
+}
+
+input,
+textarea,
+select,
+button {
+
+    font-family: inherit;
+
+}
+
+
+
+/* ===================================================================
+   02. ROOT VARIABLES
+=================================================================== */
+
+:root {
+
+    --primary: #5B2E91;
+
+    --primary-dark: #43206D;
+
+    --gold: #D4AF37;
+
+    --text: #222222;
+
+    --text-light: #666666;
+
+    --white: #ffffff;
+
+    --bg: #faf8fc;
+
+    --border: #ece7f5;
+
+    --shadow: 0 15px 40px rgba(0, 0, 0, .08);
+
+    --transition: .35s ease;
+
+    --container: 1440px;
+
+}
+
+
+
+/* ===================================================================
+   03. GLOBAL STYLES - DESKTOP
+=================================================================== */
+
+body {
+
+    line-height: 1.7;
+
+    padding-top: 72px;
+
+    -webkit-font-smoothing: antialiased;
+
+    text-rendering: optimizeLegibility;
+
+}
+
+.container {
+
+    width: min(100% - 64px, var(--container));
+
+    margin-inline: auto;
+
+}
+
+section {
+
+    position: relative;
+
+}
+
+.section-heading {
+
+    max-width: 760px;
+
+    margin: 0 auto 60px;
+
+    text-align: center;
+
+}
+
+.section-subtitle {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: var(--gold);
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.5px;
+
+}
+
+.section-subtitle::before {
+
+    content: "";
+
+    width: 42px;
+
+    height: 2px;
+
+    background: var(--gold);
+
+}
+
+.section-title {
+
+    margin-top: 18px;
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 58px;
+
+    font-weight: 700;
+
+    color: var(--primary);
+
+    line-height: 1.1;
+
+}
+
+.section-description {
+
+    margin-top: 20px;
+
+    font-size: 19px;
+
+    color: var(--text-light);
+
+    line-height: 1.9;
+
+}
+
+
+
+/* ===================================================================
+   04. BUTTONS - DESKTOP
+=================================================================== */
+
+.btn {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    min-width: 180px;
+
+    height: 56px;
+
+    padding: 0 28px;
+
+    border-radius: 999px;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    transition: var(--transition);
+
+}
+
+.btn-primary {
+
+    background: var(--primary);
+
+    color: var(--white);
+
+}
+
+.btn-primary:hover {
+
+    background: var(--primary-dark);
+
+    transform: translateY(-3px);
+
+}
+
+.btn-outline {
+
+    border: 2px solid var(--primary);
+
+    color: var(--primary);
+
+    background: transparent;
+
+}
+
+.btn-outline:hover {
+
+    background: var(--primary);
+
+    color: var(--white);
+
+}
+
+.btn-secondary {
+
+    background: var(--gold);
+
+    color: var(--white);
+
+}
+
+.btn-secondary:hover {
+
+    background: #B8952E; /* darkened --gold, same darken-on-hover pattern as --primary/--primary-dark */
+
+    transform: translateY(-3px);
+
+}
+
+.btn-danger {
+
+    background: #b3261e; /* existing danger red - already used in admin.css (.admin-icon-btn-danger) and the invoice payment-status badges, reused here rather than introducing a new red */
+
+    color: var(--white);
+
+}
+
+.btn-danger:hover {
+
+    background: #8f1e18; /* darkened danger red, same darken-on-hover pattern as the other filled variants */
+
+    transform: translateY(-3px);
+
+}
+
+.btn-text {
+
+    min-width: 0;
+
+    height: auto;
+
+    padding: 0;
+
+    background: transparent;
+
+    color: var(--primary);
+
+    text-decoration: underline;
+
+    text-decoration-color: transparent;
+
+    text-underline-offset: 4px;
+
+}
+
+.btn-text:hover {
+
+    color: var(--primary-dark);
+
+    text-decoration-color: currentColor;
+
+}
+
+.btn i{
+    transition:transform .35s ease;
+}
+
+.btn:hover i{
+    transform:translateX(3px);
+}
+
+
+/* ===================================================================
+   05. GLOBAL STYLES - RESPONSIVE
+=================================================================== */
+
+@media(max-width:992px) {
+
+        body{
+
+        padding-top:72px;
+
+    }
+
+    .section-title {
+
+        font-size: 48px;
+
+    }
+
+}
+
+@media(max-width:768px) {
+
+        body{
+
+        padding-top:72px;
+
+    }
+
+    .container {
+
+        width: min(100% - 32px, var(--container));
+
+    }
+
+    .section-heading {
+
+        margin-bottom: 45px;
+
+    }
+
+    .section-title {
+
+        font-size: 40px;
+
+    }
+
+    .section-description {
+
+        font-size: 17px;
+
+    }
+
+    .btn {
+
+        width: 100%;
+
+    }
+}
+
+@media(max-width:576px) {
+
+        body{
+
+        padding-top:72px;
+
+    }
+
+    .section-heading {
+
+        margin-bottom: 36px;
+
+    }
+
+    .section-subtitle {
+
+        font-size: 13px;
+
+        gap: 10px;
+
+        letter-spacing: 1px;
+
+    }
+
+    .section-subtitle::before {
+
+        width: 32px;
+
+    }
+
+    .section-title {
+
+        font-size: 32px;
+
+        line-height: 1.2;
+
+    }
+
+    .section-description {
+
+        font-size: 16px;
+
+        line-height: 1.7;
+
+    }
+
+    .btn {
+
+        min-width: 100%;
+
+        height: 52px;
+
+        padding: 0 20px;
+
+        font-size: 15px;
+
+    }
+
+}
+
+@media(max-width:480px) {
+
+        body{
+
+        padding-top:64px;
+
+    }
+
+}
+
+@media(max-width:360px) {
+
+        body{
+
+        padding-top:62px;
+
+    }
+
+}
+
+
+
+/* ===================================================================
+   05. EMPTY STATE (shared)
+   -------------------------------------------------------------------
+   Reusable "nothing here yet" panel - used by the empty Cart
+   (cart.php) and empty Wishlist (wishlist.php). Previously each page
+   had its own near-identical copy (.cart-empty / .wishlist-empty) in
+   cart.css / wishlist.css; consolidated into one shared component
+   here instead of keeping two implementations of the same thing.
+=================================================================== */
+
+.empty-state {
+
+    text-align: center;
+
+    padding: 80px 20px;
+
+    background: var(--bg);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+}
+
+.empty-state i {
+
+    font-size: 40px;
+
+    color: var(--gold);
+
+    margin-bottom: 16px;
+
+}
+
+.empty-state p {
+
+    color: var(--text-light);
+
+    margin-bottom: 20px;
+
+    font-size: 16px;
+
+}
+
+
+
+/* ===================================================================
+   06. BACK TO TOP
+   -------------------------------------------------------------------
+   Fixed-position floating button (id="backToTop", markup already in
+   index.php, after the footer include). It previously had no CSS at
+   all, so it rendered as a plain unstyled <button> in normal document
+   flow directly below the footer - that stray inline element was the
+   "white strip" under the footer. Fixing it as the fixed/floating
+   button it was always meant to be removes it from document flow
+   entirely, so it can no longer add height below the footer.
+   Hidden by default; assets/js/main.js toggles the .show class based
+   on scroll position and handles the scroll-to-top click.
+=================================================================== */
+
+#backToTop {
+
+    position: fixed;
+
+    right: 28px;
+
+    bottom: 28px;
+
+    z-index: 900;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 48px;
+
+    height: 48px;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+
+    color: var(--white);
+
+    font-size: 16px;
+
+    box-shadow: var(--shadow);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(12px);
+
+    transition: var(--transition);
+
+}
+
+#backToTop.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+
+}
+
+#backToTop:hover {
+
+    background: var(--primary-dark);
+
+    transform: translateY(-3px);
+
+}
+
+@media (max-width: 576px) {
+
+    #backToTop {
+
+        right: 18px;
+
+        bottom: 18px;
+
+        width: 42px;
+
+        height: 42px;
+
+        font-size: 14px;
+
+    }
+
+}
+
+
+/* ===================================================================
+   07. WHY CHOOSE MOONAURA (shared component)
+   -------------------------------------------------------------------
+   Used by index.php, about.php and shop.php - previously duplicated
+   almost byte-for-byte as .why-* in home.css and .about-why-* in
+   about-us.css (shop.php already reused the About Us copy as of an
+   earlier Phase 4B batch). Consolidated into one implementation here
+   in the global stylesheet so no page-specific stylesheet has to be
+   linked just for this section, and moved to a neutral "why-choose"
+   class prefix since it's no longer page-specific. Values themselves
+   are unchanged from the two identical originals.
+=================================================================== */
+
+/* ==========================================
+   WHY CHOOSE MOONAURA (shared - Home/About/Shop) - DESKTOP
+========================================== */
+
+.why-choose{
+
+    padding:50px 0;
+
+    background:linear-gradient(
+        180deg,
+        #faf8fc 0%,
+        #ffffff 100%
+    );
+
+}
+
+/* =========================
+   ABOUT WHY GRID
+========================= */
+
+.why-choose-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,minmax(0,1fr));
+
+    gap:32px;
+
+    align-items:stretch;
+
+}
+
+/* =========================
+   ABOUT WHY CARD
+========================= */
+
+.why-choose-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    text-align:center;
+
+    height:100%;
+
+    padding:40px 30px;
+
+    background:var(--white);
+
+    border:1px solid rgba(91,46,145,.08);
+
+    border-radius:22px;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.05);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        border-color .35s ease;
+
+}
+
+.why-choose-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:rgba(91,46,145,.16);
+
+    box-shadow:0 20px 45px rgba(91,46,145,.10);
+
+}
+
+/* =========================
+   ICON
+========================= */
+
+.why-choose-icon{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:74px;
+
+    height:74px;
+
+    margin-bottom:28px;
+
+    border-radius:50%;
+
+    background:#f5f0fb;
+
+    color:var(--primary);
+
+    transition:
+        background .35s ease,
+        color .35s ease,
+        transform .35s ease;
+
+}
+
+.why-choose-icon i{
+
+    font-size:28px;
+
+    transition:inherit;
+
+}
+
+.why-choose-card:hover .why-choose-icon{
+
+    background:var(--primary);
+
+    color:var(--white);
+
+    transform:scale(1.08);
+
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.why-choose-title{
+
+    margin-bottom:14px;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    color:var(--text);
+
+    line-height:1.2;
+
+}
+
+/* =========================
+   DIVIDER
+========================= */
+
+.why-choose-divider{
+
+    width:48px;
+
+    height:2px;
+
+    margin-bottom:18px;
+
+    border-radius:999px;
+
+    background:var(--gold);
+
+    transition:width .35s ease;
+
+}
+
+.why-choose-card:hover .why-choose-divider{
+
+    width:72px;
+
+}
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.why-choose-description{
+
+    color:var(--text-light);
+
+    font-size:16px;
+
+    line-height:1.8;
+
+}
+
+/* ===================================================================
+   WHY CHOOSE MOONAURA (shared - Home/About/Shop) - RESPONSIVE
+=================================================================== */
+
+@media(max-width:992px){
+
+    .why-choose-grid{
+
+        grid-template-columns:repeat(2,minmax(0,1fr));
+
+        gap:22px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .why-choose{
+
+        padding:70px 0;
+
+    }
+
+    .why-choose-grid{
+
+        gap:18px;
+
+    }
+
+    .why-choose-card{
+
+        padding:34px 24px;
+
+        height:100%;
+
+    }
+
+    .why-choose-icon{
+
+        width:70px;
+
+        height:70px;
+
+        margin-bottom:24px;
+
+    }
+
+    .why-choose-icon i{
+
+        font-size:26px;
+
+    }
+
+    .why-choose-title{
+
+        font-size:1.75rem;
+
+    }
+
+    .why-choose-description{
+
+        font-size:15px;
+
+        line-height:1.75;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .why-choose-grid{
+
+        grid-template-columns:1fr;
+
+        gap:18px;
+
+    }
+
+    .why-choose-card{
+
+        padding:30px 22px;
+
+    }
+
+    .why-choose-icon{
+
+        width:64px;
+
+        height:64px;
+
+        margin-bottom:20px;
+
+    }
+
+    .why-choose-icon i{
+
+        font-size:24px;
+
+    }
+
+    .why-choose-title{
+
+        font-size:1.55rem;
+
+    }
+
+    .why-choose-description{
+
+        font-size:14px;
+
+        line-height:1.7;
+
+    }
+
+}
+
+/* ===================================================================
+   #21 PHASE B - GLOBAL NAVIGATION LOADING INDICATOR
+   -------------------------------------------------------------------
+   Lightweight, MoonAura-themed overlay shown briefly during normal
+   customer-side page navigation. Hidden by default; toggled purely
+   via the "active" class from assets/js/main.js. Fixed positioning
+   with a transparent background keeps it from causing any layout
+   shift or horizontal overflow.
+=================================================================== */
+
+#pageLoaderOverlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: rgba(250, 248, 252, .6);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition: opacity .2s ease;
+
+}
+
+#pageLoaderOverlay.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+}
+
+.page-loader-spinner {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 50%;
+
+    border: 3px solid var(--border);
+
+    border-top-color: var(--primary);
+
+    animation: pageLoaderSpin .7s linear infinite;
+
+}
+
+@keyframes pageLoaderSpin {
+
+    to {
+
+        transform: rotate(360deg);
+
+    }
+
+}
+
+@media (max-width: 767px) {
+
+    .page-loader-spinner {
+
+        width: 34px;
+
+        height: 34px;
+
+        border-width: 2.5px;
+
+    }
+
+}

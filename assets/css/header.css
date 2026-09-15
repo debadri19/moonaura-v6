@@ -1,0 +1,1451 @@
+/* ===================================================================
+   MOONAURA CRYSTALS
+   Home CSS v2.0
+   Author: MoonAura Crystals
+=================================================================== */
+
+/* ===================================================================
+   06. HEADER - DESKTOP
+=================================================================== */
+
+.site-header {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    right:0;
+
+    width: 100%;
+
+    background: rgba(255, 255, 255, .95);
+
+    backdrop-filter: blur(12px);
+
+    -webkit-backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid var(--border);
+
+    z-index: 1000;
+
+    transition:
+        background .35s ease,
+        box-shadow .35s ease;
+
+}
+
+.site-header.scrolled {
+
+    background: rgba(255, 255, 255, .98);
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+
+}
+
+.site-header.scrolled {
+
+    background:rgba(255,255,255,.98);
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.header-inner {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    height: 72px;
+
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    flex-shrink:0;
+
+}
+
+.logo img{
+
+    display:block;
+
+    height:64px;
+
+    width:auto;
+
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.navbar {
+
+    margin-left: auto;
+
+}
+
+.navbar ul {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 36px;
+
+    list-style: none;
+
+}
+
+.navbar li {
+
+    position: relative;
+
+}
+
+.navbar a,
+.drop-btn {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 16px;
+
+    font-weight: 500;
+
+    color: var(--text);
+
+    transition: var(--transition);
+
+}
+
+.navbar a:hover,
+.drop-btn:hover {
+
+    color: var(--primary);
+
+}
+
+.drop-btn i {
+
+    font-size: 12px;
+
+    transition: var(--transition);
+
+}
+
+.dropdown:hover .drop-btn i {
+
+    transform: rotate(180deg);
+
+}
+
+/* =========================
+   DROPDOWN MENU
+========================= */
+
+.dropdown-content {
+
+    position: absolute;
+
+    top: calc(100% + 10px);
+
+    left: 0;
+
+    min-width: 260px;
+
+    padding: 8px 0;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    box-shadow: var(--shadow);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(10px);
+
+    transition: var(--transition);
+
+}
+
+.dropdown:hover .dropdown-content {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+
+}
+
+.dropdown-content a {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 10px 18px;
+
+    font-size: 14px;
+
+    transition: var(--transition);
+
+}
+
+.dropdown-content a:hover {
+
+    background: rgba(91, 46, 145, .06);
+
+    color: var(--primary);
+
+    padding-left: 30px;
+
+}
+
+.dropdown-content i {
+
+    width: 18px;
+
+    color: var(--primary);
+
+    text-align: center;
+
+    transition: var(--transition);
+
+}
+
+.dropdown-content a:hover i {
+
+    transform: translateX(4px);
+
+}
+
+.dropdown-content a.dropdown-support {
+
+    margin-top: 0;
+
+}
+
+.dropdown-policies-row {
+
+    display: flex;
+
+    align-items: stretch;
+
+}
+
+.dropdown-policies-link {
+
+    flex: 1 1 auto;
+
+    min-width: 0;
+
+}
+
+.dropdown-policies-toggle {
+
+    flex: 0 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 44px;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--primary);
+
+    cursor: pointer;
+
+    transition: var(--transition);
+
+}
+
+.dropdown-policies-toggle:hover {
+
+    background: rgba(91, 46, 145, .06);
+
+}
+
+.dropdown-policies-toggle i {
+
+    width: auto;
+
+    font-size: 12px;
+
+    transform: none;
+
+    transition: var(--transition);
+
+}
+
+.dropdown-policies-toggle.active i,
+
+.dropdown-policies-toggle[aria-expanded="true"] i {
+
+    transform: rotate(180deg);
+
+}
+
+.dropdown-policies-toggle:hover i {
+
+    transform: none;
+
+}
+
+.dropdown-policies-toggle.active:hover i,
+
+.dropdown-policies-toggle[aria-expanded="true"]:hover i {
+
+    transform: rotate(180deg);
+
+}
+
+.dropdown-policies-submenu {
+
+    max-height: 0;
+
+    overflow: hidden;
+
+    margin: 0;
+
+    padding: 0;
+
+    transition: max-height .35s ease;
+
+}
+
+.dropdown-policies-submenu.active {
+
+    max-height: 520px;
+
+    margin-bottom: 0;
+
+}
+
+/* =========================
+   HEADER ACTIONS
+========================= */
+
+.header-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    margin-left: 56px;
+
+}
+
+.header-icon {
+
+    position: relative;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 50px;
+
+    height: 50px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 50%;
+
+    background: var(--white);
+
+    font-size: 18px;
+
+    line-height: 1;
+
+    transition: var(--transition);
+
+}
+
+.header-icon:hover {
+
+    background: var(--primary);
+
+    color: var(--white);
+
+}
+
+button.header-icon {
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    color: inherit;
+
+}
+
+/* =========================
+   HEADER FLOATING SEARCH
+   Opens under the fixed header. Submits to the
+   existing shop.php?q= search. Does not change
+   the Shop page search bar.
+========================= */
+
+.header-search {
+
+    display: none;
+
+    padding: 0 0 16px;
+
+}
+
+.header-search.open {
+
+    display: block;
+
+}
+
+.header-search-form {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+.header-search-box {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    flex: 1;
+
+    min-width: 0;
+
+    height: 52px;
+
+    padding: 0 22px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 999px;
+
+    background: var(--white);
+
+    transition: var(--transition);
+
+}
+
+.header-search-box:focus-within {
+
+    border-color: var(--primary);
+
+}
+
+.header-search-box i {
+
+    flex-shrink: 0;
+
+    color: var(--gold);
+
+    font-size: 15px;
+
+}
+
+.header-search-box input[type="search"] {
+
+    width: 100%;
+
+    min-width: 0;
+
+    height: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    padding: 0;
+
+    font-size: 15px;
+
+    font-family: inherit;
+
+    line-height: normal;
+
+    color: var(--text);
+
+}
+
+.header-search-box input[type="search"]:focus {
+
+    outline: none;
+
+}
+
+.header-search-submit {
+
+    flex-shrink: 0;
+
+    height: 52px;
+
+    padding: 0 22px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    background: var(--primary);
+
+    color: var(--white);
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: var(--transition);
+
+}
+
+.header-search-submit:hover {
+
+    background: var(--primary-dark);
+
+}
+
+.header-search-close {
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 46px;
+
+    height: 46px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 50%;
+
+    background: var(--white);
+
+    color: var(--text);
+
+    cursor: pointer;
+
+    transition: var(--transition);
+
+}
+
+.header-search-close:hover {
+
+    background: var(--primary);
+
+    color: var(--white);
+
+}
+
+.header-search-overlay {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 999;
+
+    background: rgba(67, 32, 109, .28);
+
+}
+
+.header-search-overlay.open {
+
+    display: block;
+
+}
+
+@media (max-width: 576px) {
+
+    .header-search-form {
+
+        flex-wrap: wrap;
+
+        gap: 8px;
+
+    }
+
+    .header-search-box {
+
+        height: 46px;
+
+        padding: 0 16px;
+
+        order: 1;
+
+        width: 100%;
+
+        flex: 1 1 100%;
+
+    }
+
+    .header-search-submit {
+
+        height: 46px;
+
+        padding: 0 18px;
+
+        order: 2;
+
+        flex: 1;
+
+    }
+
+    .header-search-close {
+
+        width: 46px;
+
+        height: 46px;
+
+        order: 3;
+
+    }
+
+}
+
+/* =========================
+   CART / WISHLIST COUNT BADGE
+   (Phase 2B cart, Phase 3E wishlist - same small
+   circle badge reused for both, not a new class)
+========================= */
+
+.cart-count-badge {
+
+    position: absolute;
+
+    top: -4px;
+
+    right: -4px;
+
+    min-width: 18px;
+
+    height: 18px;
+
+    padding: 0 4px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: var(--gold);
+
+    color: var(--white);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    border-radius: 50%;
+
+    line-height: 1;
+
+}
+
+
+/* =========================
+   FLOATING CART BUTTON
+   Fixed bottom-right, stacked ABOVE .whatsapp-float
+   (footer.css: desktop bottom 88px / 48px tall, phones
+   72px / 42px tall). 12px gap matches the existing
+   WhatsApp-to-Back-to-Top stack. #backToTop and
+   .whatsapp-float positions are unchanged.
+========================= */
+
+.cart-float {
+
+    position: fixed;
+
+    right: 28px;
+
+    bottom: 148px;
+
+    z-index: 900;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 60px;
+
+    height: 60px;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+
+    color: var(--white);
+
+    font-size: 19px;
+
+    box-shadow: var(--shadow);
+
+    text-decoration: none;
+
+    transition: var(--transition);
+
+}
+
+.cart-float:hover {
+
+    background: var(--primary-dark);
+
+    color: var(--white);
+
+    transform: translateY(-3px);
+
+}
+
+.cart-float .cart-count-badge {
+
+    top: -1px;
+
+    right: -1px;
+
+    min-width: 18px;
+
+    height: 18px;
+
+    font-size: 11px;
+
+}
+
+@media (max-width: 576px) {
+
+    .cart-float {
+
+        right: 18px;
+
+        bottom: 126px;
+
+        width: 54px;
+
+        height: 54px;
+
+        font-size: 17px;
+
+    }
+
+    .cart-float .cart-count-badge {
+
+        min-width: 16px;
+
+        height: 16px;
+
+        font-size: 10px;
+
+    }
+
+}
+
+
+/* =========================
+   MOBILE MENU BUTTON
+========================= */
+
+.menu-toggle {
+
+    display: none;
+
+    flex-shrink: 0;
+
+    padding: 0;
+
+    cursor: pointer;
+
+    color: var(--text);
+
+    font-size: 18px;
+
+    line-height: 1;
+
+}
+
+.menu-toggle:focus-visible,
+.header-icon:focus-visible {
+
+    outline: 2px solid var(--primary);
+
+    outline-offset: 2px;
+
+}
+
+/* ===================================================================
+   06. HEADER - RESPONSIVE
+=================================================================== */
+
+@media(max-width:992px) {
+
+    .header-inner {
+
+        height: 72px;
+
+    }
+
+    .navbar {
+
+        display: none;
+
+    }
+
+    .header-actions {
+
+        margin-left: auto;
+
+        margin-right: 16px;
+
+    }
+
+    .menu-toggle {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        width: 50px;
+
+        height: 50px;
+
+        border: 1px solid var(--border);
+
+        border-radius: 50%;
+
+        background: var(--white);
+
+        transition: var(--transition);
+
+    }
+
+    .menu-toggle:hover {
+
+        background: var(--primary);
+
+        color: var(--white);
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .header-inner{
+
+        height:72px;
+
+    }
+
+    .logo{
+
+        flex-shrink:0;
+
+    }
+
+    .logo img{
+
+        display:block;
+
+        height:56px;
+
+        width:auto;
+
+        max-width:230px;
+
+        object-fit:contain;
+
+    }
+
+    .header-actions{
+
+        gap:12px;
+
+        margin-right:12px;
+
+    }
+
+    .header-icon,
+    .menu-toggle{
+
+        width:44px;
+
+        height:44px;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .header-inner{
+
+        height:72px;
+
+    }
+
+    .logo img{
+
+        display:block;
+
+        height:60px;
+
+        width:auto;
+
+        max-width:240px;
+
+        object-fit:contain;
+
+    }
+
+    .header-actions{
+
+        gap:10px;
+
+        margin-right:8px;
+
+    }
+
+    .header-icon,
+    .menu-toggle{
+
+        width:46px;
+
+        height:46px;
+
+    }
+
+    .header-icon i,
+    .menu-toggle i{
+
+        font-size:19px;
+
+    }
+
+}
+
+/* Narrow phones (320-414px) - the header now has 3 action icons
+   (search / wishlist / account) plus hamburger. This tier shrinks
+   the same controls further so the header comfortably fits at the
+   smallest common phone widths without cutting off the logo or any
+   header icon. Desktop/tablet layout above is untouched. */
+@media(max-width:480px){
+
+    .header-inner{
+
+        height:64px;
+
+    }
+
+    .logo img{
+
+        display:block;
+
+        height:46px;
+
+        width:auto;
+
+        max-width:128px;
+
+        object-fit:contain;
+
+    }
+
+    .header-actions{
+
+        gap:6px;
+
+        margin-right:4px;
+
+    }
+
+    .header-icon,
+    .menu-toggle{
+
+        width:38px;
+
+        height:38px;
+
+    }
+
+    .header-icon i,
+    .menu-toggle i{
+
+        font-size:15px;
+
+    }
+
+}
+
+@media(max-width:360px){
+
+    .header-inner{
+
+        height:62px;
+
+    }
+
+    .logo img{
+
+        display:block;
+
+        height:44px;
+
+        width:auto;
+
+        max-width:112px;
+
+        object-fit:contain;
+
+    }
+
+    .header-actions{
+
+        gap:5px;
+
+        margin-right:4px;
+
+    }
+
+    .header-icon,
+    .menu-toggle{
+
+        width:36px;
+
+        height:36px;
+
+    }
+
+    .header-icon i,
+    .menu-toggle i{
+
+        font-size:15px;
+
+    }
+
+}
+
+
+/* ===================================================================
+   06. HEADER - MOBILE MENU
+=================================================================== */
+
+/* =========================
+     MOBILE MENU
+========================= */
+
+.mobile-menu {
+
+    position: fixed;
+
+    top: 0;
+
+    right: -100%;
+
+    width: 320px;
+
+    max-width: 100%;
+
+    height: 100vh;
+
+    background:rgba(255,255,255,.94);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(8px);
+
+    box-shadow: -10px 0 30px rgba(0, 0, 0, .08);
+
+    transition: .35s ease;
+
+    z-index: 1100;
+
+    overflow-y: auto;
+
+}
+
+.mobile-menu.active {
+
+    right: 0;
+
+}
+
+
+/* =========================
+    MOBILE MENU HEADER
+========================= */
+
+.mobile-menu-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 6px 20px;
+
+    border-bottom: 1px solid rgba(212, 175, 55, .28);
+
+}
+
+.mobile-logo img {
+
+    width: 52px;
+
+    height: 52px;
+
+    object-fit: contain;
+
+}
+
+.menu-close {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 42px;
+
+    height: 42px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 50%;
+
+    transition: var(--transition);
+
+}
+
+.menu-close:hover {
+
+    background: var(--primary);
+
+    color: var(--white);
+
+}
+
+
+/* =========================
+   MOBILE NAVIGATION
+========================= */
+
+.mobile-nav {
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 24px 32px;
+
+}
+
+.mobile-nav>a {
+
+    position: relative;
+
+    align-items:center;
+
+    height:52px;
+
+    display:flex;
+
+    padding: 14px 0;
+
+    font-weight: 500;
+
+    transition: var(--transition);
+
+}
+
+.mobile-nav>a:hover {
+
+    color: var(--primary);
+
+    background: rgba(91, 46, 145, .04);
+
+}
+
+
+/* =========================
+   MOBILE DROPDOWN
+========================= */
+
+.mobile-dropdown {
+
+    position: relative;
+
+    padding: 0;
+
+}
+
+.mobile-nav>a::after,
+
+.mobile-dropdown::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 24px;
+
+    right: 24px;
+
+    bottom: 0;
+
+    height: 1px;
+
+    background: rgba(212, 175, 55, .22);
+
+}
+
+.mobile-drop-btn{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    height:52px;
+    padding:0;
+
+    font:inherit;
+    font-weight:500;
+    line-height:1;
+
+    background:transparent;
+    border:none;
+    cursor:pointer;
+}
+
+.mobile-drop-btn:hover {
+
+    color: var(--primary);
+
+    background: rgba(91, 46, 145, .04);
+
+}
+
+.mobile-drop-btn i {
+
+    transition: var(--transition);
+
+}
+
+.mobile-drop-btn.active i {
+
+    transform: rotate(180deg);
+
+}
+
+.mobile-dropdown-content {
+
+    max-height: 0;
+
+    overflow: hidden;
+
+    padding-left: 18px;
+
+    transition: max-height .35s ease, padding-bottom .35s ease;
+
+}
+
+.mobile-dropdown-content.active {
+
+    max-height: 800px;
+
+    padding-bottom: 12px;
+
+}
+
+.mobile-dropdown-content a {
+
+    display: block;
+
+    padding: 10px 0 10px 18px;
+
+    color: var(--text-light);
+
+    transition: var(--transition);
+
+}
+
+.mobile-dropdown-content a:hover {
+
+    color: var(--primary);
+
+}
+
+.mobile-dropdown-content a.dropdown-support {
+
+    margin-top: 0;
+
+}
+
+.mobile-policies-row {
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+.mobile-policies-row > a {
+
+    flex: 1 1 auto;
+
+    min-width: 0;
+
+}
+
+.mobile-policies-toggle {
+
+    flex: 0 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 44px;
+
+    height: 40px;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--text);
+
+    cursor: pointer;
+
+}
+
+.mobile-policies-toggle i {
+
+    font-size: 12px;
+
+    transition: var(--transition);
+
+}
+
+.mobile-policies-toggle.active i,
+
+.mobile-policies-toggle[aria-expanded="true"] i {
+
+    transform: rotate(180deg);
+
+}
+
+.mobile-policies-submenu {
+
+    max-height: 0;
+
+    overflow: hidden;
+
+    padding-left: 8px;
+
+    transition: max-height .35s ease;
+
+}
+
+.mobile-policies-submenu.active {
+
+    max-height: 520px;
+
+}
+
+
+/* =========================
+   MENU OVERLAY
+========================= */
+
+.menu-overlay{
+    position:fixed;
+    inset:0;
+    z-index:1050;
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(14px) saturate(180%);
+    -webkit-backdrop-filter:blur(14px) saturate(180%);
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.35s ease;
+}
+
+.menu-overlay.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+.mobile-menu{
+    z-index:1100;
+}

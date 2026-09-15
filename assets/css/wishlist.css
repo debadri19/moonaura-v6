@@ -1,0 +1,81 @@
+/* ===================================================================
+   WISHLIST PAGE
+   -------------------------------------------------------------------
+   Page-level structure only (the saved items themselves are styled
+   entirely by assets/css/home.css's .product-card/.product-grid,
+   already loaded on this page - see wishlist.php). The empty state
+   now uses the shared .empty-state component in style.css (same
+   markup/class as the empty Cart page) instead of its own copy, so
+   there's one implementation instead of two near-identical ones.
+=================================================================== */
+
+.wishlist-page {
+    padding: 40px 0 60px;
+}
+
+.wishlist-page h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.wishlist-count-text {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.wishlist-unavailable {
+    color: #b3261e;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 14px;
+}
+
+.wishlist-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 56px 28px 52px;
+}
+
+.wishlist-empty-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 88px;
+    height: 88px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    background: #f3eef8;
+}
+
+.wishlist-empty-state .wishlist-empty-icon i,
+.wishlist-empty-icon i {
+    margin: 0;
+    font-size: 32px;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.wishlist-empty-state p {
+    margin: 0;
+}
+
+.wishlist-empty-divider {
+    display: block;
+    width: 48px;
+    height: 1px;
+    margin: 20px 0 28px;
+    background: var(--gold);
+    opacity: .7;
+}
+
+@media (max-width: 800px) {
+
+    .wishlist-empty-state {
+        padding: 44px 20px 40px;
+    }
+
+}

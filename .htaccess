@@ -1,0 +1,56 @@
+Options -Indexes
+
+# ==========================================
+# MoonAura — Environment File Protection
+# ==========================================
+
+<IfModule mod_authz_core.c>
+    <FilesMatch "^(\.env|\.env\..*)$">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+
+<IfModule !mod_authz_core.c>
+    <FilesMatch "^(\.env|\.env\..*)$">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+</IfModule>
+
+
+# ==========================================
+# MoonAura — URL Protection & Maintenance
+# ==========================================
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # ------------------------------------------
+    # WWW-only maintenance mode
+    # ------------------------------------------
+    # https://www.moonauracrystals.in → maintenance page
+    # Root domain and admin subdomain stay live.
+
+    RewriteCond %{HTTP_HOST} ^www\.moonauracrystals\.in$ [NC]
+    RewriteCond %{REQUEST_URI} !^/maintenance\.php$ [NC]
+    RewriteCond %{REQUEST_URI} !^/assets/ [NC]
+    RewriteCond %{REQUEST_URI} !^/\.well-known/ [NC]
+    RewriteRule ^ /maintenance.php [L]
+
+
+    # ------------------------------------------
+    # Protect sensitive files/directories
+    # ------------------------------------------
+
+    RewriteRule ^\.env(\..*)?$ - [F,L]
+    RewriteRule ^(config|includes|database|tests)(/|$) - [F,L]
+</IfModule>
+
+
+# ==========================================
+# MilesWeb Error Pages
+# ==========================================
+
+# BEGIN MilesWeb-ErrorPages
+ErrorDocument 503 /error_pages/503.html
+# END MilesWeb-ErrorPages

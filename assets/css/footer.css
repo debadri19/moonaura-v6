@@ -1,0 +1,484 @@
+/* ===================================================================
+   MOONAURA CRYSTALS
+   Footer CSS v2.0
+   Author: MoonAura Crystals
+=================================================================== */
+
+
+/* ===================================================================
+   FOOTER
+=================================================================== */
+
+.footer{
+
+    position:relative;
+
+    padding:32px 0 14px;
+
+    background:linear-gradient(
+        180deg,
+        #4C267B 0%,
+        #43206D 55%,
+        #3A1B60 100%
+    );
+
+    box-shadow:inset 0 10px 35px rgba(0,0,0,.12);
+
+    color:var(--white);
+
+    overflow:hidden;
+
+}
+
+.footer-top{
+
+    display:grid;
+
+    grid-template-columns:1.25fr 1fr 1fr 1fr;
+
+    gap:34px;
+
+    padding-bottom:26px;
+
+    border-bottom:1px solid rgba(255,255,255,.10);
+
+}
+
+.footer-logo{
+
+    display:inline-block;
+
+    margin-bottom:12px;
+
+}
+
+.footer-logo img{
+
+    width:200px;
+
+    height:auto;
+
+    display:block;
+
+}
+
+.footer-tagline{
+
+    margin-bottom:6px;
+
+    font-size:15px;
+
+    line-height:1.6;
+
+    color:rgba(255,255,255,.88);
+
+}
+
+.footer-brand-credit{
+
+    margin-bottom:14px;
+
+    color:var(--gold);
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.footer-social{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:4px;
+
+}
+
+.footer-social a{
+
+    width:40px;
+    height:40px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.14);
+
+    color:var(--white);
+
+    transition:var(--transition);
+
+}
+
+.footer-social a:hover{
+
+    background:var(--gold);
+
+    border-color:var(--gold);
+
+    color:var(--primary-dark);
+
+    transform:translateY(-4px) scale(1.06);
+
+}
+
+.footer-top{
+
+    border-bottom:1px solid rgba(255,255,255,.12);
+
+}
+
+.footer-links h4,
+.footer-contact h4{
+
+    margin-bottom:14px;
+
+    color:var(--white);
+
+    font-size:18px;
+
+    font-weight:600;
+
+    position:relative;
+
+}
+
+.footer-links h4::after,
+.footer-contact h4::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-8px;
+
+    width:38px;
+
+    height:2px;
+
+    background:var(--gold);
+
+}
+
+.footer-links ul,
+.footer-contact ul{
+
+    list-style:none;
+
+}
+
+.footer-links li,
+.footer-contact li{
+
+    margin-bottom:8px;
+
+}
+
+.footer-links a,
+.footer-contact a,
+.footer-contact span{
+
+    color:rgba(255,255,255,.82);
+
+    line-height:1.6;
+
+    transition:var(--transition);
+
+}
+
+.footer-links a:hover,
+.footer-contact a:hover{
+
+    color:var(--gold);
+
+}
+
+.footer-contact li{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.footer-contact i{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:18px;
+
+    color:var(--gold);
+
+    font-size:15px;
+
+    flex-shrink:0;
+
+}
+
+.footer-bottom{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:24px;
+
+    padding-top:12px;
+
+}
+
+.footer-payment{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+}
+
+.footer-payment img{
+
+    height:22px;
+
+    width:38px;
+
+    object-fit:contain;
+
+    background:#ffffff;
+
+    border-radius:6px;
+
+    padding:4px 6px;
+
+}
+
+.footer-copyright{
+
+    color:rgba(255,255,255,.70);
+
+    font-size:14px;
+
+}
+
+/* ===================================================================
+   WHATSAPP FLOATING BUTTON
+   Fixed bottom-right, deliberately stacked ABOVE #backToTop
+   (style.css positions that at bottom:28px / 48px tall, so this
+   sits at 28 + 48 + 12 = 88px on desktop, 18 + 42 + 12 = 72px on
+   phones) so the two floating buttons never overlap.
+=================================================================== */
+
+.whatsapp-float{
+
+    position:fixed;
+
+    right:28px;
+
+    bottom:88px;
+
+    z-index:900;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    background:#25D366;
+
+    color:#ffffff;
+
+    font-size:22px;
+
+    box-shadow:0 8px 20px rgba(37,211,102,.35);
+
+    text-decoration:none;
+
+    transition:var(--transition);
+
+}
+
+.whatsapp-float:hover{
+
+    background:#1EBE5D;
+
+    color:#ffffff;
+
+    transform:translateY(-3px);
+
+}
+
+@media(max-width:576px){
+
+    .whatsapp-float{
+
+        right:18px;
+
+        bottom:72px;
+
+        width:42px;
+
+        height:42px;
+
+        font-size:19px;
+
+    }
+
+}
+
+/* ===================================================================
+   FOOTER - RESPONSIVE
+=================================================================== */
+
+@media(max-width:768px){
+
+    .footer{
+
+        padding:28px 0 14px;
+
+    }
+
+    .footer-top{
+
+        grid-template-columns:1fr 1fr;
+
+        gap:22px;
+
+        text-align:center;
+
+        padding-bottom:20px;
+
+    }
+
+    .footer-brand{
+
+        max-width:100%;
+
+        grid-column:1 / -1;
+
+    }
+
+    .footer-contact{
+
+        grid-column:1 / -1;
+
+    }
+
+    .footer-logo{
+
+        display:flex;
+
+        justify-content:center;
+
+        margin-bottom:14px;
+
+    }
+
+    .footer-social{
+
+        justify-content:center;
+
+    }
+
+    .footer-links h4::after,
+    .footer-contact h4::after{
+
+        left:50%;
+
+        transform:translateX(-50%);
+
+    }
+
+    .footer-contact li{
+
+        justify-content:center;
+
+        margin-bottom:9px;
+
+    }
+
+    .footer-payment{
+
+        justify-content:center;
+
+        flex-wrap:wrap;
+
+        gap:10px;
+
+    }
+
+    .footer-bottom{
+
+        flex-direction:column;
+
+        align-items:center;
+
+        gap:14px;
+
+        text-align:center;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .footer{
+
+        padding:24px 0 12px;
+
+    }
+
+    .footer-logo img{
+
+        width:170px;
+
+    }
+
+    .footer-top{
+
+        gap:18px;
+
+    }
+
+    .footer-payment img{
+
+        height:20px;
+
+        width:34px;
+
+    }
+
+    .footer-copyright{
+
+        font-size:12px;
+
+        line-height:1.6;
+
+    }
+
+}

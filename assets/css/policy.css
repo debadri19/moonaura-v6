@@ -1,0 +1,649 @@
+/* ===================================================================
+   MOONAURA CRYSTALS
+   Policy CSS v2.0
+   Author: MoonAura Crystals
+=================================================================== */
+/* ==========================================================
+   POLICY PAGE
+========================================================== */
+
+.policy-page{
+    padding:90px 0 110px;
+    background:linear-gradient(180deg,#faf8fc 0%,#ffffff 100%);
+}
+
+.policy-page .section-heading{
+    max-width:850px;
+    margin:0 auto 55px;
+}
+
+.policy-hero{
+    padding:90px 0 70px;
+    background:linear-gradient(180deg,#faf8fc 0%,#ffffff 100%);
+    text-align:center;
+}
+
+.policy-hero .container{
+    max-width:900px;
+}
+
+.policy-hero h1{
+    margin:18px 0 22px;
+    font-family:"Cormorant Garamond",serif;
+    font-size:3.5rem;
+    font-weight:700;
+    line-height:1.08;
+    color:var(--text);
+}
+
+.policy-hero .hero-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:9px 20px;
+    border:1px solid var(--border);
+    border-radius:999px;
+    background:#fff;
+    color:var(--primary);
+    font-size:13px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+.policy-hero .hero-tag i{
+    color:var(--gold);
+    font-size:14px;
+}
+
+.policy-hero p{
+    max-width:760px;
+    margin:0 auto;
+    font-size:18px;
+    line-height:1.9;
+    color:var(--text-light);
+}
+
+.policy-meta{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:40px;
+}
+
+.policy-meta-item{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    padding:18px 24px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+}
+
+.policy-meta-item i{
+    width:52px;
+    height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:rgba(91,46,145,.08);
+    color:var(--primary);
+}
+
+.policy-meta-item span{
+    display:block;
+    font-size:13px;
+    color:var(--text-light);
+}
+
+.policy-meta-item strong{
+    display:block;
+    margin-top:4px;
+    color:var(--text);
+}
+
+.policy-nav{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+    margin:60px 0;
+}
+
+.policy-nav-item{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    padding:22px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:20px;
+    transition:.35s;
+    box-shadow:0 10px 30px rgba(0,0,0,.04);
+}
+
+.policy-nav-item:hover{
+    transform:translateY(-6px);
+    border-color:var(--primary);
+    box-shadow:0 18px 40px rgba(91,46,145,.12);
+}
+
+.policy-nav-item i{
+    width:52px;
+    height:52px;
+    min-width:52px;
+    min-height:52px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+    background:#f5f0fb;
+    color:var(--primary);
+    font-size:18px;
+
+    flex-shrink:0;
+}
+
+.policy-nav-item span{
+    font-weight:600;
+    color:var(--text);
+}
+
+.policy-nav-icon{
+    position:relative;
+    width:48px;
+    height:48px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:rgba(91,46,145,.08);
+    color:var(--primary);
+    flex-shrink:0;
+}
+
+.policy-nav-icon i{
+    font-size:18px;
+}
+
+.nav-danger-icon{
+    position:relative;
+}
+
+.nav-danger-icon::after{
+    content:"";
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:50%;
+    height:2.5px;
+    background:currentColor;
+    border-radius:999px;
+    transform:translate(-50%,-50%) rotate(-45deg);
+    pointer-events:none;
+}
+
+.policy-card{
+    position:relative;
+    margin-bottom:36px;
+    padding:42px 42px 42px 48px;
+    background-color:#fff;
+    background-image:linear-gradient(var(--gold),var(--primary));
+    background-repeat:no-repeat;
+    background-position:left top;
+    background-size:5px 100%;
+    border:1px solid var(--border);
+    border-radius:24px;
+    box-shadow:0 10px 28px rgba(0,0,0,.05);
+    overflow:visible;
+    transition:.35s;
+}
+
+.card-danger-icon{
+    position:relative;
+}
+
+.card-danger-icon::after{
+    content:"";
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:35px;
+    height:3px;
+    background:currentColor;
+    border-radius:999px;
+    transform:translate(-50%,-50%) rotate(-45deg);
+    pointer-events:none;
+}
+
+.policy-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 22px 45px rgba(91,46,145,.10);
+}
+
+.policy-card-header{
+    display:grid;
+    grid-template-columns:auto minmax(0,1fr);
+    grid-template-rows:auto auto;
+    grid-template-areas:
+        "icon label"
+        "icon heading";
+    align-items:center;
+    column-gap:20px;
+    row-gap:4px;
+    margin-bottom:24px;
+}
+
+.policy-card-header h2{
+    grid-area:heading;
+    overflow-wrap:break-word;
+    word-break:break-word;
+}
+
+.policy-icon{
+    grid-area:icon;
+    width:72px;
+    height:72px;
+    max-width:72px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    align-self:center;
+    border-radius:22px;
+    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+    color:#fff;
+    font-size:26px;
+    box-sizing:border-box;
+}
+
+.policy-icon i{
+    display:block;
+    line-height:1;
+}
+
+.policy-label{
+    grid-area:label;
+    display:block;
+    margin-bottom:0;
+    color:var(--gold);
+    text-transform:uppercase;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.08em;
+}
+
+.policy-intro{
+    margin-bottom:30px;
+    color:var(--text-light);
+    line-height:1.9;
+}
+
+.policy-card h3{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:32px 0 16px;
+}
+
+.policy-list{
+    list-style:none;
+}
+
+.policy-list li{
+    position:relative;
+    padding-left:34px;
+    margin-bottom:16px;
+    line-height:1.9;
+    color:var(--text-light);
+}
+
+.policy-list li::before{
+    content:"✔";
+    position:absolute;
+    left:0;
+    top:2px;
+    color:#5B2E91;
+    font-size:16px;
+    font-weight:700;
+}
+
+.policy-list-danger li::before{
+    content: "✖";
+    color: #dc2626;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* ==========================================================
+   NEED HELP
+========================================================== */
+
+.policy-help{
+    position:relative;
+    overflow:hidden;
+    margin-top:70px;
+    padding:70px 50px;
+    text-align:center;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:28px;
+    box-shadow:0 18px 45px rgba(0,0,0,.06);
+}
+
+.policy-help::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:5px;
+    background:linear-gradient(90deg,var(--primary),var(--gold));
+}
+
+.policy-help-icon{
+    width:90px;
+    height:90px;
+    margin:0 auto 26px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+    color:#fff;
+    font-size:34px;
+    box-shadow:0 18px 45px rgba(91,46,145,.22);
+}
+
+.policy-help h2{
+    margin-bottom:16px;
+    font-family:"Cormorant Garamond",serif;
+    font-size:42px;
+    color:var(--primary);
+}
+
+.policy-help p{
+    max-width:700px;
+    margin:0 auto 35px;
+    color:var(--text-light);
+    line-height:1.9;
+}
+
+.policy-help-buttons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:18px;
+    flex-wrap:wrap;
+}
+
+/* =========================
+   BUTTON STYLES
+========================= */
+
+.policy-help-buttons .btn{
+    min-width:220px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    transition:
+        background .35s ease,
+        color .35s ease,
+        border-color .35s ease,
+        transform .35s ease,
+        box-shadow .35s ease;
+}
+
+.policy-help-buttons .btn i{
+    display:inline-block;
+    transition:transform .35s ease;
+}
+
+.policy-help-buttons .btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px rgba(91,46,145,.20);
+}
+
+.policy-help-buttons .btn:hover i{
+    transform:none;
+}
+
+.policy-help-buttons .btn-primary:hover{
+    background:var(--primary-dark);
+    color:#fff;
+}
+
+.policy-help-buttons .btn-outline:hover{
+    background:var(--primary);
+    border-color:var(--primary);
+    color:#fff;
+}
+
+.policy-help-buttons .btn-primary,
+.policy-help-buttons .btn-outline{
+    background:var(--primary);
+    color:#fff;
+    border:2px solid var(--primary);
+    box-shadow:0 10px 25px rgba(91,46,145,.18);
+}
+
+.policy-help-buttons .btn-primary:hover,
+.policy-help-buttons .btn-outline:hover{
+    background:var(--primary-dark);
+    border-color:var(--primary-dark);
+    color:#fff;
+    transform:translateY(-4px);
+    box-shadow:0 16px 35px rgba(91,46,145,.25);
+}
+
+.policy-help-buttons .btn-primary i,
+.policy-help-buttons .btn-outline i{
+    color:#fff;
+    transition:transform .35s ease;
+}
+
+.policy-help-buttons .btn-primary:hover i,
+.policy-help-buttons .btn-outline:hover i{
+    transform:none;
+}
+
+.scroll-offset{
+    scroll-margin-top:120px;
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:992px){
+
+    .policy-page{
+        padding:80px 0;
+    }
+
+    .policy-nav{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .policy-card{
+        padding:38px;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .policy-page{
+        padding:70px 0;
+    }
+
+    .policy-hero{
+        padding:70px 0 55px;
+    }
+
+    .policy-hero h1{
+        font-size:48px;
+    }
+
+    .policy-meta{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .policy-nav{
+        grid-template-columns:1fr;
+        gap:16px;
+    }
+
+    .policy-card{
+        padding:30px 24px 30px 30px;
+    }
+
+    .policy-card-header{
+        grid-template-columns:auto minmax(0,1fr);
+        grid-template-rows:auto auto;
+        grid-template-areas:
+            "icon label"
+            "heading heading";
+        column-gap:16px;
+        row-gap:12px;
+    }
+
+    .policy-icon{
+        grid-area:icon;
+        width:64px;
+        height:64px;
+        max-width:64px;
+        align-self:center;
+        font-size:22px;
+    }
+
+    .policy-label{
+        grid-area:label;
+        margin-bottom:0;
+        align-self:center;
+    }
+
+    .policy-card-header h2{
+        grid-area:heading;
+        width:100%;
+        max-width:100%;
+        margin:0;
+    }
+
+    .policy-help{
+        margin-top:50px;
+        padding:50px 25px;
+    }
+
+    .policy-help h2{
+        font-size:34px;
+    }
+
+    .policy-help-buttons{
+        display:flex;
+        flex-direction:row;
+        justify-content:center;
+        align-items:center;
+        gap:12px;
+        flex-wrap:nowrap;
+    }
+
+    .policy-help-buttons .btn{
+        flex:1;
+        min-width:0;
+        width:auto;
+        padding:0 12px;
+        font-size:14px;
+    }
+
+}
+
+@media(max-width:576px){
+
+    .policy-page{
+        padding:60px 0;
+    }
+
+    .policy-hero{
+        padding:55px 0 45px;
+    }
+
+    .policy-hero h1{
+        font-size:42px;
+    }
+
+    .policy-hero p{
+        font-size:16px;
+    }
+
+    .policy-meta-item{
+        width:100%;
+        justify-content:flex-start;
+    }
+
+    .policy-nav-item{
+        padding:16px;
+    }
+
+    .policy-nav-item i{
+        width:44px;
+        height:44px;
+        font-size:16px;
+    }
+
+    .policy-card{
+        padding:24px 20px 24px 24px;
+        border-radius:20px;
+    }
+
+    .policy-card h3{
+        font-size:18px;
+    }
+
+    .policy-list li{
+        padding-left:28px;
+        font-size:15px;
+    }
+
+    .policy-help{
+        padding:40px 20px;
+        border-radius:22px;
+    }
+
+    .policy-help-icon{
+        width:72px;
+        height:72px;
+        font-size:28px;
+    }
+
+    .policy-help h2{
+        font-size:28px;
+    }
+
+    .policy-help-buttons{
+    flex-direction:row;
+    gap:10px;
+    }
+
+    .policy-help-buttons .btn{
+        flex:1;
+        min-width:0;
+        width:auto;
+        height:48px;
+        padding:0 10px;
+        font-size:13px;
+    }
+
+    .policy-help-buttons .btn i{
+        font-size:13px;
+    }
+}

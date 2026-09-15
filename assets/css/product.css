@@ -1,0 +1,418 @@
+/* ===================================================================
+   PRODUCT DETAIL PAGE - STYLESHEET
+   -------------------------------------------------------------------
+   This page never existed before Phase 1C, so there was no design to
+   preserve here. This file ONLY covers what has no existing
+   equivalent elsewhere on the site (gallery, breadcrumb, spec list,
+   trust badges). Everything else on this page reuses classes already
+   defined in style.css and home.css (.container, .section-title,
+   .btn-primary, .btn-outline, .product-grid, .product-card, price
+   classes, etc.) - see the :root variables in style.css, which this
+   file relies on rather than redefining.
+=================================================================== */
+
+
+/* ==========================================
+   01. BREADCRUMB
+========================================== */
+
+.breadcrumb {
+    padding: 16px 0;
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.breadcrumb a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.breadcrumb a:hover {
+    color: var(--primary);
+}
+
+.breadcrumb span {
+    margin: 0 6px;
+}
+
+.breadcrumb .breadcrumb-current {
+    color: var(--text);
+    font-weight: 500;
+}
+
+
+/* ==========================================
+   02. PRODUCT DETAIL LAYOUT
+========================================== */
+
+.product-detail {
+    padding: 20px 0 60px;
+}
+
+.product-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: flex-start;
+}
+
+
+/* ==========================================
+   03. GALLERY
+========================================== */
+
+.product-gallery-main {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--bg);
+    border: 1px solid var(--border);
+}
+
+.product-gallery-main .wishlist-form {
+    z-index: 21;
+}
+
+.product-gallery-main img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    display: block;
+}
+
+.product-gallery-thumbs {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+}
+
+.product-gallery-thumb {
+    width: 76px;
+    height: 76px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid var(--border);
+    cursor: pointer;
+    background: none;
+    padding: 0;
+    transition: var(--transition);
+}
+
+.product-gallery-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.product-gallery-thumb.active,
+.product-gallery-thumb:hover {
+    border-color: var(--primary);
+}
+
+
+/* ==========================================
+   04. PRODUCT INFO PANEL
+========================================== */
+
+.product-info-category {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin-bottom: 8px;
+}
+
+.product-info h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    color: var(--text);
+    margin-bottom: 12px;
+}
+
+.product-info-price {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-bottom: 16px;
+}
+
+.product-info-price .discount-badge {
+    background: var(--gold);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.2;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-right: 14px;
+}
+
+.product-info-price .sale-price {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--primary-dark);
+}
+
+.product-info-price .old-price {
+    font-size: 14px;
+    line-height: 1.2;
+    color: var(--text-light);
+    text-decoration: line-through;
+    margin-left: 9px;
+}
+
+.product-info-purpose {
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+.product-info-actions {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 28px;
+}
+
+
+/* ==========================================
+   04b. #30 STOCK AVAILABILITY
+   -------------------------------------------------
+   Colors match the existing admin stock/status badge
+   convention (admin.css .admin-badge-out-of-stock /
+   .admin-badge-low-stock) so "out of stock" reads the
+   same red and "low stock" reads the same amber
+   everywhere in the app, rather than inventing a new
+   palette just for this page.
+========================================== */
+
+.product-stock-message {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+}
+
+.product-stock-out {
+    background: #fdecea;
+    color: #b3261e;
+}
+
+.product-stock-low {
+    background: #fff6e5;
+    color: #a86400;
+}
+
+.product-info-actions-unavailable .btn-disabled {
+    cursor: not-allowed;
+    background: var(--bg);
+    color: var(--text-light);
+    border: 1px solid var(--border);
+    opacity: .85;
+}
+
+
+/* ==========================================
+   05. TRUST BADGES (Certificate / GST)
+========================================== */
+
+.product-trust-badges {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+    padding: 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.product-trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text);
+}
+
+.product-trust-badge i {
+    color: var(--primary);
+}
+
+
+/* ==========================================
+   06. SPEC LIST (Chakra / Zodiac / Material / Size)
+========================================== */
+
+.product-specs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 24px;
+    margin-bottom: 12px;
+}
+
+.product-specs-heading {
+    grid-column: 1 / -1;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0 0 4px;
+    padding: 0;
+    line-height: 1.3;
+}
+
+.product-spec-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+}
+
+.product-spec-label {
+    color: var(--text-light);
+}
+
+.product-spec-value {
+    color: var(--text);
+    font-weight: 600;
+    text-align: right;
+}
+
+
+/* ==========================================
+   07. DESCRIPTION / BENEFITS / CARE SECTIONS
+========================================== */
+
+.product-detail-section {
+    margin-top: 20px;
+    padding: 24px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.product-detail-grid + .product-detail-section {
+    margin-top: 32px;
+}
+
+.product-detail-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0 0 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--gold);
+}
+
+.product-detail-section p {
+    color: var(--text-light);
+    line-height: 1.7;
+    font-size: 14px;
+    margin: 0;
+}
+
+.related-products-divider {
+    width: min(100% - 64px, var(--container));
+    height: 1px;
+    margin: 8px auto 0;
+    background: var(--gold);
+    opacity: .55;
+}
+
+.product-related-products {
+    padding-top: 36px;
+}
+
+
+/* ==========================================
+   08. NOT FOUND STATE
+========================================== */
+
+.product-not-found {
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.product-not-found h1 {
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.product-not-found p {
+    color: var(--text-light);
+    margin-bottom: 24px;
+}
+
+
+/* ==========================================
+   09. RESPONSIVE
+========================================== */
+
+@media (max-width: 900px) {
+
+    .product-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .product-gallery-main img {
+        height: 340px;
+    }
+
+    .product-specs {
+        grid-template-columns: 1fr;
+    }
+
+    .product-detail-section {
+        padding: 20px;
+    }
+
+    .related-products-divider {
+        width: min(100% - 32px, var(--container));
+    }
+
+    .product-related-products {
+        padding-top: 32px;
+    }
+
+}
+
+/* Add to Cart / Buy Now - on narrow phones the base .btn's
+   min-width:180px (x2) no longer fits without exceeding the
+   viewport. Both buttons become full-width and equally sized. */
+@media (max-width: 480px) {
+
+    .product-info-actions {
+        flex-wrap: wrap;
+    }
+
+    .product-info-actions .btn {
+        flex: 1 1 100%;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .product-detail-section {
+        padding: 18px;
+        margin-top: 16px;
+    }
+
+    .product-detail-grid + .product-detail-section {
+        margin-top: 24px;
+    }
+
+    .product-related-products {
+        padding-top: 28px;
+    }
+
+}

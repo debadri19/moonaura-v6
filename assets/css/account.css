@@ -1,0 +1,1156 @@
+/* ===================================================================
+   CUSTOMER ACCOUNT PAGES - STYLESHEET
+   -------------------------------------------------------------------
+   These pages never existed before Phase 2D. Reuses the site's
+   existing variables (see style.css :root) and the same patterns
+   already established in cart.css/checkout.css - these are
+   storefront-facing pages (site header/footer), not the admin panel.
+=================================================================== */
+
+
+/* ==========================================
+   01. AUTH PAGES (login / register)
+========================================== */
+
+.account-auth-page {
+    padding: 60px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.account-auth-box {
+    width: 100%;
+    max-width: 420px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px 32px;
+}
+
+.account-auth-box.account-login-box {
+    background-color: var(--white);
+    background-image: linear-gradient(var(--gold), var(--primary));
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: 5px 100%;
+}
+
+.account-auth-box h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+.account-auth-subtitle {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.account-auth-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.account-auth-box label {
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.account-auth-box input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.account-auth-box input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* #33 Password visibility toggle - wrapper stays a normal block in
+   the existing label/input stacked layout (form is display:flex;
+   flex-direction:column already), it just becomes the positioning
+   context for the button so the icon can sit INSIDE the input on the
+   right without adding any extra height or shifting anything below
+   it. Extra right padding on the input keeps typed text (and any
+   browser-native reveal icon) from ever colliding with our button. */
+.account-auth-box .pw-field {
+    position: relative;
+}
+
+.account-auth-box .pw-field input {
+    padding-right: 42px;
+}
+
+.account-auth-box .pw-toggle {
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: var(--text-light);
+    font-size: 15px;
+    z-index: 2;
+    border-radius: 6px;
+}
+
+.account-auth-box .pw-toggle:hover,
+.account-auth-box .pw-toggle:focus-visible {
+    color: var(--primary);
+}
+
+.account-auth-box .pw-toggle:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 1px;
+}
+
+.account-auth-box .btn-primary {
+    margin-top: 20px;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    width: 100%;
+}
+
+.account-auth-footer {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-light);
+    margin-top: 18px;
+}
+
+.account-auth-footer a {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+
+/* ==========================================
+   02. ACCOUNT PAGE LAYOUT
+========================================== */
+
+.account-page {
+    padding: 40px 0 60px;
+}
+
+.account-page h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+
+/* ==========================================
+   03. ACCOUNT NAV (horizontal tabs)
+========================================== */
+
+.account-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+}
+
+.account-nav a {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.account-nav a:hover {
+    color: var(--primary);
+}
+
+.account-nav a.active {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.account-nav-dropdown {
+    position: relative;
+    z-index: 20;
+    margin-bottom: 28px;
+    overflow: visible;
+}
+
+.account-nav-menu {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+}
+
+.account-nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-width: 160px;
+    max-width: 100%;
+    height: 44px;
+    padding: 0 20px;
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    box-shadow: var(--shadow);
+    color: var(--primary);
+    font-size: 14px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.account-nav-toggle::-webkit-details-marker,
+.account-nav-toggle::marker {
+    display: none;
+    content: none;
+}
+
+.account-nav-toggle:hover {
+    color: var(--primary-dark);
+    border-color: var(--primary);
+}
+
+.account-nav-toggle i {
+    font-size: 11px;
+    color: inherit;
+    transform: none;
+    transition: transform var(--transition);
+}
+
+.account-nav-toggle:hover i,
+.account-nav-toggle:focus i,
+.account-nav-toggle:focus-visible i,
+.account-nav-menu:hover .account-nav-toggle i,
+.account-nav-menu:focus-within .account-nav-toggle i {
+    transform: none;
+}
+
+.account-nav-menu[open] .account-nav-toggle i,
+.account-nav-menu[open] .account-nav-toggle:hover i,
+.account-nav-menu[open] .account-nav-toggle:focus i,
+.account-nav-menu[open] .account-nav-toggle:focus-visible i,
+.account-nav-menu[open]:hover .account-nav-toggle i,
+.account-nav-menu[open]:focus-within .account-nav-toggle i {
+    transform: rotate(180deg);
+}
+
+.account-nav-panel {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    min-width: 220px;
+    max-width: min(280px, calc(100vw - 64px));
+    padding: 8px 0;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+}
+
+.account-nav-panel.account-nav-panel-in {
+    animation: accountNavPanelIn var(--transition);
+}
+
+@keyframes accountNavPanelIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.account-nav-panel a {
+    display: block;
+    padding: 10px 18px;
+    color: var(--text);
+    font-size: 14px;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.account-nav-panel a:hover {
+    color: var(--primary);
+}
+
+.account-nav-panel a.active {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.account-order-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.account-order-actions .account-nav-dropdown {
+    margin-bottom: 0;
+    flex: 0 1 auto;
+}
+
+.account-back-to-orders {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-left: auto;
+    min-height: 44px;
+    padding: 0 20px;
+    background: var(--white);
+    border: 1px solid var(--primary);
+    border-radius: 999px;
+    box-shadow: var(--shadow);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: var(--transition);
+}
+
+.account-back-to-orders:hover {
+    color: var(--primary-dark);
+    border-color: var(--primary);
+}
+
+.account-invoice-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+}
+
+.account-invoice-actions .btn,
+.checkout-form-card .account-invoice-actions .btn,
+.checkout-form-card .account-invoice-actions .btn-primary,
+.checkout-form-card .account-invoice-actions .btn-outline {
+    margin: 0;
+    height: 56px;
+    min-height: 56px;
+    padding: 0 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    line-height: 1;
+    vertical-align: middle;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.checkout-form-card .account-invoice-actions .btn-primary {
+    border-color: var(--primary);
+}
+
+.account-invoice-actions .btn,
+.account-invoice-actions .btn:hover,
+.account-invoice-actions .btn:focus,
+.account-invoice-actions .btn:active,
+.checkout-form-card .account-invoice-actions .btn:hover,
+.checkout-form-card .account-invoice-actions .btn:focus,
+.checkout-form-card .account-invoice-actions .btn:active {
+    transform: none !important;
+}
+
+.account-order-heading {
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(212, 175, 55, .35);
+}
+
+.account-order-heading-number {
+    margin: 0;
+    color: var(--primary);
+    font-size: 16px;
+    font-weight: 600;
+    word-break: break-word;
+}
+
+.account-order-heading-placed {
+    margin: 6px 0 0;
+    color: var(--text-light);
+    font-size: 13px;
+}
+
+.account-page .checkout-form-card > h2,
+.account-page .checkout-summary > h2 {
+    color: var(--primary);
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(212, 175, 55, .35);
+}
+
+
+/* ==========================================
+   04. CARDS / SECTIONS
+========================================== */
+
+.account-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 24px;
+}
+
+.account-card h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: var(--primary);
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(212, 175, 55, .35);
+}
+
+.account-welcome-card {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 24px;
+}
+
+.account-welcome-copy {
+    min-width: 0;
+    flex: 1;
+    padding-right: 8px;
+}
+
+.account-welcome-card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1.2;
+    margin-bottom: 10px;
+    overflow-wrap: anywhere;
+}
+
+.account-welcome-meta {
+    display: inline-block;
+    margin: 0;
+    padding-top: 10px;
+    border-top: 1px solid var(--gold);
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+.account-welcome-logout {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    color: var(--primary);
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.account-welcome-logout:hover {
+    color: var(--primary-dark);
+}
+
+.account-welcome-logout:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.account-recent-orders {
+    margin-top: 24px;
+}
+
+.account-recent-orders h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: var(--primary);
+}
+
+.account-order-cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.account-order-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 20px 22px;
+}
+
+.account-order-card-number {
+    display: block;
+    color: var(--primary);
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    word-break: break-word;
+}
+
+.account-order-card-date {
+    margin: 6px 0 0;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(212, 175, 55, .35);
+    color: var(--text-light);
+    font-size: 13px;
+}
+
+.account-order-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.account-order-card-total {
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.account-recent-orders-more {
+    margin-top: 16px;
+}
+
+
+/* ==========================================
+   05. FORMS (profile / password / address form)
+========================================== */
+
+.account-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 480px;
+}
+
+.account-card label {
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.account-card input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.account-card input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.account-card .pw-field {
+    position: relative;
+}
+
+.account-card .pw-field input {
+    padding-right: 44px;
+}
+
+.account-card .pw-toggle {
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: var(--text-light);
+    font-size: 15px;
+    z-index: 2;
+    border-radius: 6px;
+}
+
+.account-card .pw-toggle:hover,
+.account-card .pw-toggle:focus-visible {
+    color: var(--primary);
+}
+
+.account-card .pw-toggle:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 1px;
+}
+
+@media (max-width: 800px) {
+
+    .account-card .pw-toggle {
+        width: 40px;
+        height: 40px;
+        right: 2px;
+        font-size: 16px;
+    }
+
+    .account-card .pw-field input {
+        padding-right: 48px;
+    }
+
+}
+
+.account-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 400 !important;
+    margin-top: 12px !important;
+}
+
+.account-checkbox-label input {
+    width: auto;
+}
+
+.account-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.account-card .btn-primary {
+    margin-top: 20px;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    align-self: flex-start;
+}
+
+
+/* ==========================================
+   06. ORDER LIST / TABLE
+========================================== */
+
+.account-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.account-table {
+    width: 100%;
+    min-width: 560px;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.account-table th,
+.account-table td {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.account-table th {
+    color: var(--text-light);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+/* Order ID as the row's own link - same color token/underline
+   treatment as the shared .btn-text variant in style.css, without
+   pulling in .btn-text's button sizing (this is inline table text,
+   not a button). Replaces the old separate "View Details" column. */
+.account-order-id-link {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 4px;
+    transition: var(--transition);
+}
+
+.account-order-id-link:hover {
+    color: var(--primary-dark);
+    text-decoration-color: currentColor;
+}
+
+.account-empty {
+    text-align: center;
+    color: var(--text-light);
+    padding: 40px 20px;
+}
+
+
+/* ==========================================
+   07. BADGES (order/payment status)
+========================================== */
+
+.account-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.account-badge-pending,
+.account-badge-processing { background: #fff6e5; color: #a86400; }
+.account-badge-shipped,
+.account-badge-paid       { background: #e8f0fe; color: #1a56b0; }
+.account-badge-delivered,
+.account-badge-active     { background: #eaf7ee; color: #1e7b34; }
+.account-badge-cancelled,
+.account-badge-failed,
+.account-badge-refunded   { background: #fdecea; color: #b3261e; }
+
+
+/* ==========================================
+   08. SAVED ADDRESSES
+========================================== */
+
+.account-address-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+}
+
+.account-address-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 220px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 18px 0;
+    font-size: 14px;
+    line-height: 1.6;
+    position: relative;
+    background: var(--white);
+    overflow: hidden;
+}
+
+.account-address-card .account-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+}
+
+.account-address-body {
+    flex: 1 1 auto;
+    padding-right: 72px;
+    padding-bottom: 8px;
+}
+
+.account-address-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: auto;
+    padding: 0;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+}
+
+.account-address-actions > a,
+.account-address-actions > form {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.account-address-actions > form {
+    display: flex;
+    margin: 0;
+    border-left: 1px solid var(--border);
+}
+
+.account-address-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: auto;
+    min-height: 44px;
+    margin: 0;
+    padding: 10px 8px;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    color: var(--primary);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .02em;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.account-address-actions form .account-address-action {
+    color: var(--primary-dark);
+}
+
+.account-address-action:hover,
+.account-address-action:focus-visible {
+    background: rgba(91, 46, 145, .06);
+    color: var(--gold);
+    outline: none;
+}
+
+.account-address-actions form .account-address-action:hover,
+.account-address-actions form .account-address-action:focus-visible {
+    background: #fdecea;
+    color: #b3261e;
+}
+
+
+/* ==========================================
+   09. ALERTS
+========================================== */
+
+.account-alert {
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.account-alert-success { background: #eaf7ee; color: #1e7b34; border: 1px solid #c3e8cd; }
+.account-alert-error   { background: #fdecea; color: #b3261e; border: 1px solid #f6c6c2; }
+
+.account-alert ul { padding-left: 18px; margin: 0; }
+
+
+/* ==========================================
+   10. RESPONSIVE
+========================================== */
+
+@media (max-width: 992px) {
+
+    .account-order-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .account-order-actions {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .account-back-to-orders {
+        margin-left: auto;
+        max-width: 100%;
+    }
+
+    .account-invoice-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .account-invoice-actions .btn,
+    .checkout-form-card .account-invoice-actions .btn,
+    .checkout-form-card .account-invoice-actions .btn-primary,
+    .checkout-form-card .account-invoice-actions .btn-outline {
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+        height: 56px;
+        min-height: 56px;
+        padding: 0 28px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        transform: none !important;
+    }
+
+    .account-welcome-card {
+        padding: 20px;
+    }
+
+    .account-welcome-card h2 {
+        font-size: 24px;
+    }
+
+    .account-order-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .account-order-card-footer {
+        flex-wrap: wrap;
+    }
+
+    .account-form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .account-address-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .account-address-action {
+        min-height: 48px;
+        padding: 12px 8px;
+    }
+
+}
+
+/* ==========================================
+   11. ORDER LIST - MOBILE CARD LAYOUT
+   The .account-table uses min-width: 560px on
+   desktop, which forces a wide internal scroll
+   area on phones. On small screens the table is
+   re-rendered as stacked cards (row = card, cell
+   = label/value line driven by the data-label
+   attributes added in account/orders.php) so no
+   horizontal scrolling is ever needed.
+========================================== */
+
+@media (max-width: 576px) {
+
+    .account-invoice-actions .btn,
+    .checkout-form-card .account-invoice-actions .btn,
+    .checkout-form-card .account-invoice-actions .btn-primary,
+    .checkout-form-card .account-invoice-actions .btn-outline {
+        height: 52px;
+        min-height: 52px;
+        padding: 0 20px;
+    }
+
+    .account-table-wrap {
+        overflow: visible;
+    }
+
+    .account-table {
+        min-width: 0;
+    }
+
+    .account-table thead {
+        display: none;
+    }
+
+    .account-table,
+    .account-table tbody,
+    .account-table tr,
+    .account-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .account-table tr {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        margin-bottom: 14px;
+        padding: 4px 0;
+        background: var(--white);
+    }
+
+    .account-table td {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 14px;
+        border-bottom: 1px solid var(--border);
+        text-align: right;
+    }
+
+    .account-table td:last-child {
+        border-bottom: none;
+    }
+
+    .account-table td::before {
+        content: attr(data-label);
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        color: var(--text-light);
+        text-align: left;
+    }
+
+}
+
+/* ==========================================
+   12. ORDER TIMELINE + SHIPPING/TRACKING
+   The timeline is driven by real order_status_history
+   rows. Vertical list on mobile; a horizontal stepper
+   on larger screens, both reusing the MoonAura
+   primary/gold accent colours.
+========================================== */
+
+.account-timeline,
+.account-tracking {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.account-timeline + .account-tracking {
+    margin-top: 0;
+}
+
+.account-timeline h2,
+.account-tracking h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+}
+
+.timeline-item {
+    position: relative;
+    display: flex;
+    gap: 16px;
+    padding-bottom: 26px;
+}
+
+.timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 24px;
+    bottom: -2px;
+    width: 2px;
+    background: var(--border);
+}
+
+.timeline-item:last-child::before {
+    display: none;
+}
+
+.timeline-dot {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    margin-top: 3px;
+    border-radius: 50%;
+    background: var(--primary);
+    border: 3px solid var(--white);
+    box-shadow: 0 0 0 2px var(--primary);
+}
+
+.timeline-item:last-child .timeline-dot {
+    background: var(--gold);
+    box-shadow: 0 0 0 2px var(--gold);
+}
+
+.timeline-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.timeline-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.timeline-note,
+.timeline-date {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+.account-tracking a {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 3px;
+    transition: var(--transition);
+}
+
+.account-tracking a:hover {
+    color: var(--primary-dark);
+    text-decoration-color: currentColor;
+}
+
+@media (min-width: 768px) {
+
+    .timeline {
+        flex-direction: row;
+    }
+
+    .timeline-item {
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 8px;
+        padding-bottom: 0;
+    }
+
+    .timeline-item::before {
+        left: 50%;
+        right: -50%;
+        top: 7px;
+        bottom: auto;
+        width: auto;
+        height: 2px;
+    }
+
+    .timeline-dot {
+        margin-top: 0;
+    }
+
+}

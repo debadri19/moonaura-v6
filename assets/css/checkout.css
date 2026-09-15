@@ -1,0 +1,626 @@
+/* ===================================================================
+   CHECKOUT PAGE - STYLESHEET
+   -------------------------------------------------------------------
+   This page never existed before Phase 2C, so there was no design to
+   preserve. Reuses the site's existing variables (see style.css
+   :root) and the same two-column layout pattern already used on
+   cart.php.
+=================================================================== */
+
+
+/* ==========================================
+   01. PAGE LAYOUT
+========================================== */
+
+.checkout-page {
+    padding: 40px 0 60px;
+}
+
+.checkout-page h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    margin-bottom: 28px;
+}
+
+.checkout-layout {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+
+/* ==========================================
+   02. FLASH / ERROR MESSAGES
+========================================== */
+
+.checkout-alert {
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.checkout-alert-error {
+    background: #fdecea;
+    color: #b3261e;
+    border: 1px solid #f6c6c2;
+}
+
+.checkout-alert ul {
+    padding-left: 18px;
+    margin: 0;
+}
+
+
+/* ==========================================
+   03. CUSTOMER / ADDRESS FORM
+========================================== */
+
+.checkout-form-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+}
+
+.checkout-form-card h2 {
+    font-size: 18px;
+    margin-bottom: 18px;
+}
+
+.checkout-form-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.checkout-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.checkout-form-card label {
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 10px;
+    color: var(--text);
+}
+
+.checkout-form-card input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: var(--transition);
+}
+
+.checkout-form-card input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* Saved Address dropdown - same box model as the inputs above (same
+   padding/border/radius/font-size = same rendered height), just with
+   a chevron since it's a <select>. */
+.checkout-form-card select {
+    width: 100%;
+    padding: 10px 36px 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text);
+    background: var(--white);
+    cursor: pointer;
+    transition: var(--transition);
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235B2E91' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 14px;
+}
+
+.checkout-form-card select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.checkout-field-hint {
+    margin: 4px 0 0;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-light);
+}
+
+.checkout-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    font-size: 14px;
+    font-weight: 500 !important;
+    color: var(--text);
+    cursor: pointer;
+}
+
+.checkout-checkbox-label input[type="checkbox"] {
+    width: auto;
+    flex-shrink: 0;
+}
+
+.checkout-form-card .btn-primary {
+    margin-top: 24px;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.checkout-form-card .account-invoice-actions .btn,
+.checkout-form-card .account-invoice-actions .btn-primary {
+    margin-top: 0;
+}
+
+.checkout-payment-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-top: 8px !important;
+    font-weight: 400 !important;
+    cursor: pointer;
+}
+
+.checkout-payment-option input[type="radio"] {
+    width: auto;
+}
+
+.checkout-test-mode-banner {
+    background: #fff6e5;
+    color: #a86400;
+    border: 1px solid #f3d99b;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+/* ==========================================
+   04. ORDER SUMMARY
+========================================== */
+
+.checkout-summary {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+}
+
+.checkout-summary h2 {
+    font-size: 18px;
+    margin-bottom: 18px;
+}
+
+.checkout-summary-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.checkout-summary-item img {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.checkout-summary-item-name {
+    flex: 1;
+    font-size: 14px;
+}
+
+.checkout-summary-item-qty {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+.checkout-summary-item-total {
+    font-weight: 600;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.checkout-summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.checkout-summary-row.checkout-summary-total {
+    border-bottom: none;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    padding-top: 16px;
+}
+
+
+/* ==========================================
+   05. RESPONSIVE
+========================================== */
+
+@media (max-width: 900px) {
+
+    .checkout-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-form-row {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* ==========================================
+   06. PAYMENT DETAILS CARD (order-success.php)
+   -------------------------------------------------
+   All new, scoped class names - nothing here changes
+   any rule above, since this stylesheet is shared with
+   checkout.php, payment.php, payment-failure.php, and
+   account/order-detail.php.
+========================================== */
+
+.payment-details-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    margin-top: 32px;
+}
+
+.payment-details-card h2 {
+    font-size: 18px;
+    margin-bottom: 18px;
+}
+
+.payment-details-card .checkout-summary-row {
+    flex-wrap: wrap;
+    row-gap: 4px;
+    column-gap: 16px;
+}
+
+
+/* ==========================================
+   07. ORDER CONFIRMATION PAGE (order-success.php only)
+   -------------------------------------------------
+   Confirmation, trust, estimated-delivery, and invoice-action
+   layout for order-success.php. Payment-status badges and
+   payment-detail value classes above stay shared.
+========================================== */
+
+.order-confirmation-card {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 32px 40px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    text-align: center;
+}
+
+.order-confirmation-card > i {
+    display: block;
+    font-size: 48px;
+    color: var(--primary);
+    margin-bottom: 16px;
+}
+
+.order-confirmation-card h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    margin: 0 0 24px;
+    color: var(--text);
+}
+
+.order-confirmation-details {
+    max-width: 480px;
+    margin: 0 auto 20px;
+    text-align: center;
+}
+
+.order-confirmation-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.order-confirmation-detail-last {
+    border-bottom: none;
+}
+
+.order-confirmation-detail-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--text-light);
+}
+
+.order-confirmation-detail-value {
+    font-size: 15px;
+    color: var(--text);
+    word-break: break-word;
+}
+
+.order-confirmation-card .payment-detail-value,
+.order-confirmation-card .payment-detail-pending {
+    text-align: center;
+}
+
+.order-confirmation-email {
+    margin: 0 0 24px;
+    font-size: 15px;
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+.order-confirmation-card .btn {
+    margin: 0 auto;
+}
+
+.order-trust-cards {
+    display: grid;
+    justify-content: center;
+    gap: 16px;
+    margin: 28px auto 0;
+}
+
+.order-trust-cards-3 {
+    max-width: 860px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.order-trust-cards-4 {
+    max-width: 1120px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.order-trust-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 140px;
+    padding: 24px 18px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    text-align: center;
+}
+
+.order-trust-card i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #f5f0fb;
+    color: var(--primary);
+    font-size: 20px;
+}
+
+.order-trust-card span {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.5;
+}
+
+.order-estimated-delivery {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.order-estimated-delivery h2 {
+    margin-bottom: 20px;
+}
+
+.order-estimated-delivery-windows {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px 48px;
+}
+
+.order-estimated-delivery-window {
+    flex: 1 1 200px;
+    max-width: 280px;
+}
+
+.order-estimated-delivery-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.order-estimated-delivery-caption {
+    margin-top: 6px;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.invoice-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+    text-align: center;
+}
+
+@media (max-width: 700px) {
+    .invoice-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .invoice-actions .btn {
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+    }
+}
+
+.invoice-actions-note {
+    flex-basis: 100%;
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.payment-details-row-last {
+    border-bottom: none;
+}
+
+.payment-detail-value {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    text-align: right;
+    word-break: break-all;
+}
+
+.payment-detail-secondary {
+    color: var(--text-light);
+}
+
+.payment-detail-pending {
+    color: var(--text-light);
+    font-style: italic;
+    text-align: right;
+}
+
+.payment-status-badge {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+}
+
+.payment-status-paid {
+    background: #e4f6ea;
+    color: #1e7e42;
+}
+
+.payment-status-pending {
+    background: #fdf3e0;
+    color: #966611;
+}
+
+.payment-status-failed,
+.payment-status-refunded {
+    background: #fbe6e6;
+    color: #b3261e;
+}
+
+.payment-support-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 12px 18px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.payment-support-note i {
+    color: var(--primary);
+}
+
+@media (max-width: 1100px) {
+
+    .order-trust-cards-4 {
+        max-width: 560px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+@media (max-width: 800px) {
+
+    .order-trust-cards-3 {
+        grid-template-columns: 1fr;
+        max-width: 360px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .payment-details-card .checkout-summary-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .payment-detail-value,
+    .payment-detail-pending {
+        text-align: left;
+    }
+
+    .order-confirmation-card {
+        padding: 36px 20px 32px;
+    }
+
+    .order-confirmation-card h1 {
+        font-size: 26px;
+    }
+
+    .order-confirmation-card .payment-detail-value,
+    .order-confirmation-card .payment-detail-pending {
+        text-align: center;
+    }
+
+    .order-trust-cards-3,
+    .order-trust-cards-4 {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+    }
+
+    .order-trust-card {
+        min-height: 120px;
+    }
+
+    .order-estimated-delivery-window {
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+
+}

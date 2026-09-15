@@ -1,0 +1,571 @@
+/* ===================================================================
+   SHOP PAGE - STYLESHEET
+   -------------------------------------------------------------------
+    Only what has no existing equivalent elsewhere: the filter
+    toolbar, pagination, and section spacing around the product
+    grid. The Hero, "Why Choose MoonAura" and
+   "Need Help" sections reuse .hero from home.css, .why-choose from
+   style.css (shared Home/About/Shop component), and .need-help /
+   .help-box from about-us.css directly (see shop.php) - nothing
+   about those components is redefined here. Product card
+   content classes (.product-category / .product-content h3 /
+   .product-benefits / .product-price / .current-price) are added in
+   home.css instead, since that's where the rest of .product-card
+   already lives and other pages share it.
+=================================================================== */
+
+
+/* ==========================================
+   01. TOOLBAR (Category / Price / Sort)
+========================================== */
+
+.shop-toolbar {
+    padding: 20px 0 28px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+}
+
+/* Shop-only: tighten the space under the shared .hero without
+   changing homepage hero padding, image, overlay, or copy.
+   min-height is unset so the reduced padding-bottom is not
+   absorbed by the homepage hero's 520px floor. */
+.hero:has(+ .shop-toolbar) {
+    padding-bottom: 28px;
+    min-height: 0;
+}
+
+.shop-toolbar-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+/* Real filter controls - same input treatment already used for
+   account forms (assets/css/account.css .account-auth-box input):
+   1px var(--border), 8px radius, purple focus ring. */
+
+.shop-filters {
+    width: 100%;
+    min-width: 0;
+}
+
+.shop-filters form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+
+/* Search box - sits at the front of the same toolbar form as the
+   filters, so a search term survives every filter/sort change and
+   the filter selects keep the search too (both are GET params on
+   shop.php). Full-width, pill-shaped to match the site's .btn
+   border-radius (999px) - a first-class MoonAura control rather
+   than a plain rectangular input. Search functionality/params are
+   unchanged - this is presentation only. */
+
+.shop-search-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 0;
+    height: 52px;
+    padding: 0 22px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--white);
+    transition: var(--transition);
+}
+
+.shop-search-box:focus-within {
+    border-color: var(--primary);
+}
+
+.shop-search-box i {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    color: var(--gold);
+    font-size: 15px;
+}
+
+.shop-search-box input[type="search"] {
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    border: none;
+    background: transparent;
+    padding: 0;
+    font-size: 15px;
+    font-family: inherit;
+    line-height: normal;
+    color: var(--text);
+}
+
+.shop-search-box input[type="search"]:focus {
+    outline: none;
+}
+
+.shop-filter-selects {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 0 0 auto;
+    gap: 12px;
+    width: auto;
+}
+
+/* ==========================================
+   #18 - CUSTOM FILTER POPUPS
+   -------------------------------------------------------------------
+   Each filter is a wrapper (.shop-filter) holding: the round icon
+   trigger (.shop-filter-btn), the themed popup list
+   (.shop-filter-popup / .shop-filter-option), and the original
+   <select> - now visually hidden via .shop-filter-native instead of
+   the old CSS-only invisible-overlay trick. assets/js/shop-filters.js
+   opens/closes the popup and keeps the hidden select (the real form
+   input shop.php reads) in sync with whatever option is clicked.
+========================================== */
+
+.shop-toolbar,
+.shop-filters,
+.shop-filter-selects,
+.shop-filter {
+    overflow: visible;
+}
+
+.shop-filter {
+    position: relative;
+    flex: 0 0 48px;
+    z-index: 1;
+}
+
+.shop-filter:has(.shop-filter-btn[aria-expanded="true"]) {
+    z-index: 50;
+}
+
+.shop-filter-btn {
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--gold);
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    box-shadow: none;
+    transition: var(--transition);
+}
+
+.shop-filter-btn i {
+    pointer-events: none;
+    font-size: 16px;
+    line-height: 1;
+    width: 16px;
+    height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shop-filter-btn:hover,
+.shop-filter-btn:focus-visible {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: var(--white);
+    box-shadow: 0 6px 16px rgba(212, 175, 55, .16);
+}
+
+.shop-filter-btn:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+}
+
+.shop-filter-btn.active,
+.shop-filter-btn[aria-expanded="true"] {
+    border-color: var(--gold);
+    background: var(--gold);
+    color: var(--white);
+}
+
+/* The real filter input. Kept in the DOM/tab order (not display:none)
+   so JS can still read/set .value and submit the form - just removed
+   from sight and from the layout so its native option list has
+   nothing to visually anchor to. Unhidden again in the <noscript>
+   block right after it in shop.php when JS is unavailable. */
+
+.shop-filter-native {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+    opacity: 0;
+    pointer-events: none;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+html.shop-filters-ready .shop-filter-native {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.shop-filter-popup {
+    position: fixed;
+    top: auto;
+    left: auto;
+    transform: none;
+    z-index: 1200;
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    min-width: 240px;
+    max-width: min(240px, calc(100vw - 24px));
+    max-height: min(320px, calc(100vh - 24px));
+    padding: 0;
+    overflow: hidden;
+    isolation: isolate;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 16px 40px rgba(91, 46, 145, .12);
+}
+
+.shop-filter-popup[hidden] {
+    display: none !important;
+}
+
+.shop-filter-popup-scroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: inherit;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-radius: inherit;
+}
+
+.shop-filter-option {
+    display: block;
+    width: 100%;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: left;
+    white-space: nowrap;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: var(--transition);
+}
+
+.shop-filter-option:hover,
+.shop-filter-option:focus-visible {
+    background: var(--bg);
+    color: var(--gold);
+    outline: none;
+}
+
+.shop-filter-option.selected {
+    background: var(--primary);
+    color: var(--white);
+    font-weight: 600;
+}
+
+/* Empty-state message for when search/filters match nothing. */
+
+.shop-empty-state {
+    width: 100%;
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--text-light);
+    font-size: 15px;
+    line-height: 1.7;
+    background: var(--white);
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+}
+
+
+/* ==========================================
+   02. PRODUCT GRID SECTION
+========================================== */
+
+.shop-products {
+    padding: 48px 0;
+}
+
+
+/* ==========================================
+   03. PAGINATION
+   -------------------------------------------------------------------
+   Same pill-nav visual language as the existing .account-nav a /
+   .account-nav a.active pattern (assets/css/account.css) - active
+   page filled with var(--primary), others neutral text.
+========================================== */
+
+.shop-pagination {
+    padding-bottom: 60px;
+}
+
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.page-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    color: var(--text-light);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.page-btn:hover {
+    color: var(--primary);
+}
+
+.page-btn.active {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.page-btn.next-btn {
+    color: var(--primary);
+}
+
+
+/* ==========================================
+   04. NEED HELP BUTTONS
+   -------------------------------------------------------------------
+   MoonAura gold filled pills, shared height/radius/type, icon gap.
+   Scoped to .shop-need-help so about.php is untouched.
+========================================== */
+
+.shop-need-help .help-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: nowrap;
+}
+
+.shop-need-help .help-buttons .btn {
+    min-width: 220px;
+    height: 56px;
+    padding: 0 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition:
+        background .35s ease,
+        color .35s ease,
+        border-color .35s ease,
+        transform .35s ease,
+        box-shadow .35s ease;
+}
+
+.shop-need-help .help-buttons .btn i {
+    display: inline-block;
+    color: #222;
+    font-size: 18px;
+    line-height: 1;
+    transition: transform .35s ease;
+}
+
+.shop-need-help .help-buttons .btn-primary,
+.shop-need-help .help-buttons .btn-outline {
+    background: linear-gradient(135deg, #E8C14A, var(--gold));
+    color: #222;
+    border: none;
+    box-shadow: 0 12px 28px rgba(212, 175, 55, .35);
+}
+
+.shop-need-help .help-buttons .btn-primary:hover,
+.shop-need-help .help-buttons .btn-outline:hover {
+    background: linear-gradient(135deg, #F2CD5C, #DDB43E);
+    border: none;
+    color: #222;
+    transform: translateY(-3px);
+    box-shadow: 0 18px 36px rgba(212, 175, 55, .45);
+}
+
+.shop-need-help .help-buttons .btn:hover i,
+.shop-need-help .help-buttons .btn-primary:hover i,
+.shop-need-help .help-buttons .btn-outline:hover i {
+    transform: none;
+    color: #222;
+}
+
+
+/* ===================================================================
+   RESPONSIVE
+=================================================================== */
+
+@media (max-width: 992px) {
+
+    .hero:has(+ .shop-toolbar) {
+        padding-bottom: 24px;
+    }
+
+    .shop-toolbar {
+        padding: 18px 0 24px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .hero:has(+ .shop-toolbar) {
+        padding-bottom: 20px;
+    }
+
+    .shop-toolbar {
+        padding: 16px 0 24px;
+    }
+
+    .shop-filters form {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+    }
+
+    .shop-search-box {
+        width: 100%;
+        flex: none;
+    }
+
+    .shop-filter-selects {
+        width: 100%;
+        flex: none;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .pagination {
+        gap: 6px;
+    }
+
+    .page-btn {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+
+    .shop-need-help .help-buttons {
+        flex-wrap: nowrap;
+        gap: 12px;
+    }
+
+    .shop-need-help .help-buttons .btn,
+    .shop-need-help .help-buttons .btn-primary,
+    .shop-need-help .help-buttons .btn-outline {
+        flex: 1 1 0;
+        min-width: 0;
+        width: auto;
+        height: 56px;
+        padding: 0 12px;
+        font-size: 14px;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .hero:has(+ .shop-toolbar) {
+        padding-bottom: 16px;
+    }
+
+    .shop-toolbar {
+        padding: 16px 0 20px;
+    }
+
+    .shop-filter-selects {
+        gap: 8px;
+        justify-content: space-between;
+    }
+
+    .shop-filter {
+        flex: 0 0 44px;
+    }
+
+    .shop-filter-btn {
+        width: 44px;
+        height: 44px;
+    }
+
+    .shop-filter-btn i {
+        font-size: 15px;
+    }
+
+    .shop-filter-popup {
+        width: min(240px, calc(100vw - 24px));
+        min-width: 0;
+        max-width: min(240px, calc(100vw - 24px));
+    }
+
+    .shop-need-help .help-buttons {
+        flex-wrap: nowrap;
+        gap: 10px;
+    }
+
+    .shop-need-help .help-buttons .btn,
+    .shop-need-help .help-buttons .btn-primary,
+    .shop-need-help .help-buttons .btn-outline {
+        flex: 1 1 0;
+        min-width: 0;
+        width: auto;
+        max-width: none;
+        height: 48px;
+        padding: 0 10px;
+        font-size: 13px;
+    }
+
+    .shop-need-help .help-buttons .btn i {
+        font-size: 13px;
+    }
+
+}
