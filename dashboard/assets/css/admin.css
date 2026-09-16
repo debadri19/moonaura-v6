@@ -19,6 +19,16 @@
     box-sizing: border-box;
 }
 
+/* Restore the browser's [hidden] semantics. The reset above and the
+   component rules below (e.g. .admin-badge { display: inline-block })
+   are author styles, so they override the user-agent
+   [hidden] { display: none }. Without this, any element marked hidden
+   in the markup is still rendered - e.g. every product image showed the
+   "Primary" badge because the badge is display:inline-block. */
+[hidden] {
+    display: none !important;
+}
+
 :root {
     --primary: #5B2E91;
     --primary-dark: #43206D;

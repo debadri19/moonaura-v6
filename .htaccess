@@ -26,6 +26,18 @@ Options -Indexes
     RewriteEngine On
 
     # ------------------------------------------
+    # Block admin panel on storefront hosts
+    # ------------------------------------------
+    # The admin panel is served from its own host
+    # (https://admin.moonauracrystals.in), so the
+    # two storefront hosts must not expose it.
+    # Host-scoped: admin.moonauracrystals.in never matches.
+
+    RewriteCond %{HTTP_HOST} ^(www\.)?moonauracrystals\.in$ [NC]
+    RewriteRule ^dashboard(/|$) - [F,L]
+
+
+    # ------------------------------------------
     # WWW-only maintenance mode
     # ------------------------------------------
     # https://www.moonauracrystals.in → maintenance page

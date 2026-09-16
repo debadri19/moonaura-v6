@@ -63,13 +63,18 @@
             }
 
             isSubmitting = true;
+
+            // Build the payload BEFORE disabling controls: a disabled
+            // <select> is not a successful control, so it would be omitted
+            // from FormData and the server would receive no order_status
+            // (rejected as "Invalid order status selected.").
+            var formData = new FormData(form);
+
             submit.disabled = true;
             select.disabled = true;
             if (feedback) {
                 feedback.hidden = true;
             }
-
-            var formData = new FormData(form);
 
             fetch(form.action || window.location.href, {
                 method: 'POST',
