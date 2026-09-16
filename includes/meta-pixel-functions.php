@@ -66,7 +66,7 @@ function meta_pixel_is_excluded_page(): bool
 
     $script = '/' . ltrim(str_replace('\\', '/', $script), '/');
 
-    foreach (['/admin/', '/account/'] as $segment) {
+    foreach (['/dashboard/', '/account/'] as $segment) {
         if (str_contains($script, $segment)) {
             return true;
         }

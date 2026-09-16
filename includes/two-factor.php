@@ -3,7 +3,7 @@
    ADMIN TWO-FACTOR AUTHENTICATION (Phase 5E)
    -------------------------------------------------------------------
    RFC 6238 TOTP implementation + the storage helpers that back the
-   admin 2FA pages (admin/2fa-setup.php + admin/2fa-verify.php).
+   admin 2FA pages (dashboard/2fa-setup.php + dashboard/2fa-verify.php).
 
    SECURITY MODEL:
    - The secret is 160 random bits (RFC 6238 recommends >= 160) as a

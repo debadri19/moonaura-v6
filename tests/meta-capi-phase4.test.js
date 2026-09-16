@@ -247,7 +247,7 @@ test('CAPI is never dispatched from cart/checkout/payment/admin/account pages', 
     ['cart.php', 'checkout.php', 'payment.php', 'payment-failure.php', 'payment-verify.php'].forEach((file) => {
         assert.ok(!read(file).includes('meta_capi_send_purchase('), file + ' must not dispatch CAPI');
     });
-    ['admin', 'account'].forEach((dir) => {
+    ['dashboard', 'account'].forEach((dir) => {
         walkPhp(path.join(ROOT, dir), []).forEach((file) => {
             assert.ok(!read(file).includes('meta_capi_send_purchase('), file + ' must not dispatch CAPI');
         });
@@ -330,6 +330,7 @@ test('All Phase 4 PHP files pass php -l', () => {
     const porcelain = git(['status', '--porcelain']).trim().split('\n').filter(Boolean);
     const changed = porcelain
         .map((line) => line.slice(3).trim())
+        .map((p) => (p.includes(' -> ') ? p.split(' -> ').pop().trim() : p))
         .filter((p) => p.endsWith('.php'));
     const phpFiles = Array.from(new Set(phaseFiles.concat(changed)));
 

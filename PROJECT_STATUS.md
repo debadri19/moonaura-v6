@@ -53,7 +53,7 @@ Razorpay mapping guard, configured-gateway checkout, Shop card actions, asset UR
 | — | Part 1 UI & Responsive Fixes: shop search bar (full-width, pill-shaped) + filter alignment, mobile header fit on narrow phones, product-page Add to Cart/Buy Now/Wishlist mobile layout, cart-summary button centering fix | **COMPLETE** — Implemented & verified locally |
 | — | Part 2 Checkout/Buy Now/Saved Address/GST Display: Buy Now (skips cart, guest + logged-in, all 4 payment methods), Saved Address selector + auto-fill + auto-save-with-dedup, real GST derivation on cart/checkout summaries (was hardcoded ₹0 on the preview only - real orders were always taxed correctly) | **COMPLETE** — Implemented & verified locally |
 | — | Part 3 Order Confirmation & My Account UX: order-success.php heading/message/Estimated Delivery/Trust Info sections, dashboard Recent Orders mobile-card labels, saved-address Edit/Delete button alignment, order-detail "Payment Details" heading | **COMPLETE** — Implemented & verified locally |
-| 6 | Advanced Invoice Designer System: admin-configurable invoice layout (logo/watermark upload+placement, branding, header, order/payment/address info, product table, tax summary, footer) via `invoice_designer_settings` + `admin/invoice-designer.php`, live A4 preview, reset-to-defaults. Refactored `build_invoice_pdf()` verified **byte-for-byte identical** output at default settings against a pre-refactor baseline | **COMPLETE** — Implemented & verified locally |
+| 6 | Advanced Invoice Designer System: admin-configurable invoice layout (logo/watermark upload+placement, branding, header, order/payment/address info, product table, tax summary, footer) via `invoice_designer_settings` + `dashboard/invoice-designer.php`, live A4 preview, reset-to-defaults. Refactored `build_invoice_pdf()` verified **byte-for-byte identical** output at default settings against a pre-refactor baseline | **COMPLETE** — Implemented & verified locally |
 
 ## In Progress
 
@@ -182,7 +182,7 @@ include all of the above.
 |---|---|
 | `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASS` | Database connection |
 | `SITE_URL` | Storefront base URL (emails, links, public assets) |
-| `ADMIN_URL` | Admin base URL (defaults to `SITE_URL/admin`) |
+| `ADMIN_URL` | Admin base URL (defaults to `SITE_URL/dashboard`) |
 | `ADMIN_2FA_ENCRYPTION_KEY` | 32-byte base64 key for AES-256-GCM 2FA secrets (required for 2FA) |
 | `BREVO_SMTP_HOST`, `BREVO_SMTP_PORT` | Brevo SMTP host/port |
 | `BREVO_SMTP_USERNAME`, `BREVO_SMTP_PASSWORD` | Brevo SMTP credentials |

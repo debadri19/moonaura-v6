@@ -448,7 +448,7 @@ const HOMEPAGE_ZODIAC_SIGNS = [
             (Concern Category - a separate, structured
             classification from products.purpose; see
             includes/concern-functions.php. Product->concern
-            assignment happens in admin/product-form.php.)
+            assignment happens in dashboard/product-form.php.)
         ================================================== -->
 
         <section class="shop-by-concern" id="shop-by-concern">

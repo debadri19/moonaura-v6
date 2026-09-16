@@ -337,7 +337,7 @@ test('Purchase is never queued on cart/checkout/failure/admin/account pages', ()
     [checkoutPhp, cartPhp, paymentFailurePhp].forEach((src) => {
         assert.ok(!src.includes('meta_pixel_track_purchase('), 'unexpected Purchase queue outside order-success');
     });
-    ['admin', 'account'].forEach((dir) => {
+    ['dashboard', 'account'].forEach((dir) => {
         walkPhp(path.join(ROOT, dir), []).forEach((file) => {
             assert.ok(!read(file).includes('meta_pixel_track_purchase('), file + ' must not queue Purchase');
         });

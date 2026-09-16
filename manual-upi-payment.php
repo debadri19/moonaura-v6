@@ -8,7 +8,7 @@
    plus an optional payment screenshot. Submitting does NOT mark the
    order paid - it logs a payment_transactions row with status
    'submitted' and leaves payment_status at 'pending'; an admin must
-   review and verify it from admin/order-detail.php before the order
+   review and verify it from dashboard/order-detail.php before the order
    is considered paid (see that file's "Verify Payment" action).
 
    Same authorization model as payment.php: customer_or_session_owns_order()

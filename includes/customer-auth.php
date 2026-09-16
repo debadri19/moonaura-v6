@@ -5,7 +5,7 @@
    Mirrors includes/auth.php (the admin version) closely on purpose -
    same shape, same session-based approach - but uses its own session
    key ($_SESSION['customer_id']) so a customer being logged in on
-   the storefront and an admin being logged into /admin/ at the same
+   the storefront and an admin being logged into /dashboard/ at the same
    time (e.g. testing in two tabs) never interfere with each other.
 =================================================================== */
 

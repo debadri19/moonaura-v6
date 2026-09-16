@@ -20,7 +20,7 @@ touches the database.
 
 ```
 Moonaura/
-├── admin/                    Admin panel (login, dashboard foundation)
+├── dashboard/                Admin panel (login, dashboard foundation)
 │   ├── assets/css/admin.css  Admin panel styling (separate from storefront CSS)
 │   ├── includes/             Admin sidebar/topbar/footer templates
 │   ├── setup.php             Run ONCE to create your first admin account
@@ -92,13 +92,13 @@ Also update the site URL if needed:
 
 ```php
 define('SITE_URL', 'http://localhost/Moonaura');
-define('ADMIN_URL', 'http://localhost/Moonaura/admin');
+define('ADMIN_URL', 'http://localhost/Moonaura/dashboard');
 ```
 
 Live split-host values: `SITE_URL=https://moonauracrystals.in` and
 `ADMIN_URL=https://admin.moonauracrystals.in`. Public CSS/JS/images
 must always load from `SITE_URL` via `asset_url()`. Admin-local files
-(`admin/assets/css/admin.css`) stay on `ADMIN_URL`.
+(`dashboard/assets/css/admin.css`) stay on `ADMIN_URL`.
 
 When you move the site to live hosting, come back to this file and:
 - Update the 4 database lines with your host's DB credentials.
@@ -109,15 +109,15 @@ When you move the site to live hosting, come back to this file and:
 
 ## 4. Creating Your First Admin Account
 
-1. In your browser, go to: `http://localhost/Moonaura/admin/setup.php`
+1. In your browser, go to: `http://localhost/Moonaura/dashboard/setup.php`
 2. Fill in your name, email, and a password (minimum 8 characters).
 3. Submit the form - this creates your admin account and redirects you to
    the login page.
-4. **Delete (or move) `admin/setup.php` after this** - it locks itself
+4. **Delete (or move) `dashboard/setup.php` after this** - it locks itself
    automatically once one admin account exists, but removing the file
    entirely is safer.
 
-After that, log in any time at: `http://localhost/Moonaura/admin/login.php`
+After that, log in any time at: `http://localhost/Moonaura/dashboard/login.php`
 
 ---
 
@@ -173,7 +173,7 @@ not used and are not available at checkout.
 ### Cash on Delivery (ACTIVE)
 
 COD is enabled (`cod_enabled = 1`) and is offered at checkout
-alongside Razorpay. Toggle it from `/admin/settings.php`, or:
+alongside Razorpay. Toggle it from `/dashboard/settings.php`, or:
 
 ```sql
 UPDATE settings SET setting_value = '1' WHERE setting_key = 'cod_enabled';
@@ -235,7 +235,7 @@ Runtime confirmation (current codebase):
    up with zero payment methods available; if everything is
    accidentally disabled at once, Cash on Delivery is forced back on
    automatically as a safety fallback (logged, not silent).
-   **An Admin Settings page now exists at `/admin/settings.php`**
+   **An Admin Settings page now exists at `/dashboard/settings.php`**
    (linked from the sidebar) to change all of this through the UI
    instead of direct SQL - it enforces the same two rules
    server-side (can't disable every payment method, can't set an
@@ -251,14 +251,14 @@ Runtime confirmation (current codebase):
    `payment_transactions`.
 6. An additional checkout option, alongside Razorpay and COD: the
    customer sees a QR code / UPI ID / account name (set via
-   `/admin/settings.php`'s "Manual UPI Settings" section, including
+   `/dashboard/settings.php`'s "Manual UPI Settings" section, including
    the QR image upload), pays via any UPI app, and submits the UTR
    (transaction reference number) plus an optional screenshot on
    `manual-upi-payment.php`. This does **not** mark the order paid by
    itself - it logs a `payment_transactions` row with
    `status = 'submitted'` and leaves `payment_status = 'pending'`.
 7. **An admin must verify or reject it** from
-   `/admin/order-detail.php` - a dedicated card shows the UTR number,
+   `/dashboard/order-detail.php` - a dedicated card shows the UTR number,
    submission timestamp, and a link to the uploaded screenshot (if
    any), with two buttons:
    - **Verify Payment** → `payment_status = 'paid'`,
@@ -460,7 +460,7 @@ summary line visibility, footer text - all without editing code.
   Watermark position (5 options), rotation, scale, and opacity are all
   configurable.
 - **Live preview**: the Invoice Designer page shows a real PDF preview
-  (`admin/invoice-designer-preview.php`) rendered from fixed sample
+  (`dashboard/invoice-designer-preview.php`) rendered from fixed sample
   order data with whatever settings are currently saved - it reloads
   automatically after every Save.
 - **Layout persistence (latest v0.6.0 maintenance):** drag-and-drop section/line coordinates are stored in the existing `invoice_designer_settings` JSON layout. The `invoice_layout_json` hidden field is explicitly associated with the main `invoiceDesignerForm`, so the current layout JSON is included in the existing POST save cycle and restored on subsequent reloads. No additional table/column or migration is required.
@@ -484,10 +484,10 @@ summary line visibility, footer text - all without editing code.
 Admin logins support **TOTP two-factor authentication** (RFC 6238,
 compatible with Google Authenticator, Microsoft Authenticator and
 Authy). Each admin manages 2FA on **Admin → Security**
-(`admin/2fa-setup.php`): they scan a QR code (or type the Base32 key),
+(`dashboard/2fa-setup.php`): they scan a QR code (or type the Base32 key),
 then 2FA only turns on after they enter a valid 6-digit code. Every
 admin login with 2FA enabled then requires a fresh code
-(`admin/2fa-verify.php`).
+(`dashboard/2fa-verify.php`).
 
 **Required environment variable** (without it 2FA refuses to operate
 and stores nothing — fail closed):

@@ -10,7 +10,7 @@
                      deducted right after checkout.php confirms it
                      (checkout.php's 'cod' branch).
      - Manual UPI:   deducted only when an admin VERIFIES the payment
-                     in admin/order-detail.php - never at creation and
+                     in dashboard/order-detail.php - never at creation and
                      never on reject.
      - Razorpay:     deducted only after the gateway has confirmed
                      payment (PaymentManager::verifyPayment() and

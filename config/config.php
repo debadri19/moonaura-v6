@@ -144,10 +144,10 @@ if (!defined('SITE_URL')) {
 }
 
 // Base URL of the admin panel, no trailing slash.
-// Local default stays under SITE_URL/admin. Live split-host value:
+// Local default stays under SITE_URL/dashboard. Live split-host value:
 // 'https://admin.moonauracrystals.in'
 if (!defined('ADMIN_URL')) {
-    define('ADMIN_URL', env('ADMIN_URL', rtrim(SITE_URL, '/') . '/admin'));
+    define('ADMIN_URL', env('ADMIN_URL', rtrim(SITE_URL, '/') . '/dashboard'));
 }
 
 

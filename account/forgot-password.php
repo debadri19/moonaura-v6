@@ -5,7 +5,7 @@
    Generates a one-time reset token (60-minute expiry), stores only
    its SHA-256 hash in customer_password_resets, and emails the reset
    link to the customer through the shared mailer (Phase 5D). Mirrors
-   the admin flow (admin/forgot-password.php).
+   the admin flow (dashboard/forgot-password.php).
 
    SECURITY:
    - CSRF-protected form.

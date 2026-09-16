@@ -165,7 +165,7 @@ function save_customer_address_if_new(int $customerId, array $address): void
    CUSTOMER PASSWORD RESETS (Phase 5B)
    ------------------------------------------
    Forgot/Reset Password flow, mirroring the admin implementation
-   (admin/forgot-password.php + admin/reset-password.php) one-for-one:
+   (dashboard/forgot-password.php + dashboard/reset-password.php) one-for-one:
      - 256-bit token from random_bytes(); only its SHA-256 hash is
        ever stored - the raw token exists only inside the reset link.
      - 60-minute expiry, single-use via used_at.

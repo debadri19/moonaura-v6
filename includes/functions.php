@@ -94,7 +94,7 @@ function asset_url(string $path = ''): string
    External http(s) paths are returned unchanged.
 
    Usage: versioned_asset('assets/css/style.css')
-          versioned_asset('admin/assets/css/admin.css', 'assets/css/admin.css')
+          versioned_asset('dashboard/assets/css/admin.css', 'assets/css/admin.css')
 ========================================== */
 
 function versioned_asset(string $path, ?string $url = null): string

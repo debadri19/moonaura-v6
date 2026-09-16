@@ -2,13 +2,13 @@
 /* ===================================================================
    GENERIC IMAGE UPLOAD HELPER
    -------------------------------------------------------------------
-   Same validation conventions as admin/includes/image-upload-handler.php
+   Same validation conventions as dashboard/includes/image-upload-handler.php
    (MIME whitelist checked via mime_content_type() - never trust the
    client's claimed type - size cap, randomized filename so an
    uploaded file can never overwrite another or be guessed), but
    standalone rather than tied to the product_images table, since this
    is now needed in two places that handler doesn't cover:
-     - admin/settings.php: admin uploads a UPI QR code image
+     - dashboard/settings.php: admin uploads a UPI QR code image
      - manual-upi-payment.php: a CUSTOMER (not logged in, not an
        admin) uploads an optional payment screenshot
 

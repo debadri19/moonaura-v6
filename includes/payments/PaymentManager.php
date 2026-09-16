@@ -57,7 +57,7 @@ class PaymentManager
     /* ==========================================
        EVERY GATEWAY REGISTERED HERE, ENABLED OR NOT
        -------------------------------------------------
-       For admin/settings.php, which needs to render a toggle for
+       For dashboard/settings.php, which needs to render a toggle for
        every gateway that actually has a class (unlike
        getEnabledGatewayNames(), which only returns the ones
        currently switched on). Read-only - doesn't touch how any

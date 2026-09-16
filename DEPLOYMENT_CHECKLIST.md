@@ -91,7 +91,7 @@ idempotent; safe to re-run; a fresh install can instead load
 | `DB_USER` | yes | Database user |
 | `DB_PASS` | yes | Database password |
 | `SITE_URL` | yes | Absolute storefront URL (emails, links, public assets) |
-| `ADMIN_URL` | no | Admin host; defaults to `SITE_URL/admin`. Live: `https://admin.moonauracrystals.in` |
+| `ADMIN_URL` | no | Admin host; defaults to `SITE_URL/dashboard`. Live: `https://admin.moonauracrystals.in` |
 | `ADMIN_2FA_ENCRYPTION_KEY` | yes (for 2FA) | `php -r "echo base64_encode(random_bytes(32));"` — must be exactly 32 bytes when base64-decoded. 2FA **fails closed** without it |
 | `BREVO_SMTP_HOST` | yes (for email) | e.g. `smtp-relay.brevo.com` |
 | `BREVO_SMTP_PORT` | yes (for email) | 587 (STARTTLS) or 465 (implicit TLS) |
@@ -124,7 +124,7 @@ idempotent; safe to re-run; a fresh install can instead load
 - [ ] Migration 12 applied: `SHOW COLUMNS FROM products LIKE 'certificate_included'`
 - [ ] `SITE_URL` is the public storefront host; public assets load from
   `{SITE_URL}/assets/...` even on admin/account pages. `ADMIN_URL` is
-  the admin host. Admin-local CSS (`admin/assets/css/admin.css`) stays
+  the admin host. Admin-local CSS (`dashboard/assets/css/admin.css`) stays
   on the admin host.
 - [ ] Set the seller's registered state via **Admin > Settings >
   Business/GST** (`business_state`) so orders resolve intra-state
@@ -142,7 +142,7 @@ idempotent; safe to re-run; a fresh install can instead load
   Email, Website. These print on every invoice letterhead (Phase 5G);
   until `business_gstin` is set, invoices show "GSTIN: Not configured"
 - [ ] Download a test invoice from **Admin > Orders > View Invoice >
-  Download** (`admin/invoice.php?mode=download`) and open it in a PDF
+  Download** (`dashboard/invoice.php?mode=download`) and open it in a PDF
   reader; confirm the per-line GST Rate column, Taxable Value and
   CGST/SGST/IGST rows match the order's stored snapshot
 - [ ] `.env` contains a valid `ADMIN_2FA_ENCRYPTION_KEY` (32-byte base64) — **not** the dev value used locally
@@ -153,7 +153,7 @@ idempotent; safe to re-run; a fresh install can instead load
 - [ ] Razorpay in live mode (production) with the correct webhook URL (signed webhooks drive confirmation emails). COD remains available.
 - [ ] `SITE_URL` matches the production storefront domain (emails, absolute links, public assets)
 - [ ] `ADMIN_URL` matches the production admin host if split from the storefront
-- [ ] Confirm the admin Security page (`/admin/2fa-setup.php`) loads with no error after enabling 2FA
+- [ ] Confirm the admin Security page (`/dashboard/2fa-setup.php`) loads with no error after enabling 2FA
 - [ ] Enable 2FA for at least the primary admin, generate recovery codes, download and store them offline
 - [ ] Verify an admin login with 2FA: wrong code rejected, correct code works, recovery code works
 - [ ] PHP version + extensions: PHP 8.x, PDO MySQL, OpenSSL (AES-256-GCM), mbstring

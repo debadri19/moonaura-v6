@@ -5,7 +5,7 @@
    Validates the token from the URL against the HASHED value stored
    in customer_password_resets - checks it exists, hasn't expired, and
    hasn't already been used - before allowing a new password to be
-   set. Mirrors the admin flow (admin/reset-password.php).
+   set. Mirrors the admin flow (dashboard/reset-password.php).
 
    On success the token is marked used (single-use) and the customer
    is redirected to the login page with a success flash message - they

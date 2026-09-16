@@ -2,7 +2,7 @@
 /* ===================================================================
    LOGIN SECURITY - BRUTE-FORCE LOCKOUT
    -------------------------------------------------------------------
-   Phase 6: rate-limits BOTH the admin login (admin/login.php via
+   Phase 6: rate-limits BOTH the admin login (dashboard/login.php via
    includes/auth.php) and the customer login (account/login.php via
    includes/customer-auth.php) with a simple per-email lockout:
 
