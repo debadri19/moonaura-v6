@@ -139,7 +139,10 @@
 
 .cart-item {
     display: grid;
-    grid-template-columns: 90px minmax(0, 1fr) auto auto auto;
+    /* Price and line-total use fixed tracks so short vs long amounts
+       cannot shift the quantity/delete column. Controls stay max-content
+       (their own intrinsic width) and never hide or shrink. */
+    grid-template-columns: 90px minmax(0, 1fr) 6.25rem max-content 6.25rem;
     align-items: center;
     gap: 16px;
     background: var(--white);
@@ -186,14 +189,19 @@
     color: var(--text-light);
     font-size: 14px;
     white-space: nowrap;
+    min-width: 0;
+    text-align: right;
+    overflow: hidden;
 }
 
 .cart-item-controls {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    flex-wrap: nowrap;
     gap: 10px;
     min-width: 0;
+    flex-shrink: 0;
 }
 
 .cart-item-quantity-form {
@@ -286,6 +294,9 @@
     font-weight: 700;
     color: var(--primary-dark);
     white-space: nowrap;
+    min-width: 0;
+    text-align: right;
+    overflow: hidden;
 }
 
 .cart-item-remove-form {
@@ -393,7 +404,7 @@
     }
 
     .cart-item {
-        grid-template-columns: 72px minmax(0, 1fr) auto;
+        grid-template-columns: 72px minmax(0, 1fr) max-content;
         grid-template-areas:
             "image name name"
             "image price price"
@@ -403,7 +414,10 @@
 
     .cart-item-image  { grid-area: image; }
     .cart-item-name    { grid-area: name; }
-    .cart-item-price   { grid-area: price; }
+    .cart-item-price   {
+        grid-area: price;
+        text-align: left;
+    }
     .cart-item-controls {
         grid-area: controls;
         justify-content: flex-start;

@@ -617,6 +617,8 @@
 
     font-size:12px;
 
+    transition:transform .35s ease;
+
 }
 
 .faq-item.is-open .faq-question{
@@ -633,19 +635,30 @@
 
 .faq-answer{
 
-    display:none;
+    /* Grid-row 0fr -> 1fr animates to the answer's natural height, so the
+       accordion expands/collapses smoothly without a guessed max-height
+       and without the old display:none/block snap. Identical on desktop
+       and mobile, and the FAQ list keeps its own internal scrolling. */
 
-    padding:0 0 14px;
+    display:grid;
+
+    grid-template-rows:0fr;
+
+    transition:grid-template-rows .35s ease;
 
 }
 
 .faq-item.is-open .faq-answer{
 
-    display:block;
+    grid-template-rows:1fr;
 
 }
 
 .faq-answer p{
+
+    overflow:hidden;
+
+    min-height:0;
 
     margin:0;
 
@@ -654,6 +667,19 @@
     font-size:13.5px;
 
     line-height:1.7;
+
+}
+
+/* Bottom spacing lives inside the clipping element (not as padding) so it
+   collapses to a true 0 height when the answer is closed. */
+
+.faq-answer p::after{
+
+    content:"";
+
+    display:block;
+
+    height:14px;
 
 }
 
@@ -703,7 +729,12 @@
 
     display:flex;
 
-    align-items:center;
+    /* Top-align the icon with the card title instead of vertically
+       centering it against the whole content block. Kept flex-start on
+       every breakpoint so desktop and mobile share one identical
+       icon-left / content-right layout. */
+
+    align-items:flex-start;
 
     gap:16px;
 
@@ -849,7 +880,13 @@
 
     background:#ffffff;
 
-    box-shadow:0 10px 35px rgba(0,0,0,.05);
+    /* Soft, premium two-layer shadow (purple-tinted ambient + faint
+       contact shadow). Box-shadow never affects layout, so dimensions,
+       alignment and border-radius are untouched. */
+
+    box-shadow:
+        0 14px 40px rgba(91,46,145,.10),
+        0 4px 12px rgba(0,0,0,.05);
 
 }
 
