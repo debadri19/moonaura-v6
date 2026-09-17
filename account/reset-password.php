@@ -126,10 +126,20 @@ if ($tokenIsValid && $_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="hidden" name="token" value="<?= h($rawToken) ?>">
 
                     <label for="new_password">New Password</label>
-                    <input type="password" id="new_password" name="new_password" minlength="8" required autofocus>
+                    <div class="pw-field">
+                        <input type="password" id="new_password" name="new_password" minlength="8" required autofocus>
+                        <button type="button" class="pw-toggle" aria-label="Show password" aria-pressed="false" aria-controls="new_password">
+                            <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                        </button>
+                    </div>
 
                     <label for="confirm_password">Confirm New Password</label>
-                    <input type="password" id="confirm_password" name="confirm_password" minlength="8" required>
+                    <div class="pw-field">
+                        <input type="password" id="confirm_password" name="confirm_password" minlength="8" required>
+                        <button type="button" class="pw-toggle" aria-label="Show password" aria-pressed="false" aria-controls="confirm_password">
+                            <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                        </button>
+                    </div>
 
                     <button type="submit" class="btn btn-primary">Update Password</button>
 
@@ -150,6 +160,7 @@ if ($tokenIsValid && $_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php include __DIR__ . '/../includes/footer.php'; ?>
 
     <script src="<?= versioned_asset('assets/js/main.js') ?>"></script>
+    <script src="<?= versioned_asset('assets/js/password-toggle.js') ?>"></script>
 
 </body>
 </html>

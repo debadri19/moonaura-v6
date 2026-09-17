@@ -309,7 +309,10 @@ $headerWishlistCount = wishlist_count();
 
                     <div class="mobile-policies-row">
 
-                        <a href="<?= site_url('policy.php') ?>">Policies</a>
+                        <a href="<?= site_url('policy.php') ?>">
+                            <i class="fa-solid fa-file-contract"></i>
+                            Policies
+                        </a>
 
                         <button
                             class="mobile-policies-toggle"
@@ -347,7 +350,10 @@ $headerWishlistCount = wishlist_count();
 
                 </div>
 
-                <a href="<?= site_url('support.php') ?>" class="dropdown-support">Support</a>
+                <a href="<?= site_url('support.php') ?>" class="dropdown-support">
+                    <i class="fa-solid fa-headset"></i>
+                    Support
+                </a>
 
             </div>
 

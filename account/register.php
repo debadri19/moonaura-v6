@@ -151,10 +151,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="tel" id="phone" name="phone" value="<?= h($phone) ?>" required>
 
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" minlength="8" required>
+                <div class="pw-field">
+                    <input type="password" id="password" name="password" minlength="8" required>
+                    <button type="button" class="pw-toggle" aria-label="Show password" aria-pressed="false" aria-controls="password">
+                        <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                    </button>
+                </div>
 
                 <label for="confirm_password">Confirm Password</label>
-                <input type="password" id="confirm_password" name="confirm_password" minlength="8" required>
+                <div class="pw-field">
+                    <input type="password" id="confirm_password" name="confirm_password" minlength="8" required>
+                    <button type="button" class="pw-toggle" aria-label="Show password" aria-pressed="false" aria-controls="confirm_password">
+                        <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                    </button>
+                </div>
 
                 <button type="submit" class="btn btn-primary">Create Account</button>
 
@@ -171,6 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php include __DIR__ . '/../includes/footer.php'; ?>
 
     <script src="<?= versioned_asset('assets/js/main.js') ?>"></script>
+    <script src="<?= versioned_asset('assets/js/password-toggle.js') ?>"></script>
 
 </body>
 </html>

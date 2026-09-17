@@ -89,6 +89,8 @@ if ($tokenIsValid && $_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="icon" type="image/webp" href="<?= asset_url('assets/images/icons/favicon/favicon.webp') ?>">
     <link rel="apple-touch-icon" href="<?= asset_url('assets/images/icons/favicon/apple-touch-icon.webp') ?>">
     <title>Reset Password | MoonAura Admin</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="<?= versioned_asset('dashboard/assets/css/admin.css', 'assets/css/admin.css') ?>">
 </head>
 <body class="admin-auth-page">
@@ -127,10 +129,20 @@ if ($tokenIsValid && $_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="hidden" name="token" value="<?= h($rawToken) ?>">
 
                     <label for="new_password">New Password</label>
-                    <input type="password" id="new_password" name="new_password" minlength="8" required autofocus>
+                    <div class="pw-field">
+                        <input type="password" id="new_password" name="new_password" minlength="8" required autofocus>
+                        <button type="button" class="pw-toggle" aria-label="Show password" aria-pressed="false" aria-controls="new_password">
+                            <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                        </button>
+                    </div>
 
                     <label for="confirm_password">Confirm New Password</label>
-                    <input type="password" id="confirm_password" name="confirm_password" minlength="8" required>
+                    <div class="pw-field">
+                        <input type="password" id="confirm_password" name="confirm_password" minlength="8" required>
+                        <button type="button" class="pw-toggle" aria-label="Show password" aria-pressed="false" aria-controls="confirm_password">
+                            <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                        </button>
+                    </div>
 
                     <button type="submit" class="admin-btn-primary">Update Password</button>
 
@@ -148,6 +160,7 @@ if ($tokenIsValid && $_SERVER['REQUEST_METHOD'] === 'POST') {
 
     </div>
 
+    <script src="<?= versioned_asset('dashboard/assets/js/password-toggle.js', 'assets/js/password-toggle.js') ?>"></script>
     <?php include __DIR__ . '/includes/page-loader.php'; ?>
 
 </body>

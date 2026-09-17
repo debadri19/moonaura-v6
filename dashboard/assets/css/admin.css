@@ -43,6 +43,47 @@
     /* Shared height for the admin top bar and the sidebar header, so
        their bottom dividers line up exactly at any font fallback. */
     --admin-header-h: 64px;
+    --scrollbar-size: 10px;
+    --scrollbar-track: rgba(91, 46, 145, .08);
+    --scrollbar-thumb: linear-gradient(180deg, var(--primary), var(--primary-dark));
+    --scrollbar-thumb-hover: var(--primary-dark);
+    --scrollbar-thumb-border: 2px solid #ffffff;
+    --scrollbar-radius: 999px;
+    --scrollbar-firefox-thumb: var(--primary);
+    --scrollbar-firefox-track: rgba(91, 46, 145, .10);
+}
+
+::-webkit-scrollbar {
+    width: var(--scrollbar-size);
+    height: var(--scrollbar-size);
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: var(--scrollbar-radius);
+}
+
+::-webkit-scrollbar-thumb {
+    border: var(--scrollbar-thumb-border);
+    border-radius: var(--scrollbar-radius);
+    background: var(--scrollbar-thumb);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+}
+
+@supports not selector(::-webkit-scrollbar) {
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-firefox-thumb) var(--scrollbar-firefox-track);
+    }
+}
+
+@media (max-width: 992px) {
+    :root {
+        --scrollbar-size: 6px;
+    }
 }
 
 body {

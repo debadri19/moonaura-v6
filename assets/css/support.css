@@ -516,55 +516,6 @@
 
 }
 
-/* MoonAura themed scrollbar (shared by desktop, tablet and mobile).
-   The ::-webkit-scrollbar rules drive Chromium/WebKit; the standard
-   scrollbar-width/scrollbar-color properties are scoped to Firefox only
-   via @supports so they never override the WebKit styling in Chromium. */
-
-.faq-list::-webkit-scrollbar{
-
-    width:10px;
-
-    height:10px;
-
-}
-
-.faq-list::-webkit-scrollbar-track{
-
-    background:rgba(91,46,145,.08);
-
-    border-radius:999px;
-
-}
-
-.faq-list::-webkit-scrollbar-thumb{
-
-    border:2px solid #ffffff;
-
-    border-radius:999px;
-
-    background:linear-gradient(180deg,var(--primary),var(--primary-dark));
-
-}
-
-.faq-list::-webkit-scrollbar-thumb:hover{
-
-    background:var(--primary-dark);
-
-}
-
-@supports not selector(::-webkit-scrollbar){
-
-    .faq-list{
-
-        scrollbar-width:thin;
-
-        scrollbar-color:var(--primary) rgba(91,46,145,.10);
-
-    }
-
-}
-
 .faq-item{
 
     border-bottom:1px solid var(--border);
@@ -1008,14 +959,6 @@
         max-height:300px;
 
         padding-right:10px;
-
-    }
-
-    .faq-list::-webkit-scrollbar{
-
-        width:6px;
-
-        height:6px;
 
     }
 
