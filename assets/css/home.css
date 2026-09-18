@@ -268,11 +268,23 @@
 
     .hero{
 
-        padding:60px 0 80px;
+        padding:60px 0 20px;
+
+        min-height: 0;
+
+        height: auto;
+
+        overflow: visible;
 
     }
 
     .hero-container{
+
+        min-height: 380px;
+
+        display: flex;
+
+        align-items: center;
 
         gap:40px;
 
@@ -343,19 +355,35 @@
 
     }
 
-    .hero-buttons{
+    .hero:has(.hero-buttons) {
+        margin-bottom: 88px;
+    }
 
-        width:100%;
-
-        margin-top:36px;
-
-        align-items:center;
-
+    .hero:has(.hero-buttons) .hero-buttons {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
+        width: 100%;
+        margin-top: 16px;
+        z-index: 3;
+        align-items: center;
+        justify-content: center;
     }
 
     .hero-buttons .btn-primary{
 
         width:220px;
+
+    }
+
+    .hero-image img{
+
+        height:100%;
+
+        object-fit:cover;
+
+        object-position:right center;
 
     }
 
@@ -387,7 +415,11 @@
 
     .hero{
 
-        padding:40px 0 70px;
+        padding:40px 0 16px;
+
+        min-height: 0;
+
+        overflow: visible;
 
     }
 
@@ -437,13 +469,23 @@
 
     }
 
-    .hero-buttons{
+    .hero:has(.hero-buttons) {
+        margin-bottom: 80px;
+    }
 
-        position:relative;
+    .hero:has(.hero-buttons) .hero-buttons{
+
+        position:absolute;
+
+        left:0;
+
+        right:0;
+
+        top:100%;
 
         width:100%;
 
-        margin-top:48px;
+        margin-top:16px;
 
         z-index:3;
 

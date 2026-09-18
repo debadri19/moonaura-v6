@@ -25,15 +25,6 @@
     border-bottom: 1px solid var(--border);
 }
 
-/* Shop-only: tighten the space under the shared .hero without
-   changing homepage hero padding, image, overlay, or copy.
-   min-height is unset so the reduced padding-bottom is not
-   absorbed by the homepage hero's 520px floor. */
-.hero:has(+ .shop-toolbar) {
-    padding-bottom: 28px;
-    min-height: 0;
-}
-
 .shop-toolbar-wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -448,10 +439,6 @@ html.shop-filters-ready .shop-filter-native {
 
 @media (max-width: 992px) {
 
-    .hero:has(+ .shop-toolbar) {
-        padding-bottom: 24px;
-    }
-
     .shop-toolbar {
         padding: 18px 0 24px;
     }
@@ -459,10 +446,6 @@ html.shop-filters-ready .shop-filter-native {
 }
 
 @media (max-width: 768px) {
-
-    .hero:has(+ .shop-toolbar) {
-        padding-bottom: 20px;
-    }
 
     .shop-toolbar {
         padding: 16px 0 24px;
@@ -514,10 +497,6 @@ html.shop-filters-ready .shop-filter-native {
 }
 
 @media (max-width: 576px) {
-
-    .hero:has(+ .shop-toolbar) {
-        padding-bottom: 16px;
-    }
 
     .shop-toolbar {
         padding: 16px 0 20px;

@@ -1577,6 +1577,7 @@
 
     .about-hero{
         padding:80px 0;
+        min-height:520px;
     }
 
     .about-hero-container,
@@ -1724,6 +1725,49 @@
     .about-cta .btn-secondary{
         width:100%;
         max-width:260px;
+    }
+
+}
+
+@media (max-width:768px){
+
+    .about-hero{
+        padding:60px 0 20px;
+        min-height:0;
+        height:auto;
+        display:flex;
+        align-items:center;
+    }
+
+    .about-hero > .container{
+        min-height:380px;
+        display:flex;
+        align-items:center;
+    }
+
+    .about-hero-content{
+        width:100%;
+    }
+
+    .our-story .story-wrapper{
+        align-items:center;
+        justify-items:center;
+    }
+
+    .our-story .story-content{
+        text-align:center;
+    }
+
+    .our-story .section-label{
+        justify-content:center;
+    }
+
+}
+
+@media (max-width:576px){
+
+    .about-hero{
+        padding:40px 0 16px;
     }
 
 }
