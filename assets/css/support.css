@@ -18,7 +18,7 @@
 
     overflow:hidden;
 
-    background:#ffffff;
+    background: var(--color-page-bg);
 
 }
 
@@ -166,12 +166,12 @@
 
     background:linear-gradient(
         90deg,
-        #ffffff 22%,
-        rgba(255,255,255,.97) 36%,
-        rgba(255,255,255,.82) 48%,
-        rgba(255,255,255,.45) 60%,
-        rgba(255,255,255,.12) 72%,
-        rgba(255,255,255,0) 100%
+        var(--color-hero-fade) 22%,
+        var(--color-hero-fade-97) 36%,
+        var(--color-hero-fade-82) 48%,
+        var(--color-hero-fade-45) 60%,
+        var(--color-hero-fade-12) 72%,
+        transparent 100%
     );
 
 }
@@ -344,11 +344,11 @@
 
         background:linear-gradient(
             90deg,
-            #ffffff 0%,
-            rgba(255,255,255,.98) 40%,
-            rgba(255,255,255,.78) 60%,
-            rgba(255,255,255,.35) 78%,
-            rgba(255,255,255,0) 100%
+            var(--color-hero-fade) 0%,
+            var(--color-hero-fade-98) 40%,
+            var(--color-hero-fade-78) 60%,
+            var(--color-hero-fade-35) 78%,
+            transparent 100%
         );
 
     }
@@ -363,7 +363,7 @@
 
     padding:70px 0;
 
-    background:#ffffff;
+    background: var(--color-page-bg);
 
 }
 
@@ -404,13 +404,13 @@
 
     padding:24px;
 
-    background:#ffffff;
+    background: var(--color-surface);
 
     border:1px solid var(--border);
 
     border-radius:16px;
 
-    box-shadow:0 10px 35px rgba(0,0,0,.05);
+    box-shadow: var(--color-faq-shadow);
 
 }
 
@@ -446,7 +446,7 @@
 
     border-radius:8px;
 
-    background:#ffffff;
+    background: var(--color-input-bg);
 
     transition:var(--transition);
 
@@ -491,6 +491,31 @@
     font-family:inherit;
 
     color:var(--text);
+
+    color-scheme: light;
+
+}
+
+.faq-search input::placeholder{
+
+    color: var(--color-placeholder);
+
+}
+
+html[data-theme="dark"] .faq-search input,
+html[data-theme-resolved="dark"] .faq-search input {
+
+    color-scheme: dark;
+
+}
+
+@media (prefers-color-scheme: dark) {
+
+    html[data-theme="system"] .faq-search input {
+
+        color-scheme: dark;
+
+    }
 
 }
 
@@ -691,7 +716,7 @@
 
     padding:20px;
 
-    background:#ffffff;
+    background: var(--color-surface);
 
     border:1px solid var(--border);
 
@@ -699,7 +724,7 @@
 
     transition:all .35s ease;
 
-    box-shadow:0 10px 30px rgba(0,0,0,.04);
+    box-shadow: var(--color-info-card-shadow);
 
 }
 
@@ -707,9 +732,9 @@
 
     transform:translateY(-6px);
 
-    border-color:rgba(91,46,145,.25);
+    border-color: var(--color-info-card-hover-border);
 
-    box-shadow:0 18px 45px rgba(91,46,145,.12);
+    box-shadow: var(--color-info-card-hover-shadow);
 
 }
 
@@ -733,11 +758,7 @@
 
     border-radius:14px;
 
-    background:linear-gradient(
-        135deg,
-        rgba(91,46,145,.10),
-        rgba(212,175,55,.12)
-    );
+    background: var(--color-info-icon-well);
 
     color:var(--primary);
 
@@ -753,7 +774,7 @@
 
     background:var(--primary);
 
-    color:#ffffff;
+    color: var(--white);
 
 }
 
@@ -829,15 +850,13 @@
 
     border-radius:16px;
 
-    background:#ffffff;
+    background: var(--color-surface);
 
     /* Soft, premium two-layer shadow (purple-tinted ambient + faint
        contact shadow). Box-shadow never affects layout, so dimensions,
        alignment and border-radius are untouched. */
 
-    box-shadow:
-        0 14px 40px rgba(91,46,145,.10),
-        0 4px 12px rgba(0,0,0,.05);
+    box-shadow: var(--color-map-shadow);
 
 }
 

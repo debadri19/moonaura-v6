@@ -21,14 +21,14 @@
 .account-auth-box {
     width: 100%;
     max-width: 420px;
-    background: var(--white);
+    background: var(--color-surface);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 40px 32px;
 }
 
 .account-auth-box.account-login-box {
-    background-color: var(--white);
+    background-color: var(--color-surface);
     background-image: linear-gradient(var(--gold), var(--primary));
     background-repeat: no-repeat;
     background-position: left top;
@@ -68,6 +68,27 @@
     border-radius: 8px;
     font-size: 14px;
     font-family: inherit;
+}
+
+.account-auth-box input:not([type="checkbox"]):not([type="radio"]) {
+    color: var(--text);
+    background: var(--color-input-bg);
+    color-scheme: light;
+}
+
+.account-auth-box input::placeholder {
+    color: var(--color-placeholder);
+}
+
+html[data-theme="dark"] .account-auth-box input:not([type="checkbox"]):not([type="radio"]),
+html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):not([type="radio"]) {
+    color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+    html[data-theme="system"] .account-auth-box input:not([type="checkbox"]):not([type="radio"]) {
+        color-scheme: dark;
+    }
 }
 
 .account-auth-box input:focus {
@@ -213,7 +234,7 @@
     list-style: none;
     cursor: pointer;
     user-select: none;
-    background: var(--white);
+    background: var(--color-surface);
     border: 1px solid var(--border);
     border-radius: 999px;
     box-shadow: var(--shadow);
@@ -265,7 +286,7 @@
     min-width: 220px;
     max-width: min(280px, calc(100vw - 64px));
     padding: 8px 0;
-    background: var(--white);
+    background: var(--color-surface);
     border: 1px solid var(--border);
     border-radius: 16px;
     box-shadow: var(--shadow);
@@ -326,7 +347,7 @@
     margin-left: auto;
     min-height: 44px;
     padding: 0 20px;
-    background: var(--white);
+    background: var(--color-surface);
     border: 1px solid var(--primary);
     border-radius: 999px;
     box-shadow: var(--shadow);
@@ -385,7 +406,7 @@
 .account-order-heading {
     margin-bottom: 20px;
     padding-bottom: 14px;
-    border-bottom: 1px solid rgba(212, 175, 55, .35);
+    border-bottom: 1px solid var(--color-gold-divider);
 }
 
 .account-order-heading-number {
@@ -406,7 +427,7 @@
 .account-page .checkout-summary > h2 {
     color: var(--primary);
     padding-bottom: 10px;
-    border-bottom: 1px solid rgba(212, 175, 55, .35);
+    border-bottom: 1px solid var(--color-gold-divider);
 }
 
 
@@ -415,7 +436,7 @@
 ========================================== */
 
 .account-card {
-    background: var(--white);
+    background: var(--color-surface);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 28px;
@@ -427,7 +448,7 @@
     margin-bottom: 16px;
     color: var(--primary);
     padding-bottom: 10px;
-    border-bottom: 1px solid rgba(212, 175, 55, .35);
+    border-bottom: 1px solid var(--color-gold-divider);
 }
 
 .account-welcome-card {
@@ -506,7 +527,7 @@
 }
 
 .account-order-card {
-    background: var(--white);
+    background: var(--color-surface);
     border: 1px solid var(--border);
     border-radius: 20px;
     padding: 20px 22px;
@@ -524,7 +545,7 @@
 .account-order-card-date {
     margin: 6px 0 0;
     padding-bottom: 14px;
-    border-bottom: 1px solid rgba(212, 175, 55, .35);
+    border-bottom: 1px solid var(--color-gold-divider);
     color: var(--text-light);
     font-size: 13px;
 }
@@ -572,6 +593,27 @@
     border-radius: 8px;
     font-size: 14px;
     font-family: inherit;
+}
+
+.account-card input:not([type="checkbox"]):not([type="radio"]) {
+    color: var(--text);
+    background: var(--color-input-bg);
+    color-scheme: light;
+}
+
+.account-card input::placeholder {
+    color: var(--color-placeholder);
+}
+
+html[data-theme="dark"] .account-card input:not([type="checkbox"]):not([type="radio"]),
+html[data-theme-resolved="dark"] .account-card input:not([type="checkbox"]):not([type="radio"]) {
+    color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+    html[data-theme="system"] .account-card input:not([type="checkbox"]):not([type="radio"]) {
+        color-scheme: dark;
+    }
 }
 
 .account-card input:focus {
@@ -730,14 +772,14 @@
 }
 
 .account-badge-pending,
-.account-badge-processing { background: #fff6e5; color: #a86400; }
+.account-badge-processing { background: var(--color-stock-low-bg); color: var(--color-stock-low-text); }
 .account-badge-shipped,
-.account-badge-paid       { background: #e8f0fe; color: #1a56b0; }
+.account-badge-paid       { background: var(--color-status-info-bg); color: var(--color-status-info-text); }
 .account-badge-delivered,
-.account-badge-active     { background: #eaf7ee; color: #1e7b34; }
+.account-badge-active     { background: var(--color-positive-bg); color: var(--color-positive-text); }
 .account-badge-cancelled,
 .account-badge-failed,
-.account-badge-refunded   { background: #fdecea; color: #b3261e; }
+.account-badge-refunded   { background: var(--color-stock-out-bg); color: var(--color-stock-out-text); }
 
 
 /* ==========================================
@@ -761,7 +803,7 @@
     font-size: 14px;
     line-height: 1.6;
     position: relative;
-    background: var(--white);
+    background: var(--color-surface);
     overflow: hidden;
 }
 
@@ -836,15 +878,15 @@
 
 .account-address-action:hover,
 .account-address-action:focus-visible {
-    background: rgba(91, 46, 145, .06);
+    background: var(--color-action-hover);
     color: var(--gold);
     outline: none;
 }
 
 .account-address-actions form .account-address-action:hover,
 .account-address-actions form .account-address-action:focus-visible {
-    background: #fdecea;
-    color: #b3261e;
+    background: var(--color-stock-out-bg);
+    color: var(--color-stock-out-text);
 }
 
 
@@ -859,8 +901,8 @@
     margin-bottom: 20px;
 }
 
-.account-alert-success { background: #eaf7ee; color: #1e7b34; border: 1px solid #c3e8cd; }
-.account-alert-error   { background: #fdecea; color: #b3261e; border: 1px solid #f6c6c2; }
+.account-alert-success { background: var(--color-positive-bg); color: var(--color-positive-text); border: 1px solid var(--color-positive-border); }
+.account-alert-error   { background: var(--color-stock-out-bg); color: var(--color-stock-out-text); border: 1px solid var(--color-error-border); }
 
 .account-alert ul { padding-left: 18px; margin: 0; }
 
@@ -990,7 +1032,7 @@
         border-radius: 12px;
         margin-bottom: 14px;
         padding: 4px 0;
-        background: var(--white);
+        background: var(--color-surface);
     }
 
     .account-table td {
@@ -1029,7 +1071,7 @@
 
 .account-timeline,
 .account-tracking {
-    background: var(--white);
+    background: var(--color-surface);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 24px 28px;
@@ -1084,7 +1126,7 @@
     margin-top: 3px;
     border-radius: 50%;
     background: var(--primary);
-    border: 3px solid var(--white);
+    border: 3px solid var(--color-surface);
     box-shadow: 0 0 0 2px var(--primary);
 }
 
