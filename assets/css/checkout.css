@@ -41,10 +41,16 @@
     margin-bottom: 20px;
 }
 
+.checkout-alert-success {
+    background: var(--color-success-bg);
+    color: var(--color-success-text);
+    border: 1px solid var(--color-success-border);
+}
+
 .checkout-alert-error {
-    background: #fdecea;
-    color: #b3261e;
-    border: 1px solid #f6c6c2;
+    background: var(--color-stock-out-bg);
+    color: var(--color-stock-out-text);
+    border: 1px solid var(--color-danger-border);
 }
 
 .checkout-alert ul {
@@ -58,7 +64,7 @@
 ========================================== */
 
 .checkout-form-card {
-    background: var(--white);
+    background: var(--color-surface);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 28px;
@@ -100,6 +106,15 @@
     transition: var(--transition);
 }
 
+.checkout-form-card input:not([type="checkbox"]):not([type="radio"]) {
+    color: var(--text);
+    background: var(--color-input-bg);
+}
+
+.checkout-form-card input::placeholder {
+    color: var(--color-placeholder);
+}
+
 .checkout-form-card input:focus {
     outline: none;
     border-color: var(--primary);
@@ -124,7 +139,7 @@
     line-height: 1.7;
     font-family: inherit;
     color: var(--text);
-    background-color: var(--white);
+    background-color: var(--color-input-bg);
     cursor: pointer;
     transition: var(--transition);
     appearance: none;
@@ -143,8 +158,19 @@
 }
 
 .checkout-form-card select option {
-    background: var(--white);
+    background: var(--color-input-bg);
     color: var(--text);
+}
+
+html[data-theme="dark"] .checkout-form-card select,
+html[data-theme-resolved="dark"] .checkout-form-card select {
+    color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+    html[data-theme="system"] .checkout-form-card select {
+        color-scheme: dark;
+    }
 }
 
 .checkout-form-card select:focus {
@@ -210,9 +236,9 @@
 }
 
 .checkout-test-mode-banner {
-    background: #fff6e5;
-    color: #a86400;
-    border: 1px solid #f3d99b;
+    background: var(--color-stock-low-bg);
+    color: var(--color-stock-low-text);
+    border: 1px solid var(--color-warning-border);
     padding: 10px 16px;
     border-radius: 8px;
     font-size: 13px;
@@ -452,7 +478,7 @@
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: #f5f0fb;
+    background: var(--color-icon-well);
     color: var(--primary);
     font-size: 20px;
 }
@@ -562,19 +588,19 @@
 }
 
 .payment-status-paid {
-    background: #e4f6ea;
-    color: #1e7e42;
+    background: var(--color-status-paid-bg);
+    color: var(--color-status-paid-text);
 }
 
 .payment-status-pending {
-    background: #fdf3e0;
-    color: #966611;
+    background: var(--color-status-pending-bg);
+    color: var(--color-status-pending-text);
 }
 
 .payment-status-failed,
 .payment-status-refunded {
-    background: #fbe6e6;
-    color: #b3261e;
+    background: var(--color-status-failed-bg);
+    color: var(--color-stock-out-text);
 }
 
 .payment-support-note {

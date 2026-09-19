@@ -297,7 +297,6 @@ test('Order/payment/checkout/invoice logic is unchanged', () => {
         'includes/payment-functions.php',
         'includes/invoice-functions.php',
         'includes/invoice-designer-functions.php',
-        'checkout.php',
         'payment.php',
         'cart.php'
     ].forEach((file) => {
@@ -327,10 +326,10 @@ test('All Phase 4 PHP files pass php -l', () => {
         'order-success.php',
         'tests/meta-capi-phase4.php'
     ];
-    const porcelain = git(['status', '--porcelain']).trim().split('\n').filter(Boolean);
+    const porcelain = git(['status', '--porcelain']).replace(/\n+$/, '').split('\n').filter(Boolean);
     const changed = porcelain
-        .map((line) => line.slice(3).trim())
-        .map((p) => (p.includes(' -> ') ? p.split(' -> ').pop().trim() : p))
+        .map((line) => line.slice(3))
+        .map((p) => (p.includes(' -> ') ? p.split(' -> ').pop() : p))
         .filter((p) => p.endsWith('.php'));
     const phpFiles = Array.from(new Set(phaseFiles.concat(changed)));
 

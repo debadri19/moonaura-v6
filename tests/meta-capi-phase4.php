@@ -252,16 +252,29 @@ if ($scenario === 'hashing') {
     // Meta's server-side format: email lowercased/trimmed, phone digits
     // only, then SHA-256. Raw values must never survive.
     $userData = meta_capi_build_user_data([
-        'email' => '  Test@Example.com ',
-        'phone' => '+91 98765-43210',
+        'email'       => '  Test@Example.com ',
+        'phone'       => '+91 98765-43210',
+        'name'        => 'Aanya Sharma',
+        'city'        => 'Mumbai',
+        'state'       => 'Maharashtra',
+        'postal_code' => '400001',
+        'country'     => 'India',
     ]);
 
     check(($userData['em'] ?? []) === [hash('sha256', 'test@example.com')], 'email is normalized and hashed');
     check(($userData['ph'] ?? []) === [hash('sha256', '919876543210')], 'phone is normalized and hashed');
+    check(($userData['fn'] ?? []) === [hash('sha256', 'aanya')], 'first name is normalized and hashed');
+    check(($userData['ln'] ?? []) === [hash('sha256', 'sharma')], 'last name is normalized and hashed');
+    check(($userData['ct'] ?? []) === [hash('sha256', 'mumbai')], 'city is normalized and hashed');
+    check(($userData['st'] ?? []) === [hash('sha256', 'maharashtra')], 'state is normalized and hashed');
+    check(($userData['zp'] ?? []) === [hash('sha256', '400001')], 'postal code is normalized and hashed');
+    check(($userData['country'] ?? []) === [hash('sha256', 'in')], 'country is normalized and hashed');
 
     $json = json_encode($userData);
     check(!str_contains($json, 'Test@Example.com'), 'raw email is never emitted');
     check(!str_contains($json, '98765'), 'raw phone is never emitted');
+    check(!str_contains($json, 'Aanya'), 'raw name is never emitted');
+    check(!str_contains($json, 'Mumbai'), 'raw city is never emitted');
 
     // The default request context sends no customer PII keys.
     $default = meta_capi_request_user_data();

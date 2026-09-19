@@ -51,7 +51,7 @@ if (!$order || !customer_or_session_owns_order($order)) {
 
             <div class="cart-empty">
 
-                <i class="fa-solid fa-circle-exclamation" style="color: #b3261e;"></i>
+                <i class="fa-solid fa-circle-exclamation" style="color: var(--color-stock-out-text);"></i>
 
                 <h1 style="margin-bottom: 10px;">Payment Failed</h1>
 

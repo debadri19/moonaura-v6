@@ -201,13 +201,13 @@
 }
 
 .product-stock-out {
-    background: #fdecea;
-    color: #b3261e;
+    background: var(--color-stock-out-bg);
+    color: var(--color-stock-out-text);
 }
 
 .product-stock-low {
-    background: #fff6e5;
-    color: #a86400;
+    background: var(--color-stock-low-bg);
+    color: var(--color-stock-low-text);
 }
 
 .product-info-actions-unavailable .btn-disabled {

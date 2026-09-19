@@ -30,7 +30,7 @@
 }
 
 .wishlist-unavailable {
-    color: #b3261e;
+    color: var(--color-stock-out-text);
     font-size: 13px;
     font-weight: 600;
     margin-top: 14px;
@@ -52,7 +52,7 @@
     height: 88px;
     margin-bottom: 20px;
     border-radius: 50%;
-    background: #f3eef8;
+    background: var(--color-empty-icon-well);
 }
 
 .wishlist-empty-state .wishlist-empty-icon i,

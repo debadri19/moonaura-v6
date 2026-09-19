@@ -20,7 +20,7 @@
 
     width: 100%;
 
-    background: rgba(255, 255, 255, .95);
+    background: var(--color-header-bg);
 
     backdrop-filter: blur(12px);
 
@@ -38,16 +38,9 @@
 
 .site-header.scrolled {
 
-    background: rgba(255, 255, 255, .98);
+    background: var(--color-header-bg-scrolled);
 
-    box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
-
-}
-
-.site-header.scrolled {
-
-    background:rgba(255,255,255,.98);
-    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    box-shadow: var(--color-header-shadow);
 
 }
 
@@ -172,7 +165,7 @@
 
     padding: 8px 0;
 
-    background: var(--white);
+    background: var(--color-surface);
 
     border: 1px solid var(--border);
 
@@ -390,7 +383,7 @@
 
     border-radius: 50%;
 
-    background: var(--white);
+    background: var(--color-surface);
 
     font-size: 18px;
 
@@ -469,7 +462,7 @@ button.header-icon {
 
     border-radius: 999px;
 
-    background: var(--white);
+    background: var(--color-input-bg);
 
     transition: var(--transition);
 
@@ -573,7 +566,7 @@ button.header-icon {
 
     border-radius: 50%;
 
-    background: var(--white);
+    background: var(--color-surface);
 
     color: var(--text);
 
@@ -871,7 +864,7 @@ button.header-icon {
 
         border-radius: 50%;
 
-        background: var(--white);
+        background: var(--color-surface);
 
         transition: var(--transition);
 
@@ -1106,7 +1099,7 @@ button.header-icon {
 
     height: 100vh;
 
-    background:rgba(255,255,255,.94);
+    background: var(--color-mobile-menu-bg);
 
     backdrop-filter:blur(18px);
 
@@ -1445,7 +1438,7 @@ button.header-icon {
     inset:0;
     z-index:1050;
 
-    background:rgba(255,255,255,.15);
+    background: var(--color-menu-overlay);
 
     backdrop-filter:blur(14px) saturate(180%);
     -webkit-backdrop-filter:blur(14px) saturate(180%);

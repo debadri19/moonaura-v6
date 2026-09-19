@@ -29,9 +29,9 @@ body {
 
     font-family: 'Poppins', sans-serif;
 
-    color: #222222;
+    color: var(--color-text);
 
-    background: #ffffff;
+    background: var(--color-page-bg);
 
     overflow-x: hidden;
 
@@ -121,6 +121,369 @@ button {
     --scrollbar-firefox-thumb: var(--primary);
 
     --scrollbar-firefox-track: rgba(91, 46, 145, .10);
+
+    --color-page-bg: #ffffff;
+
+    --color-surface: #ffffff;
+
+    --color-text: var(--text);
+
+    --color-text-muted: var(--text-light);
+
+    --color-border: var(--border);
+
+    --color-input-bg: var(--white);
+
+    --color-input-border: var(--border);
+
+    --color-shadow: var(--shadow);
+
+    --color-brand: var(--primary);
+
+    --color-brand-dark: var(--primary-dark);
+
+    --color-accent: var(--gold);
+
+    --color-header-bg: rgba(255, 255, 255, .95);
+
+    --color-header-bg-scrolled: rgba(255, 255, 255, .98);
+
+    --color-header-shadow: 0 8px 25px rgba(0, 0, 0, .08);
+
+    --color-mobile-menu-bg: rgba(255, 255, 255, .94);
+
+    --color-menu-overlay: rgba(255, 255, 255, .15);
+
+    --color-icon-well: #f5f0fb;
+
+    --color-loader-overlay: rgba(250, 248, 252, .6);
+
+    --color-hero-fade: #ffffff;
+
+    --color-hero-fade-97: rgba(255, 255, 255, .97);
+
+    --color-hero-fade-82: rgba(255, 255, 255, .82);
+
+    --color-hero-fade-45: rgba(255, 255, 255, .45);
+
+    --color-hero-fade-12: rgba(255, 255, 255, .12);
+
+    --color-hero-fade-98: rgba(255, 255, 255, .98);
+
+    --color-hero-fade-78: rgba(255, 255, 255, .78);
+
+    --color-hero-fade-35: rgba(255, 255, 255, .35);
+
+    --color-card-border: rgba(91, 46, 145, .08);
+
+    --color-card-border-hover: rgba(91, 46, 145, .16);
+
+    --color-card-shadow: 0 12px 30px rgba(0, 0, 0, .05);
+
+    --color-card-shadow-hover: 0 20px 45px rgba(91, 46, 145, .10);
+
+    --color-placeholder: #8d8d8d;
+
+    --color-old-price: #9a9a9a;
+
+    --color-stock-out-bg: #fdecea;
+
+    --color-stock-out-text: #b3261e;
+
+    --color-stock-low-bg: #fff6e5;
+
+    --color-stock-low-text: #a86400;
+
+    --color-pagination-dot: #d8c7ef;
+
+    --color-success-bg: #eaf7ee;
+
+    --color-success-text: #1e7b34;
+
+    --color-success-border: #c3e8cd;
+
+    --color-empty-icon-well: #f3eef8;
+
+    --color-qty-btn-hover: rgba(91, 46, 145, .08);
+
+    --color-danger-border: #f6c6c2;
+
+    --color-danger-hover: #8f1e18;
+
+    --color-warning-border: #f3d99b;
+
+    --color-status-paid-bg: #e4f6ea;
+
+    --color-status-paid-text: #1e7e42;
+
+    --color-status-pending-bg: #fdf3e0;
+
+    --color-status-pending-text: #966611;
+
+    --color-status-failed-bg: #fbe6e6;
+
+}
+
+
+
+/* ===================================================================
+   02A. THEME FOUNDATION
+   Semantic tokens for Light / Dark / System. Existing brand colors
+   stay unchanged. Light Mode visual output is preserved because
+   :root values match the previous hardcoded paints.
+
+   Mode source of truth: html[data-theme="light|dark|system"]
+   Resolved appearance: html[data-theme-resolved="light|dark"]
+   Unset data-theme falls back to these :root (Light) tokens.
+   --white is never remapped (button text on brand fills).
+   =================================================================== */
+
+html[data-theme="dark"],
+html[data-theme-resolved="dark"] {
+
+    color-scheme: dark;
+
+    --color-page-bg: #160e22;
+
+    --color-surface: #221833;
+
+    --color-text: #f4f1f8;
+
+    --color-text-muted: #b5a9c7;
+
+    --color-border: #3d2e52;
+
+    --color-input-bg: #1c1428;
+
+    --color-input-border: #4a3a63;
+
+    --color-shadow: 0 15px 40px rgba(0, 0, 0, .40);
+
+    --color-brand: var(--primary);
+
+    --color-brand-dark: var(--primary-dark);
+
+    --color-accent: var(--gold);
+
+    --text: var(--color-text);
+
+    --text-light: var(--color-text-muted);
+
+    --bg: #1b1228;
+
+    --border: var(--color-border);
+
+    --shadow: var(--color-shadow);
+
+    --scrollbar-track: rgba(91, 46, 145, .22);
+
+    --scrollbar-thumb-border: 2px solid #221833;
+
+    --scrollbar-firefox-track: rgba(91, 46, 145, .28);
+
+    --color-header-bg: rgba(22, 14, 34, .92);
+
+    --color-header-bg-scrolled: rgba(22, 14, 34, .96);
+
+    --color-header-shadow: 0 8px 25px rgba(0, 0, 0, .40);
+
+    --color-mobile-menu-bg: rgba(22, 14, 34, .96);
+
+    --color-menu-overlay: rgba(22, 14, 34, .45);
+
+    --color-icon-well: #2a1d3f;
+
+    --color-loader-overlay: rgba(22, 14, 34, .62);
+
+    --color-hero-fade: #160e22;
+
+    --color-hero-fade-97: rgba(22, 14, 34, .97);
+
+    --color-hero-fade-82: rgba(22, 14, 34, .82);
+
+    --color-hero-fade-45: rgba(22, 14, 34, .45);
+
+    --color-hero-fade-12: rgba(22, 14, 34, .12);
+
+    --color-hero-fade-98: rgba(22, 14, 34, .98);
+
+    --color-hero-fade-78: rgba(22, 14, 34, .78);
+
+    --color-hero-fade-35: rgba(22, 14, 34, .35);
+
+    --color-card-border: rgba(212, 175, 55, .16);
+
+    --color-card-border-hover: rgba(212, 175, 55, .32);
+
+    --color-card-shadow: 0 12px 30px rgba(0, 0, 0, .35);
+
+    --color-card-shadow-hover: 0 20px 45px rgba(91, 46, 145, .28);
+
+    --color-placeholder: #9a8aaf;
+
+    --color-old-price: #9a8aaf;
+
+    --color-stock-out-bg: #3a1a1c;
+
+    --color-stock-out-text: #f0a8a2;
+
+    --color-stock-low-bg: #3a2a14;
+
+    --color-stock-low-text: #e0b56a;
+
+    --color-pagination-dot: #4a3a63;
+
+    --color-success-bg: #1a3322;
+
+    --color-success-text: #8fd4a4;
+
+    --color-success-border: #2e5a3c;
+
+    --color-empty-icon-well: #2a1d3f;
+
+    --color-qty-btn-hover: rgba(212, 175, 55, .12);
+
+    --color-danger-border: #6a3330;
+
+    --color-danger-hover: #f0a8a2;
+
+    --color-warning-border: #6a5530;
+
+    --color-status-paid-bg: #1a3322;
+
+    --color-status-paid-text: #8fd4a4;
+
+    --color-status-pending-bg: #3a2a14;
+
+    --color-status-pending-text: #e0b56a;
+
+    --color-status-failed-bg: #3a1a1c;
+
+}
+
+@media (prefers-color-scheme: dark) {
+
+    html[data-theme="system"] {
+
+        color-scheme: dark;
+
+        --color-page-bg: #160e22;
+
+        --color-surface: #221833;
+
+        --color-text: #f4f1f8;
+
+        --color-text-muted: #b5a9c7;
+
+        --color-border: #3d2e52;
+
+        --color-input-bg: #1c1428;
+
+        --color-input-border: #4a3a63;
+
+        --color-shadow: 0 15px 40px rgba(0, 0, 0, .40);
+
+        --color-brand: var(--primary);
+
+        --color-brand-dark: var(--primary-dark);
+
+        --color-accent: var(--gold);
+
+        --text: var(--color-text);
+
+        --text-light: var(--color-text-muted);
+
+        --bg: #1b1228;
+
+        --border: var(--color-border);
+
+        --shadow: var(--color-shadow);
+
+        --scrollbar-track: rgba(91, 46, 145, .22);
+
+        --scrollbar-thumb-border: 2px solid #221833;
+
+        --scrollbar-firefox-track: rgba(91, 46, 145, .28);
+
+        --color-header-bg: rgba(22, 14, 34, .92);
+
+        --color-header-bg-scrolled: rgba(22, 14, 34, .96);
+
+        --color-header-shadow: 0 8px 25px rgba(0, 0, 0, .40);
+
+        --color-mobile-menu-bg: rgba(22, 14, 34, .96);
+
+        --color-menu-overlay: rgba(22, 14, 34, .45);
+
+        --color-icon-well: #2a1d3f;
+
+        --color-loader-overlay: rgba(22, 14, 34, .62);
+
+        --color-hero-fade: #160e22;
+
+        --color-hero-fade-97: rgba(22, 14, 34, .97);
+
+        --color-hero-fade-82: rgba(22, 14, 34, .82);
+
+        --color-hero-fade-45: rgba(22, 14, 34, .45);
+
+        --color-hero-fade-12: rgba(22, 14, 34, .12);
+
+        --color-hero-fade-98: rgba(22, 14, 34, .98);
+
+        --color-hero-fade-78: rgba(22, 14, 34, .78);
+
+        --color-hero-fade-35: rgba(22, 14, 34, .35);
+
+        --color-card-border: rgba(212, 175, 55, .16);
+
+        --color-card-border-hover: rgba(212, 175, 55, .32);
+
+        --color-card-shadow: 0 12px 30px rgba(0, 0, 0, .35);
+
+        --color-card-shadow-hover: 0 20px 45px rgba(91, 46, 145, .28);
+
+        --color-placeholder: #9a8aaf;
+
+        --color-old-price: #9a8aaf;
+
+        --color-stock-out-bg: #3a1a1c;
+
+        --color-stock-out-text: #f0a8a2;
+
+        --color-stock-low-bg: #3a2a14;
+
+        --color-stock-low-text: #e0b56a;
+
+        --color-pagination-dot: #4a3a63;
+
+        --color-success-bg: #1a3322;
+
+        --color-success-text: #8fd4a4;
+
+        --color-success-border: #2e5a3c;
+
+        --color-empty-icon-well: #2a1d3f;
+
+        --color-qty-btn-hover: rgba(212, 175, 55, .12);
+
+        --color-danger-border: #6a3330;
+
+        --color-danger-hover: #f0a8a2;
+
+        --color-warning-border: #6a5530;
+
+        --color-status-paid-bg: #1a3322;
+
+        --color-status-paid-text: #8fd4a4;
+
+        --color-status-pending-bg: #3a2a14;
+
+        --color-status-pending-text: #e0b56a;
+
+        --color-status-failed-bg: #3a1a1c;
+
+    }
 
 }
 
@@ -726,8 +1089,8 @@ section {
 
     background:linear-gradient(
         180deg,
-        #faf8fc 0%,
-        #ffffff 100%
+        var(--bg) 0%,
+        var(--color-page-bg) 100%
     );
 
 }
@@ -766,13 +1129,13 @@ section {
 
     padding:40px 30px;
 
-    background:var(--white);
+    background:var(--color-surface);
 
-    border:1px solid rgba(91,46,145,.08);
+    border:1px solid var(--color-card-border);
 
     border-radius:22px;
 
-    box-shadow:0 12px 30px rgba(0,0,0,.05);
+    box-shadow:var(--color-card-shadow);
 
     transition:
         transform .35s ease,
@@ -785,9 +1148,9 @@ section {
 
     transform:translateY(-8px);
 
-    border-color:rgba(91,46,145,.16);
+    border-color:var(--color-card-border-hover);
 
-    box-shadow:0 20px 45px rgba(91,46,145,.10);
+    box-shadow:var(--color-card-shadow-hover);
 
 }
 
@@ -811,7 +1174,7 @@ section {
 
     border-radius:50%;
 
-    background:#f5f0fb;
+    background:var(--color-icon-well);
 
     color:var(--primary);
 
@@ -1042,7 +1405,7 @@ section {
 
     justify-content: center;
 
-    background: rgba(250, 248, 252, .6);
+    background: var(--color-loader-overlay);
 
     opacity: 0;
 

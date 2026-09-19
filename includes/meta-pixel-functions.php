@@ -95,6 +95,22 @@ function meta_pixel_print_base_tag(): void
 
     $id     = meta_pixel_id();
     $idJson = json_encode($id, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+    $matching     = meta_pixel_build_advanced_matching(meta_pixel_collect_matching_context());
+    $matchingJson = $matching === []
+        ? ''
+        : json_encode(
+            $matching,
+            JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP
+        );
+    if ($matchingJson === false) {
+        $matchingJson = '';
+    }
+
+    $initArgs = $idJson;
+    if ($matchingJson !== '') {
+        $initArgs .= ', ' . $matchingJson;
+    }
     ?>
 <script>
 !function(f,b,e,v,n,t,s)
@@ -105,7 +121,7 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window,document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', <?= $idJson ?>);
+fbq('init', <?= $initArgs ?>);
 fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" alt=""
@@ -383,4 +399,267 @@ window.moonauraMetaQueue.push(<?= $recordJson ?>);
 <?php endforeach; ?>
 </script>
     <?php endif;
+}
+
+
+/* ===================================================================
+   META (FACEBOOK) PIXEL - PHASE 5 ADVANCED MATCHING
+   -------------------------------------------------------------------
+   Manual Advanced Matching at Pixel init only. Phase 1 still emits
+   one loader + one PageView; Phases 2-4 event names, payloads,
+   Purchase guards, and the shared event_id are unchanged.
+
+   Identifiers are taken only from data the storefront already has
+   (logged-in customer row, or an explicit page-supplied checkout /
+   completed-order context). Empty/null values are omitted. Values
+   are normalized and SHA-256 hashed server-side so raw email, phone
+   and name never appear in HTML, JS, URLs or logs.
+
+   Browser init uses Meta's hashed AM object (string values). The
+   noscript fallback is left as a PageView-only pixel so hashed
+   identifiers are never placed in a query string.
+   =================================================================== */
+
+function &meta_pixel_matching_context_ref(): array
+{
+    static $context = [];
+    return $context;
+}
+
+function meta_pixel_set_matching_context(array $context): void
+{
+    $stored = &meta_pixel_matching_context_ref();
+
+    foreach (['email', 'phone', 'name', 'first_name', 'last_name', 'city', 'state', 'postal_code', 'country'] as $key) {
+        if (!array_key_exists($key, $context)) {
+            continue;
+        }
+
+        $value = trim((string) $context[$key]);
+        if ($value === '') {
+            continue;
+        }
+
+        $stored[$key] = $value;
+    }
+}
+
+function meta_pixel_hash_pii(string $value): string
+{
+    $value = trim($value);
+
+    return $value === '' ? '' : hash('sha256', $value);
+}
+
+function meta_pixel_normalize_email(string $email): string
+{
+    $email = strtolower(trim($email));
+
+    if ($email === '' || filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+        return '';
+    }
+
+    return $email;
+}
+
+function meta_pixel_normalize_phone(string $phone): string
+{
+    $digits = preg_replace('/\D+/', '', $phone);
+    if (!is_string($digits) || $digits === '') {
+        return '';
+    }
+
+    if (strlen($digits) === 10 && preg_match('/^[6-9]\d{9}$/', $digits)) {
+        return '91' . $digits;
+    }
+
+    if (strlen($digits) === 12 && str_starts_with($digits, '91')) {
+        return $digits;
+    }
+
+    if (strlen($digits) === 11 && str_starts_with($digits, '0')) {
+        $national = substr($digits, 1);
+        if (preg_match('/^[6-9]\d{9}$/', $national)) {
+            return '91' . $national;
+        }
+    }
+
+    return $digits;
+}
+
+function meta_pixel_normalize_name_part(string $value): string
+{
+    $value = strtolower(trim($value));
+    $value = preg_replace('/[^a-z]/', '', $value);
+
+    return is_string($value) ? $value : '';
+}
+
+function meta_pixel_normalize_city(string $value): string
+{
+    $value = strtolower(trim($value));
+    $value = preg_replace('/[^a-z]/', '', $value);
+
+    return is_string($value) ? $value : '';
+}
+
+function meta_pixel_normalize_state(string $value): string
+{
+    $value = strtolower(trim($value));
+    $value = preg_replace('/[^a-z]/', '', $value);
+
+    return is_string($value) ? $value : '';
+}
+
+function meta_pixel_normalize_postal_code(string $value): string
+{
+    $value = strtolower(trim($value));
+    $value = preg_replace('/\s+/', '', $value);
+
+    return is_string($value) ? $value : '';
+}
+
+function meta_pixel_normalize_country(string $value): string
+{
+    $value = strtolower(trim($value));
+
+    if ($value === '') {
+        return '';
+    }
+
+    if ($value === 'india' || $value === 'in' || $value === 'ind') {
+        return 'in';
+    }
+
+    $value = preg_replace('/[^a-z]/', '', $value);
+    if (!is_string($value) || strlen($value) !== 2) {
+        return '';
+    }
+
+    return $value;
+}
+
+function meta_pixel_split_full_name(string $fullName): array
+{
+    $fullName = trim(preg_replace('/\s+/', ' ', $fullName) ?? '');
+    if ($fullName === '') {
+        return ['first_name' => '', 'last_name' => ''];
+    }
+
+    $parts = explode(' ', $fullName);
+    $first = (string) array_shift($parts);
+    $last  = trim(implode(' ', $parts));
+
+    return [
+        'first_name' => $first,
+        'last_name'  => $last,
+    ];
+}
+
+function meta_pixel_session_customer_context(): array
+{
+    $row = null;
+
+    if (function_exists('current_customer')) {
+        try {
+            $row = current_customer();
+        } catch (Throwable $e) {
+            $row = null;
+        }
+    }
+
+    if (!is_array($row)) {
+        $customerId = (int) ($_SESSION['customer_id'] ?? 0);
+        if ($customerId <= 0) {
+            return [];
+        }
+
+        if (!function_exists('db')) {
+            $dbFile = __DIR__ . '/db.php';
+            if (!is_file($dbFile)) {
+                return [];
+            }
+            require_once $dbFile;
+        }
+
+        if (!function_exists('db')) {
+            return [];
+        }
+
+        try {
+            $stmt = db()->prepare('SELECT name, email, phone FROM customers WHERE id = ? LIMIT 1');
+            $stmt->execute([$customerId]);
+            $row = $stmt->fetch();
+        } catch (Throwable $e) {
+            return [];
+        }
+    }
+
+    if (!is_array($row)) {
+        return [];
+    }
+
+    $context = [];
+    foreach (['name' => 'name', 'email' => 'email', 'phone' => 'phone'] as $from => $to) {
+        $value = trim((string) ($row[$from] ?? ''));
+        if ($value !== '') {
+            $context[$to] = $value;
+        }
+    }
+
+    return $context;
+}
+
+function meta_pixel_collect_matching_context(): array
+{
+    $context = meta_pixel_matching_context_ref();
+    $session = meta_pixel_session_customer_context();
+
+    foreach ($session as $key => $value) {
+        if (!isset($context[$key]) || trim((string) $context[$key]) === '') {
+            $context[$key] = $value;
+        }
+    }
+
+    return $context;
+}
+
+function meta_pixel_assign_hashed(array &$matching, string $key, string $normalized): void
+{
+    if ($normalized === '') {
+        return;
+    }
+
+    $hash = meta_pixel_hash_pii($normalized);
+    if ($hash !== '') {
+        $matching[$key] = $hash;
+    }
+}
+
+function meta_pixel_build_advanced_matching(array $context): array
+{
+    $matching = [];
+
+    $email = meta_pixel_normalize_email((string) ($context['email'] ?? ''));
+    meta_pixel_assign_hashed($matching, 'em', $email);
+
+    $phone = meta_pixel_normalize_phone((string) ($context['phone'] ?? ''));
+    meta_pixel_assign_hashed($matching, 'ph', $phone);
+
+    $first = trim((string) ($context['first_name'] ?? ''));
+    $last  = trim((string) ($context['last_name'] ?? ''));
+    if ($first === '' && $last === '') {
+        $split = meta_pixel_split_full_name((string) ($context['name'] ?? ''));
+        $first = $split['first_name'];
+        $last  = $split['last_name'];
+    }
+
+    meta_pixel_assign_hashed($matching, 'fn', meta_pixel_normalize_name_part($first));
+    meta_pixel_assign_hashed($matching, 'ln', meta_pixel_normalize_name_part($last));
+    meta_pixel_assign_hashed($matching, 'ct', meta_pixel_normalize_city((string) ($context['city'] ?? '')));
+    meta_pixel_assign_hashed($matching, 'st', meta_pixel_normalize_state((string) ($context['state'] ?? '')));
+    meta_pixel_assign_hashed($matching, 'zp', meta_pixel_normalize_postal_code((string) ($context['postal_code'] ?? '')));
+    meta_pixel_assign_hashed($matching, 'country', meta_pixel_normalize_country((string) ($context['country'] ?? '')));
+
+    return $matching;
 }

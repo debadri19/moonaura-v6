@@ -163,7 +163,7 @@ $upiQrImagePath = get_setting('upi_qr_image_path', '');
 
             <?php if ($existingSubmission): ?>
 
-                <div class="checkout-alert" style="background: #eaf7ee; color: #1e7b34; border: 1px solid #c3e8cd;">
+                <div class="checkout-alert checkout-alert-success">
                     Thanks! We've received your payment reference
                     (<strong><?= h($existingSubmission['gateway_payment_id']) ?></strong>) for order
                     <strong><?= h($order['order_number']) ?></strong> and it's now awaiting verification.

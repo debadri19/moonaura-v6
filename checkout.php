@@ -695,6 +695,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // checkout items and grand total. Queued once per page load so
     // incidental AJAX/UI updates cannot duplicate it.
     meta_pixel_track_checkout($checkoutGaItems, $totals['grand_total'] ?? null);
+
+    // Meta Phase 5: hashed Advanced Matching from details already on
+    // this checkout (logged-in prefills or guest-entered fields).
+    $checkoutMatching = [
+        'email'       => (string) ($customer['email'] ?? ''),
+        'phone'       => (string) ($customer['mobile'] ?? ''),
+        'name'        => (string) ($customer['full_name'] ?? ''),
+        'city'        => (string) ($address['city'] ?? ''),
+        'state'       => (string) ($address['state'] ?? ''),
+        'postal_code' => (string) ($address['pincode'] ?? ''),
+    ];
+    meta_pixel_set_matching_context($checkoutMatching);
     ?>
     <?php include __DIR__ . '/includes/footer.php'; ?>
 

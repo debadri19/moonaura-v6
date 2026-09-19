@@ -20,15 +20,15 @@
 }
 
 .cart-alert-success {
-    background: #eaf7ee;
-    color: #1e7b34;
-    border: 1px solid #c3e8cd;
+    background: var(--color-success-bg);
+    color: var(--color-success-text);
+    border: 1px solid var(--color-success-border);
 }
 
 .cart-alert-error {
-    background: #fdecea;
-    color: #b3261e;
-    border: 1px solid #f6c6c2;
+    background: var(--color-stock-out-bg);
+    color: var(--color-stock-out-text);
+    border: 1px solid var(--color-danger-border);
 }
 
 
@@ -83,7 +83,7 @@
     height: 88px;
     margin-bottom: 20px;
     border-radius: 50%;
-    background: #f3eef8;
+    background: var(--color-empty-icon-well);
 }
 
 .cart-empty-state .cart-empty-icon i,
@@ -145,7 +145,7 @@
     grid-template-columns: 90px minmax(0, 1fr) 6.25rem max-content 6.25rem;
     align-items: center;
     gap: 16px;
-    background: var(--white);
+    background: var(--color-surface);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 16px;
@@ -181,7 +181,7 @@
 .cart-item-unavailable-note {
     display: block;
     font-size: 12px;
-    color: #b3261e;
+    color: var(--color-stock-out-text);
     margin-top: 4px;
 }
 
@@ -229,7 +229,7 @@
     height: 40px;
     border: 1px solid var(--border);
     border-radius: 10px;
-    background: var(--white);
+    background: var(--color-input-bg);
     overflow: hidden;
 }
 
@@ -262,7 +262,7 @@
 
 .cart-qty-btn:hover,
 .cart-qty-btn:focus-visible {
-    background: rgba(91, 46, 145, .08);
+    background: var(--color-qty-btn-hover);
     color: var(--primary-dark);
     outline: none;
 }
@@ -312,7 +312,7 @@
     justify-content: center;
     background: none;
     border: none;
-    color: #b3261e;
+    color: var(--color-stock-out-text);
     cursor: pointer;
     font-size: 16px;
     padding: 0;
@@ -324,22 +324,22 @@
 
 .cart-item.cart-item-unavailable .cart-item-remove {
     opacity: 1;
-    color: #b3261e;
+    color: var(--color-stock-out-text);
     pointer-events: auto;
     cursor: pointer;
 }
 
 .cart-item-remove:hover,
 .cart-item-remove:focus-visible {
-    background: #fdecea;
-    color: #8f1e18;
+    background: var(--color-stock-out-bg);
+    color: var(--color-danger-hover);
     outline: none;
 }
 
 .cart-summary-stock-note {
     margin: 12px 0 0;
     font-size: 13px;
-    color: #b3261e;
+    color: var(--color-stock-out-text);
 }
 
 .cart-checkout-disabled {

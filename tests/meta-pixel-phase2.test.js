@@ -314,14 +314,14 @@ test('Phase 2 JS helper loads on configured pages via versioned_asset', () => {
     assert.ok(metaPhp.includes("versioned_asset('assets/js/meta-pixel.js')"));
 });
 
-test('No CAPI / Advanced Matching / PII in the Meta implementation', () => {
-    const metaSources = [metaPhp, HELPER_SRC, ajaxJs];
-    metaSources.forEach((src, i) => {
+test('No CAPI in the browser Meta implementation; event payloads stay PII-free', () => {
+    [HELPER_SRC, ajaxJs].forEach((src, i) => {
         assert.ok(!/graph\.facebook\.com|access_token|conversions\/api|client_ip_address/i.test(src), 'no CAPI in file ' + i);
-        assert.ok(!/\b(external_id|client_user_data|fbc|fbp)\b/.test(src), 'no advanced matching in file ' + i);
-        assert.ok(!/\bem:\s|['"]em['"]\s*:/.test(src), 'no hashed email field in file ' + i);
-        assert.ok(!/\bph:\s|['"]ph['"]\s*:/.test(src), 'no hashed phone field in file ' + i);
+        assert.ok(!/\b(external_id|client_user_data|fbc|fbp)\b/.test(src), 'no advanced matching in JS file ' + i);
+        assert.ok(!/\bem:\s|['"]em['"]\s*:/.test(src), 'no hashed email field in JS file ' + i);
+        assert.ok(!/\bph:\s|['"]ph['"]\s*:/.test(src), 'no hashed phone field in JS file ' + i);
     });
+    assert.ok(!/graph\.facebook\.com|access_token|conversions\/api|client_ip_address/i.test(metaPhp), 'CAPI stays out of the browser Pixel helper');
 });
 
 test('Meta event names used are only standard names', () => {

@@ -449,6 +449,22 @@ unset($_SESSION['last_order_number']);
     // META_CAPI_ACCESS_TOKEN is not configured.
     $metaPurchaseEventId = meta_capi_purchase_event_id($order);
 
+    // Meta Phase 5: hashed Advanced Matching for this completed order.
+    // Uses only identifiers already stored on the order / shipping
+    // address. Raw values never enter the Pixel payload or event_id.
+    $metaMatchingContext = [
+        'email' => (string) ($order['customer_email'] ?? ''),
+        'phone' => (string) ($order['customer_phone'] ?? ''),
+        'name'  => (string) ($order['customer_name'] ?? ''),
+    ];
+    if (is_array($orderAddress)) {
+        $metaMatchingContext['city']        = (string) ($orderAddress['city'] ?? '');
+        $metaMatchingContext['state']       = (string) ($orderAddress['state'] ?? '');
+        $metaMatchingContext['postal_code'] = (string) ($orderAddress['postal_code'] ?? '');
+        $metaMatchingContext['country']     = (string) ($orderAddress['country'] ?? '');
+    }
+    meta_pixel_set_matching_context($metaMatchingContext);
+
     meta_pixel_track_purchase(
         $purchaseItems,
         $order['grand_total'] ?? null,
@@ -474,5 +490,13 @@ if (function_exists('fastcgi_finish_request')) {
     @fastcgi_finish_request();
 }
 
-meta_capi_send_purchase($order, $purchaseItems, $metaPurchaseEventId);
+$metaCapiUserData = meta_capi_build_user_data(array_merge(
+    is_array($metaMatchingContext ?? null) ? $metaMatchingContext : [],
+    [
+        'client_ip_address' => (string) ($_SERVER['REMOTE_ADDR'] ?? ''),
+        'client_user_agent' => (string) ($_SERVER['HTTP_USER_AGENT'] ?? ''),
+    ]
+));
+
+meta_capi_send_purchase($order, $purchaseItems, $metaPurchaseEventId, '', $metaCapiUserData);
 ?>

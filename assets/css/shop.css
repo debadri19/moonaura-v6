@@ -70,7 +70,7 @@
     padding: 0 22px;
     border: 1px solid var(--border);
     border-radius: 999px;
-    background: var(--white);
+    background: var(--color-input-bg);
     transition: var(--transition);
 }
 
@@ -152,7 +152,7 @@
     padding: 0;
     border: 1px solid var(--border);
     border-radius: 50%;
-    background: var(--white);
+    background: var(--color-surface);
     color: var(--gold);
     cursor: pointer;
     appearance: none;
@@ -176,7 +176,7 @@
 .shop-filter-btn:focus-visible {
     border-color: var(--gold);
     color: var(--gold);
-    background: var(--white);
+    background: var(--color-surface);
     box-shadow: 0 6px 16px rgba(212, 175, 55, .16);
 }
 
@@ -237,7 +237,7 @@ html.shop-filters-ready .shop-filter-native {
     padding: 0;
     overflow: hidden;
     isolation: isolate;
-    background: var(--white);
+    background: var(--color-surface);
     border: 1px solid var(--border);
     border-radius: 14px;
     box-shadow: 0 16px 40px rgba(91, 46, 145, .12);
@@ -302,7 +302,7 @@ html.shop-filters-ready .shop-filter-native {
     color: var(--text-light);
     font-size: 15px;
     line-height: 1.7;
-    background: var(--white);
+    background: var(--color-surface);
     border: 1px dashed var(--border);
     border-radius: 12px;
 }

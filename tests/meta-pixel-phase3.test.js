@@ -400,13 +400,12 @@ test('GA4 implementation and Purchase tracking are unchanged', () => {
     assert.ok(ga4Php.includes('function ga4_queue_event'));
 });
 
-test('No CAPI / Advanced Matching / PII in the Phase 3 sources', () => {
-    [metaPhp, HELPER_SRC].forEach((src, i) => {
-        assert.ok(!/graph\.facebook\.com|access_token|conversions\/api|client_ip_address/i.test(src), 'no CAPI in file ' + i);
-        assert.ok(!/\b(external_id|client_user_data|fbc|fbp)\b/.test(src), 'no advanced matching in file ' + i);
-        assert.ok(!/\bem:\s|['"]em['"]\s*:/.test(src), 'no hashed email field in file ' + i);
-        assert.ok(!/\bph:\s|['"]ph['"]\s*:/.test(src), 'no hashed phone field in file ' + i);
-    });
+test('No CAPI in the Phase 3 browser sources; helper payloads stay PII-free', () => {
+    assert.ok(!/graph\.facebook\.com|access_token|conversions\/api|client_ip_address/i.test(HELPER_SRC), 'no CAPI in the JS helper');
+    assert.ok(!/\b(external_id|client_user_data|fbc|fbp)\b/.test(HELPER_SRC), 'no advanced matching in the JS helper');
+    assert.ok(!/\bem:\s|['"]em['"]\s*:/.test(HELPER_SRC), 'no hashed email field in the JS helper');
+    assert.ok(!/\bph:\s|['"]ph['"]\s*:/.test(HELPER_SRC), 'no hashed phone field in the JS helper');
+    assert.ok(!/graph\.facebook\.com|access_token|conversions\/api|client_ip_address/i.test(metaPhp), 'CAPI stays out of the browser Pixel helper');
 });
 
 test('No order id is exposed to Meta (dedupe stays client-side only)', () => {

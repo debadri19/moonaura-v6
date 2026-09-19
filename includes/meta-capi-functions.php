@@ -12,14 +12,15 @@
      META_PIXEL_ID and a non-empty META_CAPI_ACCESS_TOKEN are configured.
      With no token, no HTTP request is ever made and the storefront
      behaves exactly as it did before this phase existed.
-   - The access token is read only via config.php (env() -> .env /
-     system env / config.local.php, all gitignored). It is never echoed
-     to HTML/JS, never written to logs, never placed in a URL, and
-     never committed.
-   - No PII is sent by default: only the privacy-safe request context
-     (client IP + user agent) is attached when available. Hashing
-     helpers exist for future, explicitly-approved matching but are not
-     wired into the default Purchase dispatch.
+    - The access token is read only via config.php (env() -> .env /
+      system env / config.local.php, all gitignored). It is never echoed
+      to HTML/JS, never written to logs, never placed in a URL, and
+      never committed.
+    - No PII is sent by default: only the privacy-safe request context
+      (client IP + user agent) is attached when available. Phase 5
+      Advanced Matching may pass already-collected customer identifiers
+      through the existing hashing helpers; those values are SHA-256
+      hashed server-side and never echoed to the browser.
    - Failures never propagate: CAPI is best-effort telemetry. Any HTTP
      error, timeout, malformed response, missing token or missing event
      data is swallowed and the customer's order-success page renders
@@ -140,14 +141,18 @@ function meta_capi_purchase_event_id(array $order): string
 /* ==========================================
    USER DATA (PRIVACY-SAFE MATCHING)
    -------------------------------------------------
-   Only the minimum needed: the request's IP + user agent when
-   available. Hashing helpers below implement Meta's server-side
-   format for email/phone, but the default dispatch deliberately sends
-   no customer PII. Hashed values are never exposed to the browser.
+   Default dispatch still sends only the request IP + user agent.
+   Phase 5 may pass already-collected customer identifiers through
+   these hashing helpers; hashed values are never exposed to the
+   browser and empty values are omitted.
 ========================================== */
 
 function meta_capi_hash_pii(string $value): string
 {
+    if (function_exists('meta_pixel_hash_pii')) {
+        return meta_pixel_hash_pii($value);
+    }
+
     $value = trim($value);
 
     return $value === '' ? '' : hash('sha256', $value);
@@ -155,39 +160,87 @@ function meta_capi_hash_pii(string $value): string
 
 function meta_capi_normalize_email(string $email): string
 {
+    if (function_exists('meta_pixel_normalize_email')) {
+        return meta_pixel_normalize_email($email);
+    }
+
     return strtolower(trim($email));
 }
 
 // Meta expects digits only (country code included, no symbols/spaces).
 function meta_capi_normalize_phone(string $phone): string
 {
+    if (function_exists('meta_pixel_normalize_phone')) {
+        return meta_pixel_normalize_phone($phone);
+    }
+
     $digits = preg_replace('/\D+/', '', $phone);
 
     return is_string($digits) ? $digits : '';
 }
 
+function meta_capi_assign_hashed_list(array &$userData, string $key, string $normalized): void
+{
+    if ($normalized === '') {
+        return;
+    }
+
+    $hash = meta_capi_hash_pii($normalized);
+    if ($hash !== '') {
+        $userData[$key] = [$hash];
+    }
+}
+
 // Builds Meta's user_data object from an explicit context array.
-// Recognised keys: email, phone, client_ip_address, client_user_agent.
-// Email/phone are normalized and SHA-256 hashed before inclusion.
+// Recognised keys: email, phone, name/first_name/last_name, city, state,
+// postal_code, country, client_ip_address, client_user_agent.
+// Customer identifiers are normalized and SHA-256 hashed before inclusion.
 function meta_capi_build_user_data(array $context = []): array
 {
     $userData = [];
 
-    $email = meta_capi_normalize_email((string) ($context['email'] ?? ''));
-    if ($email !== '') {
-        $hash = meta_capi_hash_pii($email);
-        if ($hash !== '') {
-            $userData['em'] = [$hash];
-        }
+    meta_capi_assign_hashed_list(
+        $userData,
+        'em',
+        meta_capi_normalize_email((string) ($context['email'] ?? ''))
+    );
+
+    meta_capi_assign_hashed_list(
+        $userData,
+        'ph',
+        meta_capi_normalize_phone((string) ($context['phone'] ?? ''))
+    );
+
+    $first = trim((string) ($context['first_name'] ?? ''));
+    $last  = trim((string) ($context['last_name'] ?? ''));
+    if ($first === '' && $last === '' && function_exists('meta_pixel_split_full_name')) {
+        $split = meta_pixel_split_full_name((string) ($context['name'] ?? ''));
+        $first = $split['first_name'];
+        $last  = $split['last_name'];
     }
 
-    $phone = meta_capi_normalize_phone((string) ($context['phone'] ?? ''));
-    if ($phone !== '') {
-        $hash = meta_capi_hash_pii($phone);
-        if ($hash !== '') {
-            $userData['ph'] = [$hash];
-        }
-    }
+    $normalizeName = function_exists('meta_pixel_normalize_name_part')
+        ? 'meta_pixel_normalize_name_part'
+        : static fn (string $value): string => strtolower(trim($value));
+    $normalizeCity = function_exists('meta_pixel_normalize_city')
+        ? 'meta_pixel_normalize_city'
+        : static fn (string $value): string => strtolower(trim($value));
+    $normalizeState = function_exists('meta_pixel_normalize_state')
+        ? 'meta_pixel_normalize_state'
+        : static fn (string $value): string => strtolower(trim($value));
+    $normalizePostal = function_exists('meta_pixel_normalize_postal_code')
+        ? 'meta_pixel_normalize_postal_code'
+        : static fn (string $value): string => strtolower(trim($value));
+    $normalizeCountry = function_exists('meta_pixel_normalize_country')
+        ? 'meta_pixel_normalize_country'
+        : static fn (string $value): string => strtolower(trim($value));
+
+    meta_capi_assign_hashed_list($userData, 'fn', $normalizeName($first));
+    meta_capi_assign_hashed_list($userData, 'ln', $normalizeName($last));
+    meta_capi_assign_hashed_list($userData, 'ct', $normalizeCity((string) ($context['city'] ?? '')));
+    meta_capi_assign_hashed_list($userData, 'st', $normalizeState((string) ($context['state'] ?? '')));
+    meta_capi_assign_hashed_list($userData, 'zp', $normalizePostal((string) ($context['postal_code'] ?? '')));
+    meta_capi_assign_hashed_list($userData, 'country', $normalizeCountry((string) ($context['country'] ?? '')));
 
     $ip = trim((string) ($context['client_ip_address'] ?? ''));
     if ($ip !== '' && filter_var($ip, FILTER_VALIDATE_IP) !== false) {
