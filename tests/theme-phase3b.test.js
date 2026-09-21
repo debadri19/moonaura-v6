@@ -167,8 +167,6 @@ test('payment gateway logic files were not modified for theme', () => {
 console.log('\nPart D - scope + Light Mode safety');
 
 test('Phase 3B does not add UI, persistence, or no-flash logic', () => {
-    const withoutComments = themeJs.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
-    assert.ok(!/localStorage/.test(withoutComments));
     assert.ok(!/theme-toggle|dark-mode-toggle/.test(checkoutPhp));
     assert.ok(!/theme-toggle|dark-mode-toggle/.test(paymentPhp));
 });

@@ -45,6 +45,7 @@ $currentPageUrl = $_SERVER['REQUEST_URI'];
 <html lang="en">
 
 <head>
+<?php theme_boot(); ?>
 
     <meta charset="UTF-8">
 

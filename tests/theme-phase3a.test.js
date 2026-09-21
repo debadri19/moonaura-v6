@@ -136,8 +136,6 @@ test('wishlist.css has no leftover hardcoded page colors', () => {
 console.log('\nPart D - scope + Light Mode safety');
 
 test('Phase 3A does not add UI, persistence, or no-flash logic', () => {
-    const withoutComments = themeJs.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
-    assert.ok(!/localStorage/.test(withoutComments));
     assert.ok(!/theme-toggle|dark-mode-toggle/.test(cartPhp));
     assert.ok(!/theme-toggle|dark-mode-toggle/.test(wishlistPhp));
 });

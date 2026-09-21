@@ -139,7 +139,6 @@ test('Phase 2 does not add UI, persistence, or no-flash logic', () => {
     assert.ok(!/theme-toggle|dark-mode-toggle|theme-switch/.test(headerPhp));
     assert.ok(!/theme-toggle|dark-mode-toggle|theme-switch/.test(footerPhp));
     const withoutComments = themeJs.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
-    assert.ok(!/localStorage/.test(withoutComments));
     assert.ok(!/sessionStorage/.test(withoutComments));
     assert.ok(!/document\.cookie/.test(withoutComments));
 });

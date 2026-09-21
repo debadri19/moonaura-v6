@@ -37,6 +37,7 @@ const HOMEPAGE_ZODIAC_SIGNS = [
 <html lang="en">
 
 <head>
+<?php theme_boot(); ?>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

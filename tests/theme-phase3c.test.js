@@ -207,11 +207,8 @@ test('account pages still load existing markup and password toggle', () => {
 console.log('\nPart D - scope + Light Mode safety');
 
 test('Phase 3C does not add UI, persistence, or no-flash logic', () => {
-    const withoutComments = themeJs.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
-    assert.ok(!/localStorage/.test(withoutComments));
     assert.ok(!/theme-toggle|dark-mode-toggle/.test(supportPhp));
     assert.ok(!/theme-toggle|dark-mode-toggle/.test(dashboardPhp));
-    assert.ok(!/theme-toggle|dark-mode-toggle/.test(loginPhp));
 });
 
 test('Phase 3C does not touch cart, checkout, payment, admin, pixel, or GA4', () => {

@@ -71,6 +71,7 @@ $successMessage = flash_get('success');
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<?php theme_boot(); ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -100,6 +101,12 @@ $successMessage = flash_get('success');
 
             <h1>Welcome Back</h1>
             <p class="account-auth-subtitle">Log in to view your orders and account details.</p>
+
+            <div class="theme-toggle" role="group" aria-label="Color theme">
+                <button type="button" class="theme-toggle-btn" data-theme-mode="light" aria-pressed="false">Light</button>
+                <button type="button" class="theme-toggle-btn" data-theme-mode="dark" aria-pressed="false">Dark</button>
+                <button type="button" class="theme-toggle-btn" data-theme-mode="system" aria-pressed="false">System</button>
+            </div>
 
             <?php if ($successMessage): ?>
                 <div class="account-alert account-alert-success"><?= h($successMessage) ?></div>

@@ -49,6 +49,39 @@
     margin-bottom: 24px;
 }
 
+.account-login-box .theme-toggle {
+    display: flex;
+    gap: 6px;
+    margin: 0 0 20px;
+    padding: 4px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--color-input-bg);
+}
+
+.account-login-box .theme-toggle-btn {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: var(--text-light);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 6px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.account-login-box .theme-toggle-btn[aria-pressed="true"] {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.account-login-box .theme-toggle-btn:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 1px;
+}
+
 .account-auth-box form {
     display: flex;
     flex-direction: column;

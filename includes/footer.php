@@ -238,11 +238,11 @@ require_once __DIR__ . '/meta-pixel-functions.php';
 </div>
 
 <!-- ==================================================
-     THEME MANAGER — PHASE 1 FOUNDATION
-     Light / Dark / System state only. No UI, no
-     persistence, no preload. Loaded from the shared
-     storefront footer so every customer page gets one
-     theme API without touching page logic.
+     THEME MANAGER — PHASE 1 FOUNDATION + PHASE 4
+     Light / Dark / System state. Browser localStorage
+     persistence only. No account sync, no preload.
+     Loaded from the shared storefront footer so every
+     customer page gets one theme API.
 ================================================== -->
 <script src="<?= versioned_asset('assets/js/theme.js') ?>"></script>
 

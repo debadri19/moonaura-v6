@@ -208,11 +208,12 @@ test('existing data-theme on load is applied without persistence APIs', () => {
     assert.strictEqual(attrs['data-theme-resolved'], 'dark');
 });
 
-test('theme.js does not use localStorage, sessionStorage, cookies, or fetch', () => {
+test('theme.js persists only via localStorage and does not use sessionStorage, cookies, or fetch', () => {
     const withoutComments = THEME_SRC
         .replace(/\/\*[\s\S]*?\*\//g, '')
         .replace(/\/\/.*$/gm, '');
-    assert.ok(!/localStorage/.test(withoutComments));
+    assert.ok(/localStorage/.test(withoutComments));
+    assert.ok(withoutComments.includes('moonaura_theme'));
     assert.ok(!/sessionStorage/.test(withoutComments));
     assert.ok(!/document\.cookie/.test(withoutComments));
     assert.ok(!/\bfetch\s*\(/.test(withoutComments));

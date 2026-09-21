@@ -6,6 +6,7 @@ require_once __DIR__ . '/includes/functions.php';
 <html lang="en">
 
 <head>
+<?php theme_boot(); ?>
 
     <meta charset="UTF-8">
 

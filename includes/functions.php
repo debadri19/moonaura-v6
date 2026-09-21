@@ -657,3 +657,29 @@ function is_safe_http_url(string $url): bool
 
     return true;
 }
+
+
+/* ==========================================
+   THEME NO-FLASH BOOT
+   -------------------------------------------------
+   Tiny inline head bootstrap. Reads moonaura_theme
+   from localStorage and sets html[data-theme] plus
+   data-theme-resolved before CSS paints. Runtime
+   source of truth remains assets/js/theme.js.
+   Missing/blocked/malformed storage is a no-op
+   (existing Light Mode fallback).
+========================================== */
+
+function theme_boot(): void
+{
+    static $printed = false;
+
+    if ($printed) {
+        return;
+    }
+
+    $printed = true;
+
+    echo '<script id="moonaura-theme-boot-js">(function(){try{var m=localStorage.getItem("moonaura_theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var r=document.documentElement;r.setAttribute("data-theme",m);var d=m==="dark"||(m==="system"&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches);r.setAttribute("data-theme-resolved",d?"dark":"light");}catch(e){}})();</script>'
+        . '<style id="moonaura-theme-boot">html[data-theme="dark"],html[data-theme-resolved="dark"],html[data-theme="dark"] body,html[data-theme-resolved="dark"] body{background-color:#160e22;color-scheme:dark}</style>';
+}
