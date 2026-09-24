@@ -4,7 +4,8 @@
    -------------------------------------------------------------------
    Everything specific to customer accounts that isn't pure auth
    (that's customer-auth.php) - guest order linking, saved
-   address management, and password-reset token helpers.
+   address management, password-reset token helpers, and the
+   authenticated Dark Mode theme preference.
 =================================================================== */
 
 require_once __DIR__ . '/db.php';
@@ -224,4 +225,113 @@ function consume_customer_reset_token(int $resetId): void
 {
     $stmt = db()->prepare('UPDATE customer_password_resets SET used_at = NOW() WHERE id = ?');
     $stmt->execute([$resetId]);
+}
+
+
+/* ==========================================
+   AUTHENTICATED THEME PREFERENCE (PHASE 5)
+   -------------------------------------------------
+   Account-level Light / Dark / System. Guests never
+   write this column. Missing/NULL/invalid values are
+   treated as "no account preference" so localStorage
+   and the existing Light fallback keep working.
+========================================== */
+
+function customer_theme_normalize(?string $value): ?string
+{
+    if ($value === 'light' || $value === 'dark' || $value === 'system') {
+        return $value;
+    }
+
+    return null;
+}
+
+function customer_theme_cached_mode(): ?string
+{
+    if (session_status() !== PHP_SESSION_ACTIVE) {
+        return null;
+    }
+
+    if (empty($_SESSION['customer_id']) || !array_key_exists('customer_theme_preference', $_SESSION)) {
+        return null;
+    }
+
+    $cached = $_SESSION['customer_theme_preference'];
+
+    return customer_theme_normalize(is_string($cached) ? $cached : null);
+}
+
+function customer_theme_load(int $customerId): ?string
+{
+    if ($customerId <= 0) {
+        return null;
+    }
+
+    try {
+        $stmt = db()->prepare(
+            'SELECT theme_preference FROM customers WHERE id = ? LIMIT 1'
+        );
+        $stmt->execute([$customerId]);
+        $value = $stmt->fetchColumn();
+    } catch (Throwable $e) {
+        error_log('customer theme load failed: ' . $e->getMessage());
+        return null;
+    }
+
+    if ($value === false || $value === null) {
+        return null;
+    }
+
+    return customer_theme_normalize(is_string($value) ? $value : null);
+}
+
+function customer_theme_save(int $customerId, string $mode): bool
+{
+    $mode = customer_theme_normalize($mode);
+
+    if ($mode === null || $customerId <= 0) {
+        return false;
+    }
+
+    try {
+        $stmt = db()->prepare(
+            'UPDATE customers SET theme_preference = ? WHERE id = ?'
+        );
+        $stmt->execute([$mode, $customerId]);
+    } catch (Throwable $e) {
+        error_log('customer theme save failed: ' . $e->getMessage());
+        return false;
+    }
+
+    if (session_status() === PHP_SESSION_ACTIVE) {
+        $_SESSION['customer_theme_preference'] = $mode;
+    }
+
+    return true;
+}
+
+function customer_theme_apply_login(int $customerId): void
+{
+    $mode = customer_theme_load($customerId);
+
+    if (session_status() === PHP_SESSION_ACTIVE) {
+        $_SESSION['customer_theme_preference'] = $mode;
+    }
+}
+
+function customer_theme_hydrate(): void
+{
+    if (session_status() !== PHP_SESSION_ACTIVE || empty($_SESSION['customer_id'])) {
+        return;
+    }
+
+    if (array_key_exists('customer_theme_preference', $_SESSION)) {
+        return;
+    }
+
+    try {
+        $_SESSION['customer_theme_preference'] = customer_theme_load((int) $_SESSION['customer_id']);
+    } catch (Throwable $e) {
+        error_log('customer theme hydrate failed: ' . $e->getMessage());
+    }
 }

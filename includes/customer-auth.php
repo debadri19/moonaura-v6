@@ -12,6 +12,7 @@
 require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/functions.php';
 require_once __DIR__ . '/customer-cart-functions.php';
+require_once __DIR__ . '/customer-functions.php';
 require_once __DIR__ . '/order-functions.php';
 
 
@@ -172,6 +173,12 @@ function attempt_customer_login(string $identifier, string $password): bool
         customer_cart_apply_login_merge((int) $customer['id'], $sessionCart);
     } catch (Throwable $e) {
         error_log('customer_cart login merge failed: ' . $e->getMessage());
+    }
+
+    try {
+        customer_theme_apply_login((int) $customer['id']);
+    } catch (Throwable $e) {
+        error_log('customer theme login apply failed: ' . $e->getMessage());
     }
 
     return true;

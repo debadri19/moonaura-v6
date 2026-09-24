@@ -47,7 +47,17 @@ Options -Indexes
     RewriteCond %{REQUEST_URI} !^/maintenance\.php$ [NC]
     RewriteCond %{REQUEST_URI} !^/assets/ [NC]
     RewriteCond %{REQUEST_URI} !^/\.well-known/ [NC]
+    RewriteCond %{REQUEST_URI} !^/sitemap\.xml$ [NC]
+    RewriteCond %{REQUEST_URI} !^/sitemap\.php$ [NC]
+    RewriteCond %{REQUEST_URI} !^/robots\.txt$ [NC]
     RewriteRule ^ /maintenance.php [L]
+
+
+    # ------------------------------------------
+    # Dynamic XML sitemap
+    # ------------------------------------------
+
+    RewriteRule ^sitemap\.xml$ sitemap.php [L]
 
 
     # ------------------------------------------

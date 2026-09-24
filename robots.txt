@@ -1,0 +1,27 @@
+User-agent: *
+Disallow: /account/
+Disallow: /dashboard/
+Disallow: /config/
+Disallow: /includes/
+Disallow: /database/
+Disallow: /tests/
+Disallow: /cart.php
+Disallow: /cart-add.php
+Disallow: /cart-update.php
+Disallow: /cart-remove.php
+Disallow: /checkout.php
+Disallow: /wishlist.php
+Disallow: /wishlist-toggle.php
+Disallow: /payment.php
+Disallow: /payment-verify.php
+Disallow: /payment-retry.php
+Disallow: /payment-failure.php
+Disallow: /order-success.php
+Disallow: /manual-upi-payment.php
+Disallow: /guest-invoice.php
+Disallow: /buy-now.php
+Disallow: /newsletter-subscribe.php
+Disallow: /webhook-razorpay.php
+Disallow: /maintenance.php
+
+Sitemap: https://moonauracrystals.in/sitemap.xml

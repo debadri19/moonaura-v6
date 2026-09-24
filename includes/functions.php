@@ -662,12 +662,17 @@ function is_safe_http_url(string $url): bool
 /* ==========================================
    THEME NO-FLASH BOOT
    -------------------------------------------------
-   Tiny inline head bootstrap. Reads moonaura_theme
-   from localStorage and sets html[data-theme] plus
-   data-theme-resolved before CSS paints. Runtime
-   source of truth remains assets/js/theme.js.
-   Missing/blocked/malformed storage is a no-op
-   (existing Light Mode fallback).
+    Tiny inline head bootstrap. Reads moonaura_theme
+    from localStorage and sets html[data-theme] plus
+    data-theme-resolved before CSS paints. Runtime
+    source of truth remains assets/js/theme.js.
+    Missing/blocked/malformed storage is a no-op
+    (existing Light Mode fallback).
+
+    When a logged-in account preference is already in
+    the session, it wins over localStorage so login
+    does not flash the previous guest theme. Boot still
+    does not write localStorage or fetch.
 ========================================== */
 
 function theme_boot(): void
@@ -680,6 +685,17 @@ function theme_boot(): void
 
     $printed = true;
 
-    echo '<script id="moonaura-theme-boot-js">(function(){try{var m=localStorage.getItem("moonaura_theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var r=document.documentElement;r.setAttribute("data-theme",m);var d=m==="dark"||(m==="system"&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches);r.setAttribute("data-theme-resolved",d?"dark":"light");}catch(e){}})();</script>'
+    $accountJs = 'null';
+    if (session_status() === PHP_SESSION_ACTIVE && !empty($_SESSION['customer_id'])) {
+        require_once __DIR__ . '/customer-functions.php';
+        customer_theme_hydrate();
+        $cached = customer_theme_cached_mode();
+        if ($cached !== null) {
+            $accountJs = json_encode($cached);
+        }
+    }
+
+    echo '<script id="moonaura-auth-theme">window.moonauraAuthTheme=' . $accountJs . ';</script>'
+        . '<script id="moonaura-theme-boot-js">(function(){try{var a=window.moonauraAuthTheme;var m=(a==="light"||a==="dark"||a==="system")?a:localStorage.getItem("moonaura_theme");if(m!=="light"&&m!=="dark"&&m!=="system")return;var r=document.documentElement;r.setAttribute("data-theme",m);var d=m==="dark"||(m==="system"&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches);r.setAttribute("data-theme-resolved",d?"dark":"light");}catch(e){}})();</script>'
         . '<style id="moonaura-theme-boot">html[data-theme="dark"],html[data-theme-resolved="dark"],html[data-theme="dark"] body,html[data-theme-resolved="dark"] body{background-color:#160e22;color-scheme:dark}</style>';
 }

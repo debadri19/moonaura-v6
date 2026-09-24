@@ -18,7 +18,7 @@
 
     overflow:hidden;
 
-    background:#fff;
+    background: var(--color-page-bg);
 
 }
 
@@ -156,12 +156,12 @@
 
     background:linear-gradient(
         90deg,
-        #ffffff 22%,
-        rgba(255,255,255,.97) 36%,
-        rgba(255,255,255,.82) 48%,
-        rgba(255,255,255,.45) 60%,
-        rgba(255,255,255,.12) 72%,
-        rgba(255,255,255,0) 100%
+        var(--color-hero-fade) 22%,
+        var(--color-hero-fade-97) 36%,
+        var(--color-hero-fade-82) 48%,
+        var(--color-hero-fade-45) 60%,
+        var(--color-hero-fade-12) 72%,
+        transparent 100%
     );
 
     z-index:1;
@@ -384,11 +384,11 @@
 
         background:linear-gradient(
             90deg,
-            #ffffff 0%,
-            rgba(255,255,255,.98) 40%,
-            rgba(255,255,255,.78) 60%,
-            rgba(255,255,255,.35) 78%,
-            rgba(255,255,255,0) 100%
+            var(--color-hero-fade) 0%,
+            var(--color-hero-fade-98) 40%,
+            var(--color-hero-fade-78) 60%,
+            var(--color-hero-fade-35) 78%,
+            transparent 100%
         );
 
     }
@@ -402,7 +402,7 @@
 
     padding:100px 0;
 
-    background:#fff;
+    background: var(--color-page-bg);
 
 }
 
@@ -552,8 +552,8 @@
 
     background:linear-gradient(
         180deg,
-        #faf8fc 0%,
-        #ffffff 100%
+        var(--bg) 0%,
+        var(--color-page-bg) 100%
     );
 
 }
@@ -594,9 +594,9 @@
 
     padding:48px 38px;
 
-    background:var(--white);
+    background: var(--color-surface);
 
-    border:1px solid rgba(91,46,145,.08);
+    border:1px solid var(--color-card-border);
 
     border-radius:24px;
 
@@ -613,7 +613,7 @@
 
     transform:translateY(-8px);
 
-    border-color:rgba(91,46,145,.16);
+    border-color: var(--color-card-border-hover);
 
     box-shadow:0 22px 48px rgba(91,46,145,.10);
 
@@ -639,7 +639,7 @@
 
     border-radius:50%;
 
-    background:#f5f0fb;
+    background: var(--color-icon-well);
 
     color:var(--primary);
 
@@ -890,7 +890,7 @@
 
         transform:none;
 
-        border-color:rgba(91,46,145,.08);
+        border-color: var(--color-card-border);
 
         box-shadow:0 12px 30px rgba(0,0,0,.05);
 
@@ -898,7 +898,7 @@
 
     .purpose-card:hover .purpose-icon{
 
-        background:#f5f0fb;
+        background: var(--color-icon-well);
 
         color:var(--primary);
 
@@ -930,8 +930,8 @@
 
     background:linear-gradient(
         180deg,
-        #ffffff 0%,
-        #faf8fc 100%
+        var(--color-page-bg) 0%,
+        var(--bg) 100%
     );
 
 }
@@ -974,9 +974,9 @@
 
     padding:40px 30px;
 
-    background:#ffffff;
+    background: var(--color-surface);
 
-    border:1px solid rgba(91,46,145,.08);
+    border:1px solid var(--color-card-border);
 
     border-radius:24px;
 
@@ -993,7 +993,7 @@
 
     transform:translateY(-8px);
 
-    border-color:rgba(91,46,145,.16);
+    border-color: var(--color-card-border-hover);
 
     box-shadow:0 20px 45px rgba(91,46,145,.10);
 
@@ -1770,4 +1770,45 @@
         padding:40px 0 16px;
     }
 
+}
+
+html[data-theme="dark"] .promise-icon,
+html[data-theme-resolved="dark"] .promise-icon {
+    background: var(--color-icon-well);
+}
+
+html[data-theme="dark"] .story-image,
+html[data-theme-resolved="dark"] .story-image,
+html[data-theme="dark"] .purpose-card,
+html[data-theme-resolved="dark"] .purpose-card,
+html[data-theme="dark"] .promise-item,
+html[data-theme-resolved="dark"] .promise-item {
+    box-shadow: var(--color-card-shadow);
+}
+
+html[data-theme="dark"] .story-image:hover,
+html[data-theme-resolved="dark"] .story-image:hover,
+html[data-theme="dark"] .purpose-card:hover,
+html[data-theme-resolved="dark"] .purpose-card:hover,
+html[data-theme="dark"] .promise-item:hover,
+html[data-theme-resolved="dark"] .promise-item:hover {
+    box-shadow: var(--color-card-shadow-hover);
+}
+
+@media (prefers-color-scheme: dark) {
+    html[data-theme="system"] .promise-icon {
+        background: var(--color-icon-well);
+    }
+
+    html[data-theme="system"] .story-image,
+    html[data-theme="system"] .purpose-card,
+    html[data-theme="system"] .promise-item {
+        box-shadow: var(--color-card-shadow);
+    }
+
+    html[data-theme="system"] .story-image:hover,
+    html[data-theme="system"] .purpose-card:hover,
+    html[data-theme="system"] .promise-item:hover {
+        box-shadow: var(--color-card-shadow-hover);
+    }
 }

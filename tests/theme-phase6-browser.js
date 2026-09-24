@@ -55,6 +55,10 @@ async function launch(scheme, viewport) {
 async function prepare(page, storedMode, delayCss) {
     await page.evaluateOnNewDocument(function (mode) {
         try {
+            if (window.sessionStorage.getItem('__moonaura_seeded') === '1') {
+                return;
+            }
+            window.sessionStorage.setItem('__moonaura_seeded', '1');
             if (mode === null) {
                 localStorage.removeItem('moonaura_theme');
             } else {

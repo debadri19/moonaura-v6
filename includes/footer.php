@@ -240,11 +240,22 @@ require_once __DIR__ . '/meta-pixel-functions.php';
 <!-- ==================================================
      THEME MANAGER — PHASE 1 FOUNDATION + PHASE 4
      Light / Dark / System state. Browser localStorage
-     persistence only. No account sync, no preload.
+     persistence. Phase 5 seeds localStorage from the
+     authenticated account preference (when present)
+     before the manager loads, then a thin sync layer
+     persists logged-in setMode() calls.
      Loaded from the shared storefront footer so every
      customer page gets one theme API.
 ================================================== -->
+<script id="moonaura-theme-auth-seed">(function(){try{var m=window.moonauraAuthTheme;if(m!=="light"&&m!=="dark"&&m!=="system")return;localStorage.setItem("moonaura_theme",m);}catch(e){}})();</script>
 <script src="<?= versioned_asset('assets/js/theme.js') ?>"></script>
+<?php if (!empty($_SESSION['customer_id'])): ?>
+<script id="moonaura-theme-sync-config">window.moonauraThemeSync=<?= json_encode([
+    'url'  => site_url('account/theme-save.php'),
+    'csrf' => csrf_token(),
+], JSON_UNESCAPED_SLASHES) ?>;</script>
+<script src="<?= versioned_asset('assets/js/theme-sync.js') ?>"></script>
+<?php endif; ?>
 
 <!-- ==================================================
      #21 PHASE A - CART / WISHLIST AJAX

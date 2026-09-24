@@ -52,6 +52,7 @@ and ships under `migration_phase5f_gst_tax.sql`.
 
 **Latest v0.6.7 update:**
 - **GA4 env configuration** - gitignored `.env` now sets Measurement ID, Property ID, and credentials path. Service-account JSON stays outside the web root and is gitignored. Existing config/env mapping is reused. Credentials are not hardcoded. Admin Visitors card still uses realtime `activeUsers` and calendar-month `totalUsers` when the credentials file is readable.
+- **Dynamic XML sitemap** - `sitemap.php` builds `/sitemap.xml` from the live catalog (active products, active categories, active concern pages, plus public static storefront URLs). Draft/inactive/private URLs are omitted. `robots.txt` advertises the sitemap. No schema change.
 
 **Pending tasks:**
 - Admin button style consistency (align admin buttons with the customer

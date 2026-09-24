@@ -28,11 +28,13 @@
 }
 
 .account-auth-box.account-login-box {
+    position: relative;
     background-color: var(--color-surface);
     background-image: linear-gradient(var(--gold), var(--primary));
     background-repeat: no-repeat;
     background-position: left top;
     background-size: 5px 100%;
+    padding-top: 56px;
 }
 
 .account-auth-box h1 {
@@ -50,9 +52,15 @@
 }
 
 .account-login-box .theme-toggle {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
     display: flex;
-    gap: 6px;
-    margin: 0 0 20px;
+    width: auto;
+    max-width: calc(100% - 24px);
+    gap: 4px;
+    margin: 0;
     padding: 4px;
     border: 1px solid var(--border);
     border-radius: 8px;
@@ -60,16 +68,17 @@
 }
 
 .account-login-box .theme-toggle-btn {
-    flex: 1;
+    flex: 0 0 auto;
     border: none;
     background: transparent;
     color: var(--text-light);
     font-family: inherit;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
-    padding: 8px 6px;
+    padding: 6px 8px;
     border-radius: 6px;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .account-login-box .theme-toggle-btn[aria-pressed="true"] {
@@ -80,6 +89,23 @@
 .account-login-box .theme-toggle-btn:focus-visible {
     outline: 2px solid var(--primary);
     outline-offset: 1px;
+}
+
+@media (max-width: 576px) {
+    .account-auth-box.account-login-box {
+        padding-top: 52px;
+    }
+
+    .account-login-box .theme-toggle {
+        top: 10px;
+        right: 10px;
+        max-width: calc(100% - 20px);
+    }
+
+    .account-login-box .theme-toggle-btn {
+        font-size: 10px;
+        padding: 5px 7px;
+    }
 }
 
 .account-auth-box form {
@@ -482,6 +508,48 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
     color: var(--primary);
     padding-bottom: 10px;
     border-bottom: 1px solid var(--color-gold-divider);
+}
+
+.account-appearance-copy {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.account-appearance .theme-toggle {
+    display: flex;
+    width: auto;
+    max-width: 100%;
+    gap: 4px;
+    margin: 0;
+    padding: 4px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--color-input-bg);
+}
+
+.account-appearance .theme-toggle-btn {
+    flex: 0 0 auto;
+    border: none;
+    background: transparent;
+    color: var(--text-light);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.account-appearance .theme-toggle-btn[aria-pressed="true"] {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.account-appearance .theme-toggle-btn:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 1px;
 }
 
 .account-welcome-card {

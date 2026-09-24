@@ -137,6 +137,19 @@ $successMessage = flash_get('success');
 
             </div>
 
+            <div class="account-card account-appearance">
+
+                <h2>Appearance</h2>
+                <p class="account-appearance-copy">Choose Light, Dark, or System for this account. The saved preference is used whenever you are logged in.</p>
+
+                <div class="theme-toggle" role="group" aria-label="Color theme">
+                    <button type="button" class="theme-toggle-btn" data-theme-mode="light" aria-pressed="false">Light</button>
+                    <button type="button" class="theme-toggle-btn" data-theme-mode="dark" aria-pressed="false">Dark</button>
+                    <button type="button" class="theme-toggle-btn" data-theme-mode="system" aria-pressed="false">System</button>
+                </div>
+
+            </div>
+
         </div>
 
     </section>

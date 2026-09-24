@@ -90,6 +90,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             error_log('customer_cart register merge failed: ' . $e->getMessage());
         }
 
+        try {
+            customer_theme_apply_login($customerId);
+        } catch (Throwable $e) {
+            error_log('customer theme register apply failed: ' . $e->getMessage());
+        }
+
         redirect('dashboard.php');
     }
 }

@@ -1,6 +1,6 @@
 # MoonAura Crystals — Project State
 
-> **Latest checkpoint — v0.6.7:** GA4 Measurement ID, Property ID, and credentials path are set in gitignored `.env`. Service-account JSON stays outside the web root and is gitignored. Frozen storefront navigation, Account nav chevron, Razorpay mapping guard, configured-gateway checkout, Shop card actions, asset URLs, Certificate Included, and homepage newsletter remain.
+> **Latest checkpoint — v0.6.7:** GA4 Measurement ID, Property ID, and credentials path are set in gitignored `.env`. Service-account JSON stays outside the web root and is gitignored. Frozen storefront navigation, Account nav chevron, Razorpay mapping guard, configured-gateway checkout, Shop card actions, asset URLs, Certificate Included, and homepage newsletter remain. Public `/sitemap.xml` is generated dynamically from the live catalog (`sitemap.php`); `robots.txt` points crawlers at it.
 
 
 > **Read this file first in any new session.** It reflects the actual
