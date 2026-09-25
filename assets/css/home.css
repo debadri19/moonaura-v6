@@ -268,13 +268,11 @@
 
     .hero{
 
-        padding:60px 0 20px;
+        padding:60px 0 32px;
 
         min-height: 0;
 
         height: auto;
-
-        overflow: visible;
 
     }
 
@@ -300,7 +298,15 @@
 
     .hero-buttons{
 
-        justify-content:flex-start;
+        position: static;
+
+        justify-content:center;
+
+        align-items:center;
+
+        width:100%;
+
+        margin-top:0;
 
     }
 
@@ -347,28 +353,12 @@
 
         max-width:100%;
 
-        margin:0 0 28px;
+        margin:0 0 24px;
 
         font-size:1rem;
 
         line-height:1.7;
 
-    }
-
-    .hero:has(.hero-buttons) {
-        margin-bottom: 88px;
-    }
-
-    .hero:has(.hero-buttons) .hero-buttons {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 100%;
-        width: 100%;
-        margin-top: 16px;
-        z-index: 3;
-        align-items: center;
-        justify-content: center;
     }
 
     .hero-buttons .btn-primary{
@@ -415,11 +405,9 @@
 
     .hero{
 
-        padding:40px 0 16px;
+        padding:40px 0 32px;
 
         min-height: 0;
-
-        overflow: visible;
 
     }
 
@@ -463,33 +451,21 @@
 
         max-width:100%;
 
-        margin-bottom:26px;
-
-        margin:0 auto 30px;
+        margin:0 auto 24px;
 
     }
 
-    .hero:has(.hero-buttons) {
-        margin-bottom: 80px;
-    }
+    .hero-buttons{
 
-    .hero:has(.hero-buttons) .hero-buttons{
+        position:static;
 
-        position:absolute;
+        justify-content:center;
 
-        left:0;
-
-        right:0;
-
-        top:100%;
+        align-items:center;
 
         width:100%;
 
-        margin-top:16px;
-
-        z-index:3;
-
-        align-items:center;
+        margin-top:0;
 
     }
 
