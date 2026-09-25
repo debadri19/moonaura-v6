@@ -175,12 +175,13 @@ test('Policy Light Mode shadows are preserved', () => {
 console.log('\nPart D - login toggle position');
 
 test('login toggle remains Light/Dark/System and is first in the card', () => {
-    assert.ok(loginPhp.includes('class="theme-toggle"'));
+    assert.ok(loginPhp.includes('class="login-theme-menu"'));
+    assert.ok(loginPhp.includes('class="theme-toggle login-theme-menu-panel"'));
     assert.ok(loginPhp.includes('data-theme-mode="light"'));
     assert.ok(loginPhp.includes('data-theme-mode="dark"'));
     assert.ok(loginPhp.includes('data-theme-mode="system"'));
-    const toggleAt = loginPhp.indexOf('class="theme-toggle"');
-    const headingAt = loginPhp.indexOf('<h1>Welcome Back</h1>');
+    const toggleAt = loginPhp.indexOf('class="login-theme-menu"');
+    const headingAt = loginPhp.indexOf('<h1>Welcome to MoonAura</h1>');
     assert.ok(toggleAt !== -1 && headingAt !== -1);
     assert.ok(toggleAt < headingAt, 'toggle must sit above the login heading');
 });
@@ -188,6 +189,7 @@ test('login toggle remains Light/Dark/System and is first in the card', () => {
 test('login toggle is absolutely positioned at the top-right of the card', () => {
     assert.ok(accountCss.includes('.account-auth-box.account-login-box'));
     assert.ok(accountCss.includes('position: relative;'));
+    assert.ok(accountCss.includes('.account-login-box .login-theme-menu'));
     assert.ok(accountCss.includes('.account-login-box .theme-toggle'));
     assert.ok(accountCss.includes('position: absolute;'));
     assert.ok(accountCss.includes('top: 12px;'));

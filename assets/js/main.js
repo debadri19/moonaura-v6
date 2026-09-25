@@ -180,8 +180,10 @@ function initHeader(){
 
 /* ===================================================================
    02b. ACCOUNT NAV DROPDOWN
-   Native <details> menus stay as-is. Close any open Account nav when
-   the pointer lands outside it (desktop click and mobile tap).
+    Native <details> stay for structure/accessibility. Open/close is
+    class-driven (opacity/visibility/transform) so the panel never
+    flashes at full opacity before the transition starts. Theme uses
+    the existing mode buttons inside .theme-toggle from theme.js.
 =================================================================== */
 
 function initAccountNav(){
@@ -190,9 +192,21 @@ function initAccountNav(){
 
     if(!menus.length) return;
 
+    const CLOSE_MS = 360;
+
+    function prefersReducedMotion(){
+
+        try {
+            return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        } catch (ignore) {
+            return false;
+        }
+
+    }
+
     function syncAccountNavState(menu){
 
-        const isOpen = !!menu.open;
+        const isOpen = menu.classList.contains("is-open");
         const toggle = menu.querySelector(".account-nav-toggle");
 
         if(toggle){
@@ -201,41 +215,197 @@ function initAccountNav(){
 
     }
 
-    function restartAccountNavPanelAnimation(menu){
+    function bumpAccountNavGen(menu){
 
-        const panel = menu.querySelector(".account-nav-panel");
-
-        if(!panel) return;
-
-        panel.classList.remove("account-nav-panel-in");
-
-        if(!menu.open) return;
-
-        void panel.offsetWidth;
-        panel.classList.add("account-nav-panel-in");
+        menu._accountNavGen = (menu._accountNavGen || 0) + 1;
+        return menu._accountNavGen;
 
     }
 
-    function closeAccountNav(menu){
+    function setDetailsOpen(menu, open){
 
-        if(!menu.open) return;
+        menu._accountNavIgnoreToggle = true;
+        menu.open = open;
+        menu._accountNavIgnoreToggle = false;
 
-        menu.open = false;
+    }
+
+    function isAccountNavOpen(menu){
+
+        return menu.classList.contains("is-open") || !!menu._accountNavOpening;
+
+    }
+
+    function closeThemeMenu(menu){
+
+        const theme = menu.querySelector(".account-nav-theme");
+        const themeBtn = menu.querySelector(".account-nav-theme-btn");
+
+        if(theme) theme.classList.remove("is-open");
+        if(themeBtn) themeBtn.setAttribute("aria-expanded", "false");
+
+    }
+
+    function openAccountNav(menu){
+
+        if(isAccountNavOpen(menu)) return;
+
+        menus.forEach((other)=>{
+            if(other !== menu) closeAccountNav(other, true);
+        });
+
+        const gen = bumpAccountNavGen(menu);
+
+        menu._accountNavOpening = true;
+        setDetailsOpen(menu, true);
         syncAccountNavState(menu);
-        restartAccountNavPanelAnimation(menu);
+
+        function reveal(){
+
+            if(menu._accountNavGen !== gen) return;
+            menu._accountNavOpening = false;
+            menu.classList.add("is-open");
+            syncAccountNavState(menu);
+
+        }
+
+        if(prefersReducedMotion()){
+            reveal();
+            return;
+        }
+
+        window.requestAnimationFrame(()=>{
+            window.requestAnimationFrame(reveal);
+        });
+
+    }
+
+    function closeAccountNav(menu, immediate){
+
+        if(!menu.open && !isAccountNavOpen(menu)) return;
+
+        const gen = bumpAccountNavGen(menu);
+
+        menu._accountNavOpening = false;
+        menu.classList.remove("is-open");
+        closeThemeMenu(menu);
+        syncAccountNavState(menu);
+
+        if(immediate || prefersReducedMotion()){
+            setDetailsOpen(menu, false);
+            return;
+        }
+
+        window.setTimeout(()=>{
+            if(menu._accountNavGen !== gen) return;
+            if(!isAccountNavOpen(menu)){
+                setDetailsOpen(menu, false);
+            }
+        }, CLOSE_MS);
+
+    }
+
+    function toggleThemeMenu(menu, themeBtn){
+
+        const theme = themeBtn.closest(".account-nav-theme");
+
+        if(!theme) return;
+
+        const willOpen = !theme.classList.contains("is-open");
+
+        closeThemeMenu(menu);
+
+        if(!willOpen) return;
+
+        theme.classList.add("is-open");
+        themeBtn.setAttribute("aria-expanded", "true");
+
+        const panel = theme.querySelector(".account-nav-theme-panel");
+
+        if(!panel || window.innerWidth <= 768){
+            if(panel){
+                panel.style.left = "";
+                panel.style.right = "";
+            }
+            return;
+        }
+
+        const btnRect = themeBtn.getBoundingClientRect();
+        const spaceRight = window.innerWidth - btnRect.right;
+
+        if(spaceRight < 180){
+            panel.style.left = "auto";
+            panel.style.right = "calc(100% + 8px)";
+        } else {
+            panel.style.left = "calc(100% + 8px)";
+            panel.style.right = "auto";
+        }
 
     }
 
     menus.forEach((menu)=>{
 
+        const toggle = menu.querySelector(".account-nav-toggle");
+        const themeBtn = menu.querySelector(".account-nav-theme-btn");
+
+        menu.open = false;
+        menu.classList.remove("is-open");
+        closeThemeMenu(menu);
         syncAccountNavState(menu);
+
+        if(toggle){
+
+            toggle.addEventListener("click",(event)=>{
+
+                event.preventDefault();
+
+                if(isAccountNavOpen(menu)){
+                    closeAccountNav(menu);
+                } else {
+                    openAccountNav(menu);
+                }
+
+            });
+
+            toggle.addEventListener("keydown",(event)=>{
+
+                if(event.key !== "Enter" && event.key !== " ") return;
+
+                event.preventDefault();
+
+                if(isAccountNavOpen(menu)){
+                    closeAccountNav(menu);
+                } else {
+                    openAccountNav(menu);
+                }
+
+            });
+
+        }
 
         menu.addEventListener("toggle",()=>{
 
-            syncAccountNavState(menu);
-            restartAccountNavPanelAnimation(menu);
+            if(menu._accountNavIgnoreToggle) return;
+
+            if(menu.open){
+                openAccountNav(menu);
+            } else {
+                closeAccountNav(menu, true);
+            }
 
         });
+
+        if(themeBtn){
+
+            themeBtn.addEventListener("click",(event)=>{
+
+                event.preventDefault();
+                event.stopPropagation();
+                toggleThemeMenu(menu, themeBtn);
+
+            });
+
+        }
 
     });
 
@@ -243,7 +413,7 @@ function initAccountNav(){
 
         menus.forEach((menu)=>{
 
-            if(menu.open && !menu.contains(event.target)){
+            if((menu.open || isAccountNavOpen(menu)) && !menu.contains(event.target)){
                 closeAccountNav(menu);
             }
 
@@ -257,7 +427,20 @@ function initAccountNav(){
 
         menus.forEach((menu)=>{
 
-            closeAccountNav(menu);
+            const theme = menu.querySelector(".account-nav-theme");
+
+            if(theme && theme.classList.contains("is-open")){
+                closeThemeMenu(menu);
+                const themeBtn = menu.querySelector(".account-nav-theme-btn");
+                if(themeBtn) themeBtn.focus();
+                return;
+            }
+
+            if(isAccountNavOpen(menu) || menu.open){
+                closeAccountNav(menu);
+                const toggle = menu.querySelector(".account-nav-toggle");
+                if(toggle) toggle.focus();
+            }
 
         });
 

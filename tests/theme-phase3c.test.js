@@ -191,7 +191,8 @@ test('account layout geometry is unchanged', () => {
 
 test('account pages still load existing markup and password toggle', () => {
     assert.ok(dashboardPhp.includes('account-welcome-card'));
-    assert.ok(dashboardPhp.includes('account-nav-panel'));
+    assert.ok(dashboardPhp.includes("include __DIR__ . '/includes/account-nav.php'"));
+    assert.ok(accountNavPhp.includes('account-nav-panel'));
     assert.ok(ordersPhp.includes('account-table'));
     assert.ok(orderDetailPhp.includes('account-order-heading'));
     assert.ok(addressesPhp.includes('account-address-card') || addressesPhp.includes('account-card'));

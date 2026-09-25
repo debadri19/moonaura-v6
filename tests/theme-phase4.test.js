@@ -343,7 +343,8 @@ test('stored preference wins over a leftover data-theme attribute', () => {
 console.log('\nPart B - login verification toggle');
 
 test('login page has a Light/Dark/System theme-toggle', () => {
-    assert.ok(loginPhp.includes('class="theme-toggle"'));
+    assert.ok(loginPhp.includes('class="login-theme-menu"'));
+    assert.ok(loginPhp.includes('class="theme-toggle login-theme-menu-panel"'));
     assert.ok(loginPhp.includes('data-theme-mode="light"'));
     assert.ok(loginPhp.includes('data-theme-mode="dark"'));
     assert.ok(loginPhp.includes('data-theme-mode="system"'));
@@ -387,7 +388,8 @@ test('toggle DOM errors do not break setMode', () => {
 test('theme-toggle styles use semantic tokens only', () => {
     assert.ok(accountCss.includes('.account-login-box .theme-toggle'));
     assert.ok(accountCss.includes('.account-login-box .theme-toggle-btn'));
-    assert.ok(accountCss.includes('background: var(--color-input-bg);'));
+    assert.ok(accountCss.includes('.account-login-box .login-theme-menu-btn'));
+    assert.ok(accountCss.includes('background: var(--color-surface);'));
     assert.ok(accountCss.includes('background: var(--primary);'));
     assert.ok(accountCss.includes('color: var(--white);'));
 });

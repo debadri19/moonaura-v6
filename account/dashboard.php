@@ -86,22 +86,7 @@ $recentOrders = $stmt->fetchAll();
                 </a>
             </div>
 
-            <nav class="account-nav-dropdown">
-                <details class="account-nav-menu">
-                    <summary class="account-nav-toggle">
-                        Dashboard
-                        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                    </summary>
-                    <div class="account-nav-panel">
-                        <a href="dashboard.php" class="active">Dashboard</a>
-                        <a href="orders.php">Orders</a>
-                        <a href="addresses.php">Saved Addresses</a>
-                        <a href="profile.php">Profile</a>
-                        <a href="change-password.php">Change Password</a>
-                        <a href="logout.php">Logout</a>
-                    </div>
-                </details>
-            </nav>
+            <?php include __DIR__ . '/includes/account-nav.php'; ?>
 
             <?php if (!empty($recentOrders)): ?>
 

@@ -99,14 +99,42 @@ $successMessage = flash_get('success');
 
         <div class="account-auth-box account-login-box">
 
-            <div class="theme-toggle" role="group" aria-label="Color theme">
-                <button type="button" class="theme-toggle-btn" data-theme-mode="light" aria-pressed="false">Light</button>
-                <button type="button" class="theme-toggle-btn" data-theme-mode="dark" aria-pressed="false">Dark</button>
-                <button type="button" class="theme-toggle-btn" data-theme-mode="system" aria-pressed="false">System</button>
+            <div class="login-theme-menu">
+                <button
+                    type="button"
+                    class="login-theme-menu-btn"
+                    id="login-theme-menu-btn"
+                    aria-label="Color theme"
+                    aria-haspopup="menu"
+                    aria-expanded="false"
+                    aria-controls="login-theme-menu"
+                >
+                    <i class="fa-solid fa-sun" aria-hidden="true"></i>
+                </button>
+                <div
+                    class="theme-toggle login-theme-menu-panel"
+                    id="login-theme-menu"
+                    role="menu"
+                    aria-label="Color theme"
+                    hidden
+                >
+                    <button type="button" class="theme-toggle-btn" role="menuitemradio" data-theme-mode="light" aria-pressed="false">
+                        <i class="fa-solid fa-sun" aria-hidden="true"></i>
+                        Light
+                    </button>
+                    <button type="button" class="theme-toggle-btn" role="menuitemradio" data-theme-mode="dark" aria-pressed="false">
+                        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                        Dark
+                    </button>
+                    <button type="button" class="theme-toggle-btn" role="menuitemradio" data-theme-mode="system" aria-pressed="false">
+                        <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
+                        System
+                    </button>
+                </div>
             </div>
 
-            <h1>Welcome Back</h1>
-            <p class="account-auth-subtitle">Log in to view your orders and account details.</p>
+            <h1>Welcome to MoonAura</h1>
+            <p class="account-auth-subtitle">Sign in to access your orders and account.</p>
 
             <?php if ($successMessage): ?>
                 <div class="account-alert account-alert-success"><?= h($successMessage) ?></div>
@@ -154,6 +182,7 @@ $successMessage = flash_get('success');
 
     <script src="<?= versioned_asset('assets/js/main.js') ?>"></script>
     <script src="<?= versioned_asset('assets/js/password-toggle.js') ?>"></script>
+    <script src="<?= versioned_asset('assets/js/login-theme-menu.js') ?>"></script>
 
 </body>
 </html>

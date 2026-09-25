@@ -51,43 +51,111 @@
     margin-bottom: 24px;
 }
 
-.account-login-box .theme-toggle {
+.account-login-box .login-theme-menu {
     position: absolute;
     top: 12px;
     right: 12px;
-    z-index: 2;
+    z-index: 3;
+}
+
+.account-login-box .login-theme-menu-btn {
+    position: relative;
     display: flex;
-    width: auto;
-    max-width: calc(100% - 24px);
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--color-surface);
+    color: var(--primary);
+    font-family: inherit;
+    font-size: 15px;
+    line-height: 1;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.account-login-box .login-theme-menu-btn::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+}
+
+.account-login-box .login-theme-menu-btn:hover,
+.account-login-box .login-theme-menu.is-open .login-theme-menu-btn {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.account-login-box .login-theme-menu-btn:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.account-login-box .theme-toggle {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 4;
+    display: none;
+    flex-direction: column;
+    width: 156px;
+    max-width: min(156px, calc(100vw - 48px));
     gap: 4px;
     margin: 0;
-    padding: 4px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: var(--color-input-bg);
+    padding: 8px;
+    border: 1px solid var(--gold);
+    border-radius: 12px;
+    background: var(--primary-dark);
+    box-shadow: var(--color-shadow);
+}
+
+.account-login-box .login-theme-menu.is-open .theme-toggle {
+    display: flex;
 }
 
 .account-login-box .theme-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
     flex: 0 0 auto;
     border: none;
     background: transparent;
-    color: var(--text-light);
+    color: var(--white);
     font-family: inherit;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 6px 8px;
-    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 10px;
+    border-radius: 8px;
     cursor: pointer;
     white-space: nowrap;
+    text-align: left;
+}
+
+.account-login-box .theme-toggle-btn i {
+    width: 14px;
+    color: var(--gold);
 }
 
 .account-login-box .theme-toggle-btn[aria-pressed="true"] {
     background: var(--primary);
     color: var(--white);
+    box-shadow: inset 3px 0 0 var(--gold);
+}
+
+.account-login-box .theme-toggle-btn[aria-pressed="true"] i {
+    color: var(--gold);
+}
+
+.account-login-box .theme-toggle-btn:hover {
+    background: var(--primary);
 }
 
 .account-login-box .theme-toggle-btn:focus-visible {
-    outline: 2px solid var(--primary);
+    outline: 2px solid var(--gold);
     outline-offset: 1px;
 }
 
@@ -96,15 +164,15 @@
         padding-top: 52px;
     }
 
-    .account-login-box .theme-toggle {
+    .account-login-box .login-theme-menu {
         top: 10px;
         right: 10px;
-        max-width: calc(100% - 20px);
     }
 
     .account-login-box .theme-toggle-btn {
-        font-size: 10px;
-        padding: 5px 7px;
+        min-height: 44px;
+        font-size: 14px;
+        padding: 10px 12px;
     }
 }
 
@@ -329,19 +397,25 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
     transform: none;
 }
 
-.account-nav-menu[open] .account-nav-toggle i,
-.account-nav-menu[open] .account-nav-toggle:hover i,
-.account-nav-menu[open] .account-nav-toggle:focus i,
-.account-nav-menu[open] .account-nav-toggle:focus-visible i,
-.account-nav-menu[open]:hover .account-nav-toggle i,
-.account-nav-menu[open]:focus-within .account-nav-toggle i {
+.account-nav-menu.is-open .account-nav-toggle i,
+.account-nav-menu.is-open .account-nav-toggle:hover i,
+.account-nav-menu.is-open .account-nav-toggle:focus i,
+.account-nav-menu.is-open .account-nav-toggle:focus-visible i,
+.account-nav-menu.is-open:hover .account-nav-toggle i,
+.account-nav-menu.is-open:focus-within .account-nav-toggle i {
     transform: rotate(180deg);
+}
+
+.account-nav-menu::details-content {
+    display: contents;
+    content-visibility: visible;
 }
 
 .account-nav-panel {
     position: absolute;
     top: calc(100% + 8px);
     left: 0;
+    display: block;
     min-width: 220px;
     max-width: min(280px, calc(100vw - 64px));
     padding: 8px 0;
@@ -349,39 +423,178 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
     border: 1px solid var(--border);
     border-radius: 16px;
     box-shadow: var(--shadow);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
 }
 
-.account-nav-panel.account-nav-panel-in {
-    animation: accountNavPanelIn var(--transition);
+.account-nav-menu.is-open > .account-nav-panel {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
 }
 
-@keyframes accountNavPanelIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.account-nav-panel a {
-    display: block;
+.account-nav-panel a,
+.account-nav-theme-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
     padding: 10px 18px;
+    border: none;
+    background: transparent;
     color: var(--text);
+    font-family: inherit;
     font-size: 14px;
+    font-weight: 400;
+    text-align: left;
     text-decoration: none;
+    cursor: pointer;
     transition: var(--transition);
 }
 
-.account-nav-panel a:hover {
+.account-nav-panel a:hover,
+.account-nav-theme-btn:hover {
     color: var(--primary);
 }
 
 .account-nav-panel a.active {
     color: var(--primary);
     font-weight: 600;
+}
+
+.account-nav-theme {
+    position: relative;
+    border-top: 1px solid var(--border);
+}
+
+.account-nav-theme-btn i {
+    font-size: 11px;
+    color: inherit;
+    transition: transform var(--transition);
+}
+
+.account-nav-theme.is-open .account-nav-theme-btn i {
+    transform: rotate(90deg);
+}
+
+.account-nav-theme-btn:focus-visible,
+.account-nav-panel a:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: -2px;
+}
+
+.account-nav-theme-panel {
+    position: absolute;
+    top: 0;
+    left: calc(100% + 8px);
+    z-index: 21;
+    display: flex;
+    flex-direction: column;
+    width: 156px;
+    max-width: min(156px, calc(100vw - 48px));
+    gap: 4px;
+    margin: 0;
+    padding: 8px;
+    border: 1px solid var(--gold);
+    border-radius: 12px;
+    background: var(--primary-dark);
+    box-shadow: var(--color-shadow);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(8px);
+    transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
+}
+
+.account-nav-theme.is-open .account-nav-theme-panel {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(0);
+}
+
+.account-nav-theme-panel .theme-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: var(--white);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+    text-align: left;
+}
+
+.account-nav-theme-panel .theme-toggle-btn i {
+    width: 14px;
+    color: var(--gold);
+}
+
+.account-nav-theme-panel .theme-toggle-btn[aria-pressed="true"] {
+    background: var(--primary);
+    color: var(--white);
+    box-shadow: inset 3px 0 0 var(--gold);
+}
+
+.account-nav-theme-panel .theme-toggle-btn:hover {
+    background: var(--primary);
+}
+
+.account-nav-theme-panel .theme-toggle-btn:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 1px;
+}
+
+.account-nav-logout {
+    border-top: 1px solid var(--border);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .account-nav-panel,
+    .account-nav-theme-panel,
+    .account-nav-toggle i,
+    .account-nav-theme-btn i {
+        transition: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .account-nav-theme-panel {
+        position: static;
+        width: auto;
+        max-width: none;
+        margin: 0 12px 8px;
+        transform: none;
+        max-height: 0;
+        overflow: hidden;
+        padding-top: 0;
+        padding-bottom: 0;
+        border-width: 0;
+        transition: opacity var(--transition), visibility var(--transition), max-height var(--transition), padding var(--transition);
+    }
+
+    .account-nav-theme.is-open .account-nav-theme-panel {
+        max-height: 180px;
+        padding: 8px;
+        border-width: 1px;
+        transform: none;
+    }
+
+    .account-nav-theme-panel .theme-toggle-btn {
+        min-height: 44px;
+        font-size: 14px;
+        padding: 10px 12px;
+    }
 }
 
 .account-order-actions {

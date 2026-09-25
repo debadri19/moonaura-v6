@@ -464,7 +464,9 @@ test('theme.js remains the only theme manager; sync is a thin authenticated laye
 });
 
 test('login toggle stays top-right and Light Mode brand tokens are unchanged', () => {
-    assert.ok(loginPhp.includes('class="theme-toggle"'));
+    assert.ok(loginPhp.includes('class="login-theme-menu"'));
+    assert.ok(loginPhp.includes('class="theme-toggle login-theme-menu-panel"'));
+    assert.ok(accountCss.includes('.account-login-box .login-theme-menu'));
     assert.ok(accountCss.includes('.account-login-box .theme-toggle'));
     assert.ok(accountCss.includes('position: absolute;'));
     assert.ok(accountCss.includes('top: 12px;'));
