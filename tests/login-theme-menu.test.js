@@ -81,7 +81,7 @@ test('login CSS keeps the control compact and in the card corner', () => {
     assert.ok(accountCss.includes('padding-top: 52px;'));
     assert.ok(accountCss.includes('width: 36px;'));
     assert.ok(accountCss.includes('height: 36px;'));
-    assert.ok(accountCss.includes('background: var(--primary-dark);'));
+    assert.ok(accountCss.includes('background: var(--color-surface);'));
     assert.ok(accountCss.includes('box-shadow: inset 3px 0 0 var(--gold);'));
     assert.ok(accountCss.includes('max-width: min(156px, calc(100vw - 48px));'));
 });

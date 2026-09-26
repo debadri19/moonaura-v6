@@ -18,6 +18,10 @@
     justify-content: center;
 }
 
+.account-auth-page:has(.account-login-box) {
+    padding: 32px 0;
+}
+
 .account-auth-box {
     width: 100%;
     max-width: 420px;
@@ -74,13 +78,17 @@
     font-size: 15px;
     line-height: 1;
     cursor: pointer;
-    transition: var(--transition);
+    appearance: none;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: background var(--transition), color var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
 .account-login-box .login-theme-menu-btn::after {
     content: '';
     position: absolute;
     inset: -6px;
+    border-radius: 50%;
 }
 
 .account-login-box .login-theme-menu-btn:hover,
@@ -89,9 +97,13 @@
     color: var(--white);
 }
 
+.account-login-box .login-theme-menu-btn:focus {
+    outline: none;
+}
+
 .account-login-box .login-theme-menu-btn:focus-visible {
-    outline: 2px solid var(--primary);
-    outline-offset: 2px;
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-surface), 0 0 0 4px var(--primary);
 }
 
 .account-login-box .theme-toggle {
@@ -106,9 +118,9 @@
     gap: 4px;
     margin: 0;
     padding: 8px;
-    border: 1px solid var(--gold);
+    border: 1px solid var(--border);
     border-radius: 12px;
-    background: var(--primary-dark);
+    background: var(--color-surface);
     box-shadow: var(--color-shadow);
 }
 
@@ -124,7 +136,7 @@
     flex: 0 0 auto;
     border: none;
     background: transparent;
-    color: var(--white);
+    color: var(--color-text);
     font-family: inherit;
     font-size: 13px;
     font-weight: 500;
@@ -151,11 +163,17 @@
 }
 
 .account-login-box .theme-toggle-btn:hover {
+    background: var(--color-icon-well);
+    color: var(--color-text);
+}
+
+.account-login-box .theme-toggle-btn[aria-pressed="true"]:hover {
     background: var(--primary);
+    color: var(--white);
 }
 
 .account-login-box .theme-toggle-btn:focus-visible {
-    outline: 2px solid var(--gold);
+    outline: 2px solid var(--primary);
     outline-offset: 1px;
 }
 
@@ -474,11 +492,12 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
 .account-nav-theme-btn i {
     font-size: 11px;
     color: inherit;
+    transform: rotate(0deg);
     transition: transform var(--transition);
 }
 
 .account-nav-theme.is-open .account-nav-theme-btn i {
-    transform: rotate(90deg);
+    transform: rotate(180deg);
 }
 
 .account-nav-theme-btn:focus-visible,
@@ -499,9 +518,9 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
     gap: 4px;
     margin: 0;
     padding: 8px;
-    border: 1px solid var(--gold);
+    border: 1px solid var(--border);
     border-radius: 12px;
-    background: var(--primary-dark);
+    background: var(--color-surface);
     box-shadow: var(--color-shadow);
     opacity: 0;
     visibility: hidden;
@@ -524,7 +543,7 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
     width: 100%;
     border: none;
     background: transparent;
-    color: var(--white);
+    color: var(--color-text);
     font-family: inherit;
     font-size: 13px;
     font-weight: 500;
@@ -547,11 +566,17 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
 }
 
 .account-nav-theme-panel .theme-toggle-btn:hover {
+    background: var(--color-icon-well);
+    color: var(--color-text);
+}
+
+.account-nav-theme-panel .theme-toggle-btn[aria-pressed="true"]:hover {
     background: var(--primary);
+    color: var(--white);
 }
 
 .account-nav-theme-panel .theme-toggle-btn:focus-visible {
-    outline: 2px solid var(--gold);
+    outline: 2px solid var(--primary);
     outline-offset: 1px;
 }
 

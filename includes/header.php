@@ -62,81 +62,24 @@ $headerWishlistCount = wishlist_count();
 
                         <div class="dropdown-content">
 
-                            <div class="dropdown-policies">
-
-                                <div class="dropdown-policies-row">
-
-                                    <a href="<?= site_url('policy.php') ?>" class="dropdown-policies-link">
-                                        <i class="fa-solid fa-file-contract"></i>
-                                        Policies
-                                    </a>
-
-                                    <button
-                                        class="dropdown-policies-toggle"
-                                        type="button"
-                                        aria-expanded="false"
-                                        aria-controls="desktop-policies-submenu"
-                                        aria-label="Toggle policy menu"
-                                    >
-                                        <i class="fa-solid fa-chevron-down"></i>
-                                    </button>
-
-                                </div>
-
-                                <div class="dropdown-policies-submenu" id="desktop-policies-submenu">
-
-                                    <a href="<?= site_url('policy.php') ?>#order">
-                                        <i class="fa-solid fa-cart-shopping"></i>
-                                        Order Policy
-                                    </a>
-
-                                    <a href="<?= site_url('policy.php') ?>#cancellation">
-                                        <i class="fa-solid fa-ban"></i>
-                                        Cancellation Policy
-                                    </a>
-
-                                    <a href="<?= site_url('policy.php') ?>#shipping">
-                                        <i class="fa-solid fa-truck-fast"></i>
-                                        Shipping Policy
-                                    </a>
-
-                                    <a href="<?= site_url('policy.php') ?>#replacement">
-                                        <i class="fa-solid fa-rotate-left"></i>
-                                        Replacement Policy
-                                    </a>
-
-                                    <a href="<?= site_url('policy.php') ?>#returns">
-                                        <i class="fa-solid fa-arrow-rotate-left"></i>
-                                        Return & Refund Policy
-                                    </a>
-
-                                    <a href="<?= site_url('policy.php') ?>#refund">
-                                        <i class="fa-solid fa-wallet"></i>
-                                        Refund Policy
-                                    </a>
-
-                                    <a href="<?= site_url('policy.php') ?>#privacy">
-                                        <i class="fa-solid fa-user-shield"></i>
-                                        Privacy Policy
-                                    </a>
-
-                                    <a href="<?= site_url('policy.php') ?>#terms">
-                                        <i class="fa-solid fa-file-contract"></i>
-                                        Terms & Conditions
-                                    </a>
-
-                                    <a href="<?= site_url('policy.php') ?>#disclaimer">
-                                        <i class="fa-solid fa-triangle-exclamation"></i>
-                                        Disclaimer
-                                    </a>
-
-                                </div>
-
-                            </div>
+                            <a href="<?= site_url('policy.php') ?>">
+                                <i class="fa-solid fa-file-contract"></i>
+                                Policies
+                            </a>
 
                             <a href="<?= site_url('support.php') ?>" class="dropdown-support">
                                 <i class="fa-solid fa-headset"></i>
                                 Support
+                            </a>
+
+                            <a href="<?= site_url('policy.php') ?>#terms">
+                                <i class="fa-solid fa-file-lines"></i>
+                                Terms &amp; Conditions
+                            </a>
+
+                            <a href="<?= site_url('support.php') ?>#faq">
+                                <i class="fa-solid fa-circle-question"></i>
+                                FAQs
                             </a>
 
                         </div>
@@ -305,54 +248,24 @@ $headerWishlistCount = wishlist_count();
 
             <div class="mobile-dropdown-content">
 
-                <div class="mobile-policies">
-
-                    <div class="mobile-policies-row">
-
-                        <a href="<?= site_url('policy.php') ?>">
-                            <i class="fa-solid fa-file-contract"></i>
-                            Policies
-                        </a>
-
-                        <button
-                            class="mobile-policies-toggle"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="mobile-policies-submenu"
-                            aria-label="Toggle policy menu"
-                        >
-                            <i class="fa-solid fa-chevron-down"></i>
-                        </button>
-
-                    </div>
-
-                    <div class="mobile-policies-submenu" id="mobile-policies-submenu">
-
-                        <a href="<?= site_url('policy.php') ?>#order">Order Policy</a>
-
-                        <a href="<?= site_url('policy.php') ?>#cancellation">Cancellation Policy</a>
-
-                        <a href="<?= site_url('policy.php') ?>#shipping">Shipping Policy</a>
-
-                        <a href="<?= site_url('policy.php') ?>#replacement">Replacement Policy</a>
-
-                        <a href="<?= site_url('policy.php') ?>#returns">Return & Refund Policy</a>
-
-                        <a href="<?= site_url('policy.php') ?>#refund">Refund Policy</a>
-
-                        <a href="<?= site_url('policy.php') ?>#privacy">Privacy Policy</a>
-
-                        <a href="<?= site_url('policy.php') ?>#terms">Terms & Conditions</a>
-
-                        <a href="<?= site_url('policy.php') ?>#disclaimer">Disclaimer</a>
-
-                    </div>
-
-                </div>
+                <a href="<?= site_url('policy.php') ?>">
+                    <i class="fa-solid fa-file-contract"></i>
+                    Policies
+                </a>
 
                 <a href="<?= site_url('support.php') ?>" class="dropdown-support">
                     <i class="fa-solid fa-headset"></i>
                     Support
+                </a>
+
+                <a href="<?= site_url('policy.php') ?>#terms">
+                    <i class="fa-solid fa-file-lines"></i>
+                    Terms &amp; Conditions
+                </a>
+
+                <a href="<?= site_url('support.php') ?>#faq">
+                    <i class="fa-solid fa-circle-question"></i>
+                    FAQs
                 </a>
 
             </div>

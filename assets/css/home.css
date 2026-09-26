@@ -1886,7 +1886,7 @@
 
     overflow:hidden;
 
-    padding:8px 2px 55px;
+    padding:8px 2px 0;
 
     -webkit-mask-image:linear-gradient(
         to right,
@@ -2138,6 +2138,16 @@
 
 }
 
+.testimonialSwiper .swiper-pagination{
+
+    margin-top:24px;
+
+    bottom:auto;
+
+    top:auto;
+
+}
+
 .swiper-pagination-bullet{
 
     width:10px;
@@ -2182,7 +2192,7 @@
 
     overflow:hidden;
 
-    padding:8px 2px 55px;
+    padding:8px 2px 0;
 
     -webkit-mask-image:linear-gradient(
         to right,
@@ -2280,11 +2290,15 @@
 
 }
 
-.instagram-pagination{
+.instagram-swiper .instagram-pagination{
 
     position:relative;
 
-    margin-top:35px;
+    margin-top:24px;
+
+    bottom:auto;
+
+    top:auto;
 
 }
 
@@ -2318,7 +2332,7 @@
 
     justify-content:center;
 
-    margin-top:45px;
+    margin-top:24px;
 
 }
 
@@ -2376,18 +2390,6 @@
 
     }
 
-    .instagram-pagination{
-
-        margin-top:28px;
-
-    }
-
-    .instagram-button{
-
-        margin-top:35px;
-
-    }
-
     .instagramSwiper .swiper-slide{
 
         display:flex;
@@ -2416,12 +2418,6 @@
     .instagram-overlay i{
 
         font-size:28px;
-
-    }
-
-    .instagram-button{
-
-        margin-top:30px;
 
     }
 
@@ -2904,7 +2900,7 @@
 }
 
 #page-content .instagram {
-    padding: 48px 0 56px;
+    padding: 48px 0 36px;
 }
 
 #page-content .section-heading {
@@ -2931,7 +2927,7 @@
     }
 
     #page-content .instagram {
-        padding: 44px 0 48px;
+        padding: 44px 0 32px;
     }
 
     #page-content .section-heading {
@@ -2957,7 +2953,7 @@
     }
 
     #page-content .instagram {
-        padding: 36px 0 44px;
+        padding: 36px 0 28px;
     }
 
     #page-content .section-heading {
@@ -2983,7 +2979,7 @@
     }
 
     #page-content .instagram {
-        padding: 32px 0 40px;
+        padding: 32px 0 24px;
     }
 
     #page-content .section-heading {
