@@ -63,12 +63,24 @@
    03. CUSTOMER / ADDRESS FORM
 ========================================== */
 
+.checkout-form {
+    display: block;
+    min-width: 0;
+}
+
 .checkout-form-card {
     background: var(--color-surface);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 28px;
     min-width: 0;
+    overflow: visible;
+}
+
+.checkout-form .checkout-form-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .checkout-form-card h2 {
@@ -81,6 +93,7 @@
     flex-direction: column;
     gap: 6px;
     min-width: 0;
+    overflow: visible;
 }
 
 .checkout-form-row {
@@ -184,6 +197,177 @@ html[data-theme-resolved="dark"] .checkout-form-card select {
     background-color: var(--bg);
 }
 
+.checkout-saved-address {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    z-index: 2;
+}
+
+.checkout-saved-address.is-open {
+    z-index: 30;
+}
+
+.checkout-saved-address-trigger,
+.checkout-saved-address-panel {
+    display: none;
+}
+
+.checkout-saved-address.is-ready .checkout-saved-address-trigger {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 10px 36px 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.7;
+    font-family: inherit;
+    font-weight: 400;
+    color: var(--text);
+    background-color: var(--color-input-bg);
+    cursor: pointer;
+    text-align: left;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: var(--transition);
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235B2E91' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 14px;
+}
+
+.checkout-saved-address.is-ready #saved_address {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.checkout-saved-address-trigger-text {
+    display: block;
+    min-width: 0;
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.checkout-saved-address.is-ready .checkout-saved-address-trigger:hover,
+.checkout-saved-address.is-ready .checkout-saved-address-trigger:focus-visible,
+.checkout-saved-address.is-open .checkout-saved-address-trigger {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.checkout-saved-address.is-ready .checkout-saved-address-panel {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    margin-top: 6px;
+    padding: 0;
+    overflow: hidden;
+    z-index: 20;
+    background: var(--color-surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--color-shadow);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+}
+
+.checkout-saved-address.is-open .checkout-saved-address-panel {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.checkout-saved-address-scroll {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-height: 0;
+    max-height: inherit;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px;
+}
+
+.checkout-saved-address-option {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 44px;
+    margin: 0;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.45;
+    font-weight: 400;
+    text-align: left;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    cursor: pointer;
+}
+
+.checkout-saved-address-option:first-child {
+    margin-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.checkout-saved-address-option:hover,
+.checkout-saved-address-option:focus-visible,
+.checkout-saved-address-option.is-active {
+    background: var(--bg);
+    color: var(--gold);
+    outline: none;
+}
+
+.checkout-saved-address-option.is-selected {
+    background: var(--primary);
+    color: var(--white);
+    font-weight: 600;
+}
+
+.checkout-saved-address-option.is-selected:hover,
+.checkout-saved-address-option.is-selected:focus-visible,
+.checkout-saved-address-option.is-selected.is-active {
+    background: var(--primary);
+    color: var(--white);
+}
+
 .checkout-field-hint {
     margin: 4px 0 0;
     font-size: 12px;
@@ -214,6 +398,40 @@ html[data-theme-resolved="dark"] .checkout-form-card select {
     font-family: inherit;
 }
 
+.checkout-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+}
+
+.checkout-payment-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+}
+
+.checkout-payment-card h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.checkout-place-order {
+    display: flex;
+    justify-content: center;
+}
+
+.checkout-place-order .btn-primary {
+    width: auto;
+    max-width: 240px;
+    min-width: 180px;
+    margin-top: 0;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
 .checkout-form-card .account-invoice-actions .btn,
 .checkout-form-card .account-invoice-actions .btn-primary {
     margin-top: 0;
@@ -227,7 +445,9 @@ html[data-theme-resolved="dark"] .checkout-form-card select {
     border: 1px solid var(--border);
     border-radius: 8px;
     margin-top: 8px !important;
+    font-size: 14px;
     font-weight: 400 !important;
+    color: var(--text);
     cursor: pointer;
 }
 
@@ -325,6 +545,14 @@ html[data-theme-resolved="dark"] .checkout-form-card select {
 
     .checkout-form-row {
         grid-template-columns: 1fr;
+    }
+
+    .checkout-sidebar {
+        gap: 16px;
+    }
+
+    .checkout-place-order .btn-primary {
+        max-width: 220px;
     }
 
 }

@@ -500,6 +500,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             <?php endif; ?>
 
+            <form method="post" action="checkout.php" class="checkout-form">
+
             <div class="checkout-layout">
 
                 <!-- ==========================================
@@ -510,31 +512,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <h2>Delivery Details</h2>
 
-                    <form method="post" action="checkout.php">
-
-                        <?= csrf_field() ?>
+                    <?= csrf_field() ?>
 
                         <?php if (!empty($savedAddresses)): ?>
 
-                            <label for="saved_address">Saved Address</label>
-                            <select id="saved_address" name="saved_address_id">
-                                <option value="" selected>+ Enter a new address</option>
-                                <?php foreach ($savedAddresses as $savedAddress): ?>
-                                    <option
-                                        value="<?= (int) $savedAddress['id'] ?>"
-                                        data-full-name="<?= h($savedAddress['full_name']) ?>"
-                                        data-phone="<?= h($savedAddress['phone']) ?>"
-                                        data-address-line1="<?= h($savedAddress['address_line1']) ?>"
-                                        data-address-line2="<?= h($savedAddress['address_line2'] ?? '') ?>"
-                                        data-landmark="<?= h($savedAddress['landmark'] ?? '') ?>"
-                                        data-city="<?= h($savedAddress['city']) ?>"
-                                        data-state="<?= h($savedAddress['state']) ?>"
-                                        data-pincode="<?= h($savedAddress['postal_code']) ?>"
-                                    >
-                                        <?= $savedAddress['is_default'] ? 'Default - ' : '' ?><?= h($savedAddress['full_name']) ?> - <?= h($savedAddress['address_line1']) ?>, <?= h($savedAddress['city']) ?> <?= h($savedAddress['postal_code']) ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
+                            <label for="saved_address" id="saved_address_label">Saved Address</label>
+                            <div class="checkout-saved-address">
+                                <select id="saved_address" name="saved_address_id">
+                                    <option value="" selected>+ Enter a new address</option>
+                                    <?php foreach ($savedAddresses as $savedAddress): ?>
+                                        <option
+                                            value="<?= (int) $savedAddress['id'] ?>"
+                                            data-full-name="<?= h($savedAddress['full_name']) ?>"
+                                            data-phone="<?= h($savedAddress['phone']) ?>"
+                                            data-address-line1="<?= h($savedAddress['address_line1']) ?>"
+                                            data-address-line2="<?= h($savedAddress['address_line2'] ?? '') ?>"
+                                            data-landmark="<?= h($savedAddress['landmark'] ?? '') ?>"
+                                            data-city="<?= h($savedAddress['city']) ?>"
+                                            data-state="<?= h($savedAddress['state']) ?>"
+                                            data-pincode="<?= h($savedAddress['postal_code']) ?>"
+                                        >
+                                            <?= $savedAddress['is_default'] ? 'Default - ' : '' ?><?= h($savedAddress['full_name']) ?> - <?= h($savedAddress['address_line1']) ?>, <?= h($savedAddress['city']) ?> <?= h($savedAddress['postal_code']) ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <button
+                                    type="button"
+                                    class="checkout-saved-address-trigger"
+                                    id="saved_address_trigger"
+                                    aria-haspopup="listbox"
+                                    aria-expanded="false"
+                                    aria-controls="saved_address_listbox"
+                                    aria-labelledby="saved_address_label"
+                                >
+                                    <span class="checkout-saved-address-trigger-text">+ Enter a new address</span>
+                                </button>
+                                <div
+                                    class="checkout-saved-address-panel"
+                                    id="saved_address_listbox"
+                                    role="listbox"
+                                    aria-labelledby="saved_address_label"
+                                    aria-hidden="true"
+                                ></div>
+                            </div>
                             <p class="checkout-field-hint">Choose a saved address to auto-fill the form below, or keep "+ Enter a new address" selected to type a different one.</p>
 
                         <?php endif; ?>
@@ -589,34 +609,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </label>
                         <?php endif; ?>
 
-                        <h2 style="margin-top: 24px;">Payment Method</h2>
-
-                        <?php foreach ($enabledGateways as $gatewayName): ?>
-                            <label class="checkout-payment-option">
-                                <input type="radio" name="payment_method" value="<?= h($gatewayName) ?>" <?= $paymentMethod === $gatewayName ? 'checked' : '' ?>>
-                                <?= h(PaymentManager::getGatewayLabel($gatewayName)) ?>
-                            </label>
-                        <?php endforeach; ?>
-
-                        <?php if ($manualUpiEnabled): ?>
-                            <label class="checkout-payment-option">
-                                <input type="radio" name="payment_method" value="manual_upi" <?= $paymentMethod === 'manual_upi' ? 'checked' : '' ?>>
-                                Manual UPI QR Payment
-                            </label>
-                        <?php endif; ?>
-
-                        <?php if ($codEnabled): ?>
-                            <label class="checkout-payment-option">
-                                <input type="radio" name="payment_method" value="cod" <?= $paymentMethod === 'cod' ? 'checked' : '' ?>>
-                                Cash on Delivery
-                            </label>
-                        <?php endif; ?>
-
-                        <button type="submit" class="btn btn-primary">Place Order</button>
-
-                    </form>
-
                 </div>
+
+                <div class="checkout-sidebar">
 
                 <!-- ==========================================
                      ORDER SUMMARY
@@ -677,7 +672,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 </div>
 
+                    <div class="checkout-payment-card">
+
+                        <h2>Payment Method</h2>
+
+                        <?php foreach ($enabledGateways as $gatewayName): ?>
+                            <label class="checkout-payment-option">
+                                <input type="radio" name="payment_method" value="<?= h($gatewayName) ?>" <?= $paymentMethod === $gatewayName ? 'checked' : '' ?>>
+                                <?= h(PaymentManager::getGatewayLabel($gatewayName)) ?>
+                            </label>
+                        <?php endforeach; ?>
+
+                        <?php if ($manualUpiEnabled): ?>
+                            <label class="checkout-payment-option">
+                                <input type="radio" name="payment_method" value="manual_upi" <?= $paymentMethod === 'manual_upi' ? 'checked' : '' ?>>
+                                Manual UPI QR Payment
+                            </label>
+                        <?php endif; ?>
+
+                        <?php if ($codEnabled): ?>
+                            <label class="checkout-payment-option">
+                                <input type="radio" name="payment_method" value="cod" <?= $paymentMethod === 'cod' ? 'checked' : '' ?>>
+                                Cash on Delivery
+                            </label>
+                        <?php endif; ?>
+
+                    </div>
+
+                    <div class="checkout-place-order">
+                        <button type="submit" class="btn btn-primary">Place Order</button>
+                    </div>
+
+                </div>
+
             </div>
+
+            </form>
 
         </div>
 
