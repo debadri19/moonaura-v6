@@ -571,9 +571,9 @@
         grid-template-rows:auto auto;
         grid-template-areas:
             "icon label"
-            "heading heading";
+            "icon heading";
         column-gap:16px;
-        row-gap:12px;
+        row-gap:4px;
     }
 
     .policy-icon{

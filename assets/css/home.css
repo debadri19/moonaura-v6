@@ -300,9 +300,9 @@
 
         position: static;
 
-        justify-content:center;
+        justify-content:flex-start;
 
-        align-items:center;
+        align-items:flex-start;
 
         width:100%;
 
@@ -397,6 +397,7 @@
 
     .hero-buttons {
         justify-content: center;
+        align-items: center;
     }
 
 }
