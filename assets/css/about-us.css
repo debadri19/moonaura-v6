@@ -1019,9 +1019,9 @@
 
     border-radius:50%;
 
-    background:#F8F2E4;
+    background: var(--color-icon-well);
 
-    color:var(--text);
+    color:var(--primary);
 
     transition:all .35s ease;
 
@@ -1406,6 +1406,8 @@
 
     box-shadow:0 12px 28px rgba(212,175,55,.35);
 
+    -webkit-tap-highlight-color:transparent;
+
 }
 
 .help-buttons .btn-primary:hover{
@@ -1425,6 +1427,20 @@
 .help-buttons .btn-primary:active{
 
     transform:translateY(0);
+
+}
+
+.help-buttons .btn-primary:focus{
+
+    outline:none;
+
+}
+
+.help-buttons .btn-primary:focus-visible{
+
+    outline:none;
+
+    box-shadow:0 12px 28px rgba(212,175,55,.35), 0 0 0 2px var(--color-surface), 0 0 0 4px var(--primary);
 
 }
 
@@ -1747,6 +1763,7 @@
 
     .about-hero-content{
         width:100%;
+        max-width:620px;
     }
 
     .our-story .story-wrapper{
@@ -1768,6 +1785,32 @@
 
     .about-hero{
         padding:40px 0 16px;
+    }
+
+    .about-hero-content{
+        max-width:100%;
+        text-align:center;
+    }
+
+}
+
+@media (max-width:767px){
+
+    .about-hero-container,
+    .about-hero-content{
+        text-align:center;
+        max-width:100%;
+        margin-left:auto !important;
+        margin-right:auto !important;
+    }
+
+    .about-hero-subtitle{
+        justify-content:center;
+    }
+
+    .about-hero-description{
+        margin-left:auto;
+        margin-right:auto;
     }
 
 }

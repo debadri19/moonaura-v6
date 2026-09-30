@@ -117,6 +117,18 @@ function initHeader(){
 
     }
 
+    if(mobileMenu){
+
+        const mobileNavLinks = mobileMenu.querySelectorAll(".mobile-nav a");
+
+        mobileNavLinks.forEach((link)=>{
+
+            link.addEventListener("click",closeMenu);
+
+        });
+
+    }
+
     mobileDropBtns.forEach((mobileDropBtn)=>{
 
         const mobileDropdown = mobileDropBtn.nextElementSibling;

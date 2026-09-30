@@ -126,7 +126,7 @@ async function layout(page) {
             let pressed = await page.$eval('[data-theme-mode="dark"]', function (el) { return el.getAttribute('aria-pressed'); });
             assert.strictEqual(pressed, 'true');
             let icon = await page.$eval('.login-theme-menu-btn i', function (el) { return el.className; });
-            assert.ok(icon.indexOf('fa-moon') !== -1);
+            assert.ok(icon.indexOf('fa-palette') !== -1);
             const closed = await page.$eval('.login-theme-menu', function (el) { return !el.classList.contains('is-open'); });
             assert.ok(closed);
 
@@ -139,7 +139,7 @@ async function layout(page) {
             pressed = await page.$eval('[data-theme-mode="light"]', function (el) { return el.getAttribute('aria-pressed'); });
             assert.strictEqual(pressed, 'true');
             icon = await page.$eval('.login-theme-menu-btn i', function (el) { return el.className; });
-            assert.ok(icon.indexOf('fa-sun') !== -1);
+            assert.ok(icon.indexOf('fa-palette') !== -1);
 
             await page.click('.login-theme-menu-btn');
             await page.click('[data-theme-mode="system"]');
@@ -150,7 +150,7 @@ async function layout(page) {
             pressed = await page.$eval('[data-theme-mode="system"]', function (el) { return el.getAttribute('aria-pressed'); });
             assert.strictEqual(pressed, 'true');
             icon = await page.$eval('.login-theme-menu-btn i', function (el) { return el.className; });
-            assert.ok(icon.indexOf('fa-circle-half-stroke') !== -1);
+            assert.ok(icon.indexOf('fa-palette') !== -1);
         });
 
         await test('outside click and Escape close the dropdown', async function () {

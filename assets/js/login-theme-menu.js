@@ -14,12 +14,6 @@
         return;
     }
 
-    var ICONS = {
-        light: 'fa-sun',
-        dark: 'fa-moon',
-        system: 'fa-circle-half-stroke'
-    };
-
     function currentMode() {
         if (window.moonauraTheme && typeof window.moonauraTheme.getMode === 'function') {
             return window.moonauraTheme.getMode();
@@ -29,8 +23,7 @@
 
     function syncTrigger() {
         var mode = currentMode();
-        var iconClass = ICONS[mode] || ICONS.light;
-        icon.className = 'fa-solid ' + iconClass;
+        icon.className = 'fa-solid fa-palette';
         btn.setAttribute('aria-label', 'Color theme, ' + mode);
     }
 

@@ -757,6 +757,12 @@
 
     box-shadow: 0 4px 12px rgba(91, 46, 145, .08);
 
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    -webkit-tap-highlight-color: transparent;
+
 }
 
 .wishlist-btn:hover {
@@ -784,6 +790,20 @@
     color: #ffffff;
 
     border-color: var(--gold);
+
+}
+
+.wishlist-btn:focus {
+
+    outline: none;
+
+}
+
+.wishlist-btn:focus-visible {
+
+    outline: none;
+
+    box-shadow: 0 0 0 2px var(--color-surface), 0 0 0 4px var(--primary);
 
 }
 
@@ -1094,6 +1114,8 @@
 
     font-weight: 600;
 
+    -webkit-tap-highlight-color: transparent;
+
     transition: all .3s ease;
 
 }
@@ -1107,6 +1129,20 @@
     transform: translateY(-2px);
 
     box-shadow: 0 10px 22px rgba(91, 46, 145, .22);
+}
+
+.product-btn:focus {
+
+    outline: none;
+
+}
+
+.product-btn:focus-visible {
+
+    outline: none;
+
+    box-shadow: 0 0 0 2px var(--color-surface), 0 0 0 4px var(--primary);
+
 }
 
 /* =========================
@@ -1151,6 +1187,12 @@
 
     cursor: pointer;
 
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    -webkit-tap-highlight-color: transparent;
+
     transition: all .3s ease;
 
 }
@@ -1184,6 +1226,20 @@
     transform: translateY(-3px);
 
     box-shadow: 0 10px 22px rgba(91, 46, 145, .25);
+
+}
+
+.cart-btn:focus {
+
+    outline: none;
+
+}
+
+.cart-btn:focus-visible {
+
+    outline: none;
+
+    box-shadow: 0 0 0 2px var(--color-surface), 0 0 0 4px var(--primary);
 
 }
 
@@ -1467,11 +1523,19 @@
 
     text-decoration: none;
 
+    -webkit-tap-highlight-color: transparent;
+
     transition:
         transform .35s ease,
         box-shadow .35s ease,
         border-color .35s ease,
         background .35s ease;
+
+}
+
+.concern-card:focus {
+
+    outline: none;
 
 }
 
@@ -1653,11 +1717,19 @@
 
     text-decoration: none;
 
+    -webkit-tap-highlight-color: transparent;
+
     transition:
         transform .35s ease,
         box-shadow .35s ease,
         border-color .35s ease,
         background .35s ease;
+
+}
+
+.zodiac-card:focus {
+
+    outline: none;
 
 }
 
@@ -2598,6 +2670,12 @@
 
     white-space:nowrap;
 
+    appearance:none;
+
+    -webkit-appearance:none;
+
+    -webkit-tap-highlight-color:transparent;
+
     transition:var(--transition);
 
 }
@@ -2607,6 +2685,20 @@
     transform:translateY(-2px);
 
     filter:brightness(.97);
+
+}
+
+.newsletter-form button:focus{
+
+    outline:none;
+
+}
+
+.newsletter-form button:focus-visible{
+
+    outline:none;
+
+    box-shadow:0 0 0 2px var(--color-surface), 0 0 0 4px var(--primary);
 
 }
 

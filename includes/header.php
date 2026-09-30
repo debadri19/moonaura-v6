@@ -228,53 +228,44 @@ $headerWishlistCount = wishlist_count();
 
     <nav class="mobile-nav">
 
-        <a href="<?= site_url('index.php') ?>">Home</a>
+        <a href="<?= site_url('index.php') ?>">
+            <span class="mobile-nav-icon" aria-hidden="true"><i class="fa-solid fa-house"></i></span>
+            <span class="mobile-nav-label">Home</span>
+        </a>
 
-        <a href="<?= site_url('shop.php') ?>">Shop</a>
+        <a href="<?= site_url('shop.php') ?>">
+            <span class="mobile-nav-icon" aria-hidden="true"><i class="fa-solid fa-bag-shopping"></i></span>
+            <span class="mobile-nav-label">Shop</span>
+        </a>
 
-        <div class="mobile-dropdown">
+        <a href="<?= site_url('policy.php') ?>">
+            <span class="mobile-nav-icon" aria-hidden="true"><i class="fa-solid fa-file-contract"></i></span>
+            <span class="mobile-nav-label">Policy</span>
+        </a>
 
-            <button
-                class="mobile-drop-btn"
-                type="button"
-                aria-expanded="false"
-            >
+        <a href="<?= site_url('support.php') ?>">
+            <span class="mobile-nav-icon" aria-hidden="true"><i class="fa-solid fa-headset"></i></span>
+            <span class="mobile-nav-label">Support</span>
+        </a>
 
-                <span>Help</span>
+        <a href="<?= site_url('policy.php') ?>#terms">
+            <span class="mobile-nav-icon" aria-hidden="true"><i class="fa-solid fa-file-lines"></i></span>
+            <span class="mobile-nav-label">Terms &amp; Conditions</span>
+        </a>
 
-                <i class="fa-solid fa-chevron-down"></i>
+        <a href="<?= site_url('support.php') ?>#faq">
+            <span class="mobile-nav-icon" aria-hidden="true"><i class="fa-solid fa-circle-question"></i></span>
+            <span class="mobile-nav-label">FAQs</span>
+        </a>
 
-            </button>
-
-            <div class="mobile-dropdown-content">
-
-                <a href="<?= site_url('policy.php') ?>">
-                    <i class="fa-solid fa-file-contract"></i>
-                    Policies
-                </a>
-
-                <a href="<?= site_url('support.php') ?>" class="dropdown-support">
-                    <i class="fa-solid fa-headset"></i>
-                    Support
-                </a>
-
-                <a href="<?= site_url('policy.php') ?>#terms">
-                    <i class="fa-solid fa-file-lines"></i>
-                    Terms &amp; Conditions
-                </a>
-
-                <a href="<?= site_url('support.php') ?>#faq">
-                    <i class="fa-solid fa-circle-question"></i>
-                    FAQs
-                </a>
-
-            </div>
-
-        </div>
-
-        <a href="<?= site_url('about.php') ?>">About Us</a>
+        <a href="<?= site_url('about.php') ?>">
+            <span class="mobile-nav-icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
+            <span class="mobile-nav-label">About Us</span>
+        </a>
 
     </nav>
+
+    <p class="mobile-menu-tagline">Guided By Moon,<br>Inspired By Nature.</p>
 
 </aside>
 

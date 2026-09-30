@@ -489,15 +489,30 @@
     .policy-hero{
         padding:60px 0 20px;
         min-height:0;
-        display:flex;
-        align-items:center;
+        height:auto;
+        overflow:hidden;
     }
 
     .policy-hero .container{
-        min-height:380px;
+        min-height:0;
         display:flex;
         flex-direction:column;
-        justify-content:center;
+        justify-content:flex-start;
+        align-items:stretch;
+    }
+
+    .policy-hero .hero-tag{
+        align-self:center;
+        width:auto;
+        max-width:100%;
+        padding:5px 12px;
+        gap:8px;
+        font-size:11px;
+        letter-spacing:1.6px;
+    }
+
+    .policy-hero .hero-tag i{
+        font-size:11px;
     }
 
     .policy-hero h1{
@@ -505,8 +520,41 @@
     }
 
     .policy-meta{
-        flex-direction:column;
+        flex-direction:row;
+        flex-wrap:nowrap;
+        align-items:stretch;
+        justify-content:center;
+        gap:12px;
+        width:100%;
+        margin-top:28px;
+    }
+
+    .policy-meta-item{
+        flex:1 1 0;
+        min-width:0;
+        width:auto;
+        padding:12px 14px;
+        gap:10px;
+        justify-content:flex-start;
         align-items:center;
+        text-align:left;
+    }
+
+    .policy-meta-item > div{
+        min-width:0;
+    }
+
+    .policy-meta-item i{
+        width:40px;
+        height:40px;
+        min-width:40px;
+        flex-shrink:0;
+        font-size:16px;
+    }
+
+    .policy-meta-item span,
+    .policy-meta-item strong{
+        text-align:left;
     }
 
     .policy-nav{
@@ -596,9 +644,29 @@
         font-size:16px;
     }
 
+    .policy-meta{
+        gap:8px;
+        margin-top:24px;
+    }
+
     .policy-meta-item{
-        width:100%;
+        width:auto;
+        padding:10px 8px;
+        gap:8px;
         justify-content:flex-start;
+        text-align:left;
+    }
+
+    .policy-meta-item i{
+        width:32px;
+        height:32px;
+        min-width:32px;
+        font-size:14px;
+    }
+
+    .policy-meta-item strong{
+        font-size:14px;
+        line-height:1.3;
     }
 
     .policy-nav-item{

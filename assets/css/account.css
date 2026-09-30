@@ -22,6 +22,13 @@
     padding: 32px 0;
 }
 
+@media (max-width: 768px) {
+    .account-auth-page:has(.account-login-box) {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
 .account-auth-box {
     width: 100%;
     max-width: 420px;
@@ -72,7 +79,7 @@
     padding: 0;
     border: 1px solid var(--border);
     border-radius: 50%;
-    background: var(--color-surface);
+    background: var(--color-icon-well);
     color: var(--primary);
     font-family: inherit;
     font-size: 15px;
@@ -145,6 +152,9 @@
     cursor: pointer;
     white-space: nowrap;
     text-align: left;
+    appearance: none;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .account-login-box .theme-toggle-btn i {
@@ -170,6 +180,10 @@
 .account-login-box .theme-toggle-btn[aria-pressed="true"]:hover {
     background: var(--primary);
     color: var(--white);
+}
+
+.account-login-box .theme-toggle-btn:focus {
+    outline: none;
 }
 
 .account-login-box .theme-toggle-btn:focus-visible {
@@ -275,11 +289,18 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
     font-size: 15px;
     z-index: 2;
     border-radius: 6px;
+    appearance: none;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .account-auth-box .pw-toggle:hover,
 .account-auth-box .pw-toggle:focus-visible {
     color: var(--primary);
+}
+
+.account-auth-box .pw-toggle:focus {
+    outline: none;
 }
 
 .account-auth-box .pw-toggle:focus-visible {
@@ -386,6 +407,7 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
     color: var(--primary);
     font-size: 14px;
     font-weight: 600;
+    -webkit-tap-highlight-color: transparent;
     transition: var(--transition);
 }
 
@@ -393,6 +415,15 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
 .account-nav-toggle::marker {
     display: none;
     content: none;
+}
+
+.account-nav-toggle:focus {
+    outline: none;
+}
+
+.account-nav-toggle:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow), 0 0 0 2px var(--color-surface), 0 0 0 4px var(--primary);
 }
 
 .account-nav-toggle:hover {
@@ -471,6 +502,7 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
     text-align: left;
     text-decoration: none;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
     transition: var(--transition);
 }
 
@@ -498,6 +530,11 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
 
 .account-nav-theme.is-open .account-nav-theme-btn i {
     transform: rotate(180deg);
+}
+
+.account-nav-theme-btn:focus,
+.account-nav-panel a:focus {
+    outline: none;
 }
 
 .account-nav-theme-btn:focus-visible,
@@ -552,6 +589,9 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
     cursor: pointer;
     white-space: nowrap;
     text-align: left;
+    appearance: none;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .account-nav-theme-panel .theme-toggle-btn i {
@@ -573,6 +613,10 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
 .account-nav-theme-panel .theme-toggle-btn[aria-pressed="true"]:hover {
     background: var(--primary);
     color: var(--white);
+}
+
+.account-nav-theme-panel .theme-toggle-btn:focus {
+    outline: none;
 }
 
 .account-nav-theme-panel .theme-toggle-btn:focus-visible {
@@ -778,6 +822,13 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
     border-radius: 6px;
     cursor: pointer;
     white-space: nowrap;
+    appearance: none;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.account-appearance .theme-toggle-btn:focus {
+    outline: none;
 }
 
 .account-appearance .theme-toggle-btn[aria-pressed="true"] {
@@ -838,15 +889,20 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
     color: var(--primary);
     font-size: 16px;
     text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .account-welcome-logout:hover {
     color: var(--primary-dark);
 }
 
+.account-welcome-logout:focus {
+    outline: none;
+}
+
 .account-welcome-logout:focus-visible {
-    outline: 2px solid var(--primary);
-    outline-offset: 2px;
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-surface), 0 0 0 4px var(--primary);
 }
 
 .account-recent-orders {
@@ -987,11 +1043,18 @@ html[data-theme-resolved="dark"] .account-card input:not([type="checkbox"]):not(
     font-size: 15px;
     z-index: 2;
     border-radius: 6px;
+    appearance: none;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .account-card .pw-toggle:hover,
 .account-card .pw-toggle:focus-visible {
     color: var(--primary);
+}
+
+.account-card .pw-toggle:focus {
+    outline: none;
 }
 
 .account-card .pw-toggle:focus-visible {
@@ -1209,6 +1272,7 @@ html[data-theme-resolved="dark"] .account-card input:not([type="checkbox"]):not(
     white-space: nowrap;
     box-sizing: border-box;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .account-address-actions form .account-address-action {
@@ -1395,8 +1459,11 @@ html[data-theme-resolved="dark"] .account-card input:not([type="checkbox"]):not(
         text-transform: uppercase;
         letter-spacing: .04em;
         color: var(--text-light);
-        text-align: left;
-    }
+    text-align: left;
+    appearance: none;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+}
 
 }
 

@@ -131,7 +131,7 @@
     flex-shrink: 0;
     display: flex;
     align-items: center;
-    color: var(--gold);
+    color: var(--primary);
     font-size: 15px;
 }
 
@@ -201,12 +201,13 @@
     padding: 0;
     border: 1px solid var(--border);
     border-radius: 50%;
-    background: var(--color-surface);
-    color: var(--gold);
+    background: var(--color-icon-well);
+    color: var(--primary);
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
     box-shadow: none;
+    -webkit-tap-highlight-color: transparent;
     transition: var(--transition);
 }
 
@@ -221,17 +222,22 @@
     justify-content: center;
 }
 
-.shop-filter-btn:hover,
-.shop-filter-btn:focus-visible {
-    border-color: var(--gold);
-    color: var(--gold);
-    background: var(--color-surface);
-    box-shadow: 0 6px 16px rgba(212, 175, 55, .16);
+.shop-filter-btn:hover {
+    border-color: var(--primary);
+    color: var(--white);
+    background: var(--primary);
+}
+
+.shop-filter-btn:focus {
+    outline: none;
 }
 
 .shop-filter-btn:focus-visible {
-    outline: 2px solid var(--gold);
-    outline-offset: 2px;
+    outline: none;
+    border-color: var(--primary);
+    color: var(--white);
+    background: var(--primary);
+    box-shadow: 0 0 0 2px var(--color-surface), 0 0 0 4px var(--gold);
 }
 
 .shop-filter-btn.active,
@@ -326,6 +332,7 @@ html.shop-filters-ready .shop-filter-native {
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
     transition: var(--transition);
 }
 
@@ -333,6 +340,10 @@ html.shop-filters-ready .shop-filter-native {
 .shop-filter-option:focus-visible {
     background: var(--bg);
     color: var(--gold);
+    outline: none;
+}
+
+.shop-filter-option:focus {
     outline: none;
 }
 
@@ -396,7 +407,17 @@ html.shop-filters-ready .shop-filter-native {
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
     transition: var(--transition);
+}
+
+.page-btn:focus {
+    outline: none;
+}
+
+.page-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-surface), 0 0 0 4px var(--primary);
 }
 
 .page-btn:hover {

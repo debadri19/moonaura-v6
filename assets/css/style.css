@@ -65,6 +65,26 @@ button {
 
     cursor: pointer;
 
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    -webkit-tap-highlight-color: transparent;
+
+}
+
+button:focus {
+
+    outline: none;
+
+}
+
+button:focus-visible {
+
+    outline: 2px solid var(--primary);
+
+    outline-offset: 2px;
+
 }
 
 input,
@@ -765,6 +785,12 @@ section {
 
     font-weight: 600;
 
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    -webkit-tap-highlight-color: transparent;
+
     transition: var(--transition);
 
 }
@@ -869,6 +895,29 @@ section {
 
 .btn:hover i{
     transform:translateX(3px);
+}
+
+.btn:focus,
+.btn-primary:focus,
+.btn-outline:focus,
+.btn-secondary:focus,
+.btn-danger:focus {
+    outline: none;
+}
+
+.btn:focus-visible,
+.btn-primary:focus-visible,
+.btn-outline:focus-visible,
+.btn-secondary:focus-visible,
+.btn-danger:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-surface), 0 0 0 4px var(--primary);
+}
+
+.btn-text:focus-visible {
+    box-shadow: none;
+    text-decoration: underline;
+    text-decoration-color: currentColor;
 }
 
 
@@ -1041,7 +1090,7 @@ section {
 
     font-size: 40px;
 
-    color: var(--gold);
+    color: var(--primary);
 
     margin-bottom: 16px;
 
@@ -1103,6 +1152,12 @@ section {
 
     box-shadow: var(--shadow);
 
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    -webkit-tap-highlight-color: transparent;
+
     opacity: 0;
 
     visibility: hidden;
@@ -1128,6 +1183,20 @@ section {
     background: var(--primary-dark);
 
     transform: translateY(-3px);
+
+}
+
+#backToTop:focus {
+
+    outline: none;
+
+}
+
+#backToTop:focus-visible {
+
+    outline: none;
+
+    box-shadow: var(--shadow), 0 0 0 2px var(--color-surface), 0 0 0 4px var(--primary);
 
 }
 

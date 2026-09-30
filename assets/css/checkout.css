@@ -234,6 +234,7 @@ html[data-theme-resolved="dark"] .checkout-form-card select {
     text-align: left;
     appearance: none;
     -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
     transition: var(--transition);
     background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235B2E91' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-repeat: no-repeat;
@@ -339,6 +340,9 @@ html[data-theme-resolved="dark"] .checkout-form-card select {
     overflow-wrap: break-word;
     word-break: break-word;
     cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .checkout-saved-address-option:first-child {
@@ -352,6 +356,11 @@ html[data-theme-resolved="dark"] .checkout-form-card select {
 .checkout-saved-address-option.is-active {
     background: var(--bg);
     color: var(--gold);
+    outline: none;
+}
+
+.checkout-saved-address.is-ready .checkout-saved-address-trigger:focus,
+.checkout-saved-address-option:focus {
     outline: none;
 }
 

@@ -97,6 +97,9 @@
     cursor: pointer;
     background: none;
     padding: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
     transition: var(--transition);
 }
 
@@ -110,6 +113,15 @@
 .product-gallery-thumb.active,
 .product-gallery-thumb:hover {
     border-color: var(--primary);
+}
+
+.product-gallery-thumb:focus {
+    outline: none;
+}
+
+.product-gallery-thumb:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-surface), 0 0 0 4px var(--primary);
 }
 
 

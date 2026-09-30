@@ -318,6 +318,8 @@
 
     text-decoration:none;
 
+    -webkit-tap-highlight-color:transparent;
+
     transition:var(--transition);
 
 }
@@ -329,6 +331,20 @@
     color:#ffffff;
 
     transform:translateY(-3px);
+
+}
+
+.whatsapp-float:focus{
+
+    outline:none;
+
+}
+
+.whatsapp-float:focus-visible{
+
+    outline:none;
+
+    box-shadow:0 8px 20px rgba(37,211,102,.35), 0 0 0 2px var(--color-surface), 0 0 0 4px var(--primary);
 
 }
 

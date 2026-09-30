@@ -109,7 +109,7 @@ $successMessage = flash_get('success');
                     aria-expanded="false"
                     aria-controls="login-theme-menu"
                 >
-                    <i class="fa-solid fa-sun" aria-hidden="true"></i>
+                    <i class="fa-solid fa-palette" aria-hidden="true"></i>
                 </button>
                 <div
                     class="theme-toggle login-theme-menu-panel"

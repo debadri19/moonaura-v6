@@ -45,6 +45,7 @@ test('login heading and subtitle copy', () => {
 
 test('login uses a circular trigger, not a permanently visible segmented control', () => {
     assert.ok(loginPhp.includes('class="login-theme-menu-btn"'));
+    assert.ok(loginPhp.includes('fa-palette'));
     assert.ok(loginPhp.includes('fa-moon'));
     assert.ok(loginPhp.includes('aria-haspopup="menu"'));
     assert.ok(loginPhp.includes('aria-expanded="false"'));
@@ -68,9 +69,7 @@ test('menu script toggles, outside-click, and Escape close', () => {
     assert.ok(menuJs.includes("aria-expanded"));
     assert.ok(menuJs.includes("Escape"));
     assert.ok(menuJs.includes('menu.contains(event.target)'));
-    assert.ok(menuJs.includes('fa-sun'));
-    assert.ok(menuJs.includes('fa-moon'));
-    assert.ok(menuJs.includes('fa-circle-half-stroke'));
+    assert.ok(menuJs.includes('fa-palette'));
     assert.ok(menuJs.includes('moonauraTheme.getMode'));
 });
 
