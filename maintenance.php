@@ -150,32 +150,30 @@ $siteUrl = 'https://moonauracrystals.in';
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            min-width: 210px;
-            min-height: 54px;
-            padding: 0 28px;
+            gap: 8px;
+            min-width: 148px;
+            height: 42px;
+            padding: 0 20px;
             border-radius: 999px;
             background: var(--primary);
             color: var(--white);
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
+            letter-spacing: .02em;
+            line-height: 1;
             transition: var(--transition);
             box-shadow: 0 10px 22px rgba(91, 46, 145, .16);
         }
 
         .btn:hover {
             background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 14px 28px rgba(91, 46, 145, .20);
+            box-shadow: 0 10px 22px rgba(91, 46, 145, .16);
         }
 
         .btn svg {
-            width: 18px;
-            height: 18px;
-            transition: transform var(--transition);
+            width: 14px;
+            height: 14px;
         }
-
-        .btn:hover svg { transform: translateX(3px); }
 
         .footer-note {
             margin-top: 24px;

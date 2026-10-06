@@ -1394,7 +1394,7 @@
 }
 
 .help-buttons .btn{
-    min-width: 240px;
+    min-width: var(--btn-min-width);
 }
 
 /* ==========================================
@@ -1432,7 +1432,8 @@
     }
 
     .help-buttons .btn{
-        width: 240px;
+        width: auto;
+        min-width: var(--btn-min-width);
     }
 
 }
@@ -1461,7 +1462,7 @@
 
     .help-buttons .btn{
         width: 100%;
-        max-width: 240px;
+        max-width: 260px;
     }
 
 }

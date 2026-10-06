@@ -124,27 +124,27 @@ button {
 
     --transition: .35s ease;
 
-    --btn-height: 56px;
+    --btn-height: 42px;
 
-    --btn-height-sm: 52px;
+    --btn-height-sm: 42px;
 
-    --btn-min-width: 180px;
+    --btn-min-width: 148px;
 
-    --btn-padding-x: 28px;
+    --btn-padding-x: 20px;
 
-    --btn-padding-x-sm: 20px;
+    --btn-padding-x-sm: 18px;
 
     --btn-radius: 999px;
 
-    --btn-font-size: 16px;
+    --btn-font-size: 14px;
 
-    --btn-font-size-sm: 15px;
+    --btn-font-size-sm: 14px;
 
     --btn-font-weight: 600;
 
     --btn-letter-spacing: .02em;
 
-    --btn-gap: 10px;
+    --btn-gap: 8px;
 
     --container: 1440px;
 
@@ -851,8 +851,6 @@ section {
 
     color: var(--white);
 
-    transform: translateY(-3px);
-
 }
 
 .btn-outline {
@@ -872,8 +870,6 @@ section {
     border-color: var(--primary);
 
     color: var(--white);
-
-    transform: translateY(-3px);
 
 }
 
@@ -895,8 +891,6 @@ section {
 
     color: var(--white);
 
-    transform: translateY(-3px);
-
 }
 
 .btn-danger {
@@ -916,8 +910,6 @@ section {
     border-color: #8f1e18;
 
     color: var(--white);
-
-    transform: translateY(-3px);
 
 }
 
@@ -973,11 +965,6 @@ section {
 
 .btn i{
     color: inherit;
-    transition: transform .35s ease;
-}
-
-.btn:hover i{
-    transform:translateX(3px);
 }
 
 .btn:focus,

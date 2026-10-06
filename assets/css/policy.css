@@ -18,7 +18,7 @@
 }
 
 .policy-hero{
-    padding:90px 0 70px;
+    padding:65px 0 70px;
     min-height:520px;
     background:linear-gradient(180deg,var(--bg) 0%,var(--color-page-bg) 100%);
     text-align:center;
@@ -392,7 +392,7 @@
 }
 
 .policy-help-buttons .btn{
-    min-width: 220px;
+    min-width: var(--btn-min-width);
 }
 
 .scroll-offset{
