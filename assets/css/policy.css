@@ -18,7 +18,11 @@
 }
 
 .policy-hero{
-    padding:65px 0 70px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:center;
+    padding:40px 0 70px;
     min-height:520px;
     background:linear-gradient(180deg,var(--bg) 0%,var(--color-page-bg) 100%);
     text-align:center;
@@ -26,6 +30,8 @@
 
 .policy-hero .container{
     max-width:900px;
+    margin-top:0;
+    margin-bottom:auto;
 }
 
 .policy-hero h1{

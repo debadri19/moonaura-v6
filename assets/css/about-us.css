@@ -1397,6 +1397,36 @@
     min-width: var(--btn-min-width);
 }
 
+.help-box .btn-primary{
+    background: var(--white);
+    color: var(--primary);
+    border-color: var(--white);
+}
+
+.help-box .btn-primary:hover{
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--primary);
+}
+
+.help-box .btn-outline{
+    border-color: var(--white);
+    color: var(--white);
+    background: transparent;
+}
+
+.help-box .btn-outline:hover{
+    background: var(--white);
+    border-color: var(--white);
+    color: var(--primary);
+}
+
+.help-box .btn-primary:focus-visible,
+.help-box .btn-outline:focus-visible{
+    outline: none;
+    box-shadow: 0 0 0 2px var(--white), 0 0 0 4px var(--gold);
+}
+
 /* ==========================================
    RESPONSIVE
 ========================================== */
