@@ -124,6 +124,28 @@ button {
 
     --transition: .35s ease;
 
+    --btn-height: 56px;
+
+    --btn-height-sm: 52px;
+
+    --btn-min-width: 180px;
+
+    --btn-padding-x: 28px;
+
+    --btn-padding-x-sm: 20px;
+
+    --btn-radius: 999px;
+
+    --btn-font-size: 16px;
+
+    --btn-font-size-sm: 15px;
+
+    --btn-font-weight: 600;
+
+    --btn-letter-spacing: .02em;
+
+    --btn-gap: 10px;
+
     --container: 1440px;
 
     --scrollbar-size: 10px;
@@ -175,6 +197,8 @@ button {
     --color-menu-overlay: rgba(255, 255, 255, .15);
 
     --color-icon-well: #f5f0fb;
+
+    --color-icon: var(--primary);
 
     --color-loader-overlay: rgba(250, 248, 252, .6);
 
@@ -341,6 +365,8 @@ html[data-theme-resolved="dark"] {
 
     --color-icon-well: #2a1d3f;
 
+    --color-icon: var(--color-text-muted);
+
     --color-loader-overlay: rgba(22, 14, 34, .62);
 
     --color-hero-fade: #160e22;
@@ -492,6 +518,8 @@ html[data-theme-resolved="dark"] {
         --color-menu-overlay: rgba(22, 14, 34, .45);
 
         --color-icon-well: #2a1d3f;
+
+        --color-icon: var(--color-text-muted);
 
         --color-loader-overlay: rgba(22, 14, 34, .62);
 
@@ -771,19 +799,29 @@ section {
 
     justify-content: center;
 
-    gap: 10px;
+    gap: var(--btn-gap);
 
-    min-width: 180px;
+    box-sizing: border-box;
 
-    height: 56px;
+    min-width: var(--btn-min-width);
 
-    padding: 0 28px;
+    height: var(--btn-height);
 
-    border-radius: 999px;
+    padding: 0 var(--btn-padding-x);
 
-    font-size: 16px;
+    border: 2px solid transparent;
 
-    font-weight: 600;
+    border-radius: var(--btn-radius);
+
+    font-size: var(--btn-font-size);
+
+    font-weight: var(--btn-font-weight);
+
+    letter-spacing: var(--btn-letter-spacing);
+
+    line-height: 1;
+
+    cursor: pointer;
 
     appearance: none;
 
@@ -801,11 +839,17 @@ section {
 
     color: var(--white);
 
+    border-color: var(--primary);
+
 }
 
 .btn-primary:hover {
 
     background: var(--primary-dark);
+
+    border-color: var(--primary-dark);
+
+    color: var(--white);
 
     transform: translateY(-3px);
 
@@ -813,7 +857,7 @@ section {
 
 .btn-outline {
 
-    border: 2px solid var(--primary);
+    border-color: var(--primary);
 
     color: var(--primary);
 
@@ -825,7 +869,11 @@ section {
 
     background: var(--primary);
 
+    border-color: var(--primary);
+
     color: var(--white);
+
+    transform: translateY(-3px);
 
 }
 
@@ -835,11 +883,17 @@ section {
 
     color: var(--white);
 
+    border-color: var(--gold);
+
 }
 
 .btn-secondary:hover {
 
-    background: #B8952E; /* darkened --gold, same darken-on-hover pattern as --primary/--primary-dark */
+    background: #B8952E;
+
+    border-color: #B8952E;
+
+    color: var(--white);
 
     transform: translateY(-3px);
 
@@ -847,15 +901,21 @@ section {
 
 .btn-danger {
 
-    background: #b3261e; /* existing danger red - already used in admin.css (.admin-icon-btn-danger) and the invoice payment-status badges, reused here rather than introducing a new red */
+    background: #b3261e;
 
     color: var(--white);
+
+    border-color: #b3261e;
 
 }
 
 .btn-danger:hover {
 
-    background: #8f1e18; /* darkened danger red, same darken-on-hover pattern as the other filled variants */
+    background: #8f1e18;
+
+    border-color: #8f1e18;
+
+    color: var(--white);
 
     transform: translateY(-3px);
 
@@ -869,9 +929,13 @@ section {
 
     padding: 0;
 
+    border: none;
+
     background: transparent;
 
     color: var(--primary);
+
+    letter-spacing: normal;
 
     text-decoration: underline;
 
@@ -887,10 +951,29 @@ section {
 
     text-decoration-color: currentColor;
 
+    transform: none;
+
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"],
+.btn-disabled {
+
+    opacity: .55;
+
+    pointer-events: none;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+
 }
 
 .btn i{
-    transition:transform .35s ease;
+    color: inherit;
+    transition: transform .35s ease;
 }
 
 .btn:hover i{
@@ -1030,11 +1113,11 @@ section {
 
         min-width: 100%;
 
-        height: 52px;
+        height: var(--btn-height-sm);
 
-        padding: 0 20px;
+        padding: 0 var(--btn-padding-x-sm);
 
-        font-size: 15px;
+        font-size: var(--btn-font-size-sm);
 
     }
 

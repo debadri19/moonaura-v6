@@ -17,7 +17,7 @@ require_once __DIR__ . '/includes/functions.php';
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>You're All Set! | MoonAura Crystals</title>
+    <title>You're All Set! - MoonAura Crystals</title>
     <meta name="robots" content="noindex, follow">
 
     <link rel="icon" type="image/webp" href="<?= asset_url('assets/images/icons/favicon/favicon.webp') ?>">

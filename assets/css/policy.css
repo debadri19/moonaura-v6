@@ -244,6 +244,11 @@
     grid-area:heading;
     overflow-wrap:break-word;
     word-break:break-word;
+    font-family:inherit;
+    font-size:22px;
+    font-weight:600;
+    line-height:1.3;
+    color:var(--text);
 }
 
 .policy-icon{
@@ -256,8 +261,8 @@
     justify-content:center;
     align-self:center;
     border-radius:22px;
-    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
-    color:#fff;
+    background: var(--color-icon-well);
+    color: var(--color-icon);
     font-size:26px;
     box-sizing:border-box;
 }
@@ -275,7 +280,8 @@
     text-transform:uppercase;
     font-size:13px;
     font-weight:600;
-    letter-spacing:.08em;
+    letter-spacing:.06em;
+    line-height:1.3;
 }
 
 .policy-intro{
@@ -385,75 +391,8 @@
     flex-wrap:wrap;
 }
 
-/* =========================
-   BUTTON STYLES
-========================= */
-
 .policy-help-buttons .btn{
-    min-width:220px;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    transition:
-        background .35s ease,
-        color .35s ease,
-        border-color .35s ease,
-        transform .35s ease,
-        box-shadow .35s ease;
-}
-
-.policy-help-buttons .btn i{
-    display:inline-block;
-    transition:transform .35s ease;
-}
-
-.policy-help-buttons .btn:hover{
-    transform:translateY(-4px);
-    box-shadow:0 12px 28px rgba(91,46,145,.20);
-}
-
-.policy-help-buttons .btn:hover i{
-    transform:none;
-}
-
-.policy-help-buttons .btn-primary:hover{
-    background:var(--primary-dark);
-    color:#fff;
-}
-
-.policy-help-buttons .btn-outline:hover{
-    background:var(--primary);
-    border-color:var(--primary);
-    color:#fff;
-}
-
-.policy-help-buttons .btn-primary,
-.policy-help-buttons .btn-outline{
-    background:var(--primary);
-    color:#fff;
-    border:2px solid var(--primary);
-    box-shadow:0 10px 25px rgba(91,46,145,.18);
-}
-
-.policy-help-buttons .btn-primary:hover,
-.policy-help-buttons .btn-outline:hover{
-    background:var(--primary-dark);
-    border-color:var(--primary-dark);
-    color:#fff;
-    transform:translateY(-4px);
-    box-shadow:0 16px 35px rgba(91,46,145,.25);
-}
-
-.policy-help-buttons .btn-primary i,
-.policy-help-buttons .btn-outline i{
-    color:#fff;
-    transition:transform .35s ease;
-}
-
-.policy-help-buttons .btn-primary:hover i,
-.policy-help-buttons .btn-outline:hover i{
-    transform:none;
+    min-width: 220px;
 }
 
 .scroll-offset{
@@ -617,11 +556,9 @@
     }
 
     .policy-help-buttons .btn{
-        flex:1;
-        min-width:0;
-        width:auto;
-        padding:0 12px;
-        font-size:14px;
+        flex: 1;
+        min-width: 0;
+        width: auto;
     }
 
 }
@@ -714,16 +651,9 @@
     }
 
     .policy-help-buttons .btn{
-        flex:1;
-        min-width:0;
-        width:auto;
-        height:48px;
-        padding:0 10px;
-        font-size:13px;
-    }
-
-    .policy-help-buttons .btn i{
-        font-size:13px;
+        flex: 1;
+        min-width: 0;
+        width: auto;
     }
 }
 

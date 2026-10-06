@@ -44,6 +44,66 @@ function site_url(string $path = ''): string
 
 
 /* ==========================================
+   STOREFRONT NAV CURRENT PAGE
+   -------------------------------------------------
+   Shared by includes/header.php desktop + mobile
+   nav so active-page markup is not duplicated.
+   Matches by script basename (query/hash ignored).
+   Shop stays current on product/concern pages.
+========================================== */
+
+function nav_current_script(): string
+{
+    $script = str_replace('\\', '/', (string) ($_SERVER['SCRIPT_NAME'] ?? ''));
+    $script = strtolower(basename($script));
+
+    if ($script === '' || $script === 'index.php') {
+        $uri = parse_url((string) ($_SERVER['REQUEST_URI'] ?? '/'), PHP_URL_PATH);
+        $uri = strtolower(rtrim((string) $uri, '/'));
+        if ($uri === '' || $uri === '/index.php') {
+            return 'index.php';
+        }
+    }
+
+    return $script;
+}
+
+function nav_is_current(string $page): bool
+{
+    $page = strtolower(basename($page));
+    $script = nav_current_script();
+
+    $aliases = [
+        'index.php'   => ['index.php'],
+        'shop.php'    => ['shop.php', 'product.php', 'concern.php', 'concerns.php'],
+        'about.php'   => ['about.php'],
+        'support.php' => ['support.php'],
+        'policy.php'  => ['policy.php'],
+    ];
+
+    $match = $aliases[$page] ?? [$page];
+
+    return in_array($script, $match, true);
+}
+
+function nav_link_attrs(string $page, string $extraClass = ''): string
+{
+    $isCurrent = nav_is_current($page);
+    $class = trim(($isCurrent ? 'is-active' : '') . ' ' . $extraClass);
+
+    $attrs = '';
+    if ($class !== '') {
+        $attrs .= ' class="' . h($class) . '"';
+    }
+    if ($isCurrent) {
+        $attrs .= ' aria-current="page"';
+    }
+
+    return $attrs;
+}
+
+
+/* ==========================================
    PUBLIC ASSET URL HELPER
    -------------------------------------------------
    Shared CSS/JS/images/uploads always live on the

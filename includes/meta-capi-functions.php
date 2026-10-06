@@ -191,10 +191,43 @@ function meta_capi_assign_hashed_list(array &$userData, string $key, string $nor
     }
 }
 
+function meta_capi_normalize_click_id(string $value): string
+{
+    $value = trim($value);
+    if ($value === '' || strlen($value) > 512) {
+        return '';
+    }
+
+    if (!preg_match('/^fb\.[0-9]+\.[0-9]+\.[A-Za-z0-9._-]+$/', $value)) {
+        return '';
+    }
+
+    return $value;
+}
+
+function meta_capi_click_ids_from_request(): array
+{
+    $ids = [];
+
+    $fbp = meta_capi_normalize_click_id((string) ($_COOKIE['_fbp'] ?? ''));
+    if ($fbp !== '') {
+        $ids['fbp'] = $fbp;
+    }
+
+    $fbc = meta_capi_normalize_click_id((string) ($_COOKIE['_fbc'] ?? ''));
+    if ($fbc !== '') {
+        $ids['fbc'] = $fbc;
+    }
+
+    return $ids;
+}
+
 // Builds Meta's user_data object from an explicit context array.
 // Recognised keys: email, phone, name/first_name/last_name, city, state,
-// postal_code, country, client_ip_address, client_user_agent.
+// postal_code, country, external_id, client_ip_address, client_user_agent,
+// fbp, fbc.
 // Customer identifiers are normalized and SHA-256 hashed before inclusion.
+// fbp, fbc, client IP and user agent are never hashed.
 function meta_capi_build_user_data(array $context = []): array
 {
     $userData = [];
@@ -242,6 +275,21 @@ function meta_capi_build_user_data(array $context = []): array
     meta_capi_assign_hashed_list($userData, 'zp', $normalizePostal((string) ($context['postal_code'] ?? '')));
     meta_capi_assign_hashed_list($userData, 'country', $normalizeCountry((string) ($context['country'] ?? '')));
 
+    $externalId = trim((string) ($context['external_id'] ?? ''));
+    if ($externalId !== '') {
+        meta_capi_assign_hashed_list($userData, 'external_id', $externalId);
+    }
+
+    $fbp = meta_capi_normalize_click_id((string) ($context['fbp'] ?? ''));
+    if ($fbp !== '') {
+        $userData['fbp'] = $fbp;
+    }
+
+    $fbc = meta_capi_normalize_click_id((string) ($context['fbc'] ?? ''));
+    if ($fbc !== '') {
+        $userData['fbc'] = $fbc;
+    }
+
     $ip = trim((string) ($context['client_ip_address'] ?? ''));
     if ($ip !== '' && filter_var($ip, FILTER_VALIDATE_IP) !== false) {
         $userData['client_ip_address'] = $ip;
@@ -259,10 +307,13 @@ function meta_capi_build_user_data(array $context = []): array
 // read or sent here - only the request's own network context.
 function meta_capi_request_user_data(): array
 {
-    return meta_capi_build_user_data([
-        'client_ip_address' => (string) ($_SERVER['REMOTE_ADDR'] ?? ''),
-        'client_user_agent' => (string) ($_SERVER['HTTP_USER_AGENT'] ?? ''),
-    ]);
+    return meta_capi_build_user_data(array_merge(
+        meta_capi_click_ids_from_request(),
+        [
+            'client_ip_address' => (string) ($_SERVER['REMOTE_ADDR'] ?? ''),
+            'client_user_agent' => (string) ($_SERVER['HTTP_USER_AGENT'] ?? ''),
+        ]
+    ));
 }
 
 

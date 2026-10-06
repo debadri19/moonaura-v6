@@ -30,7 +30,7 @@ $currentPageUrl = $_SERVER['REQUEST_URI'];
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Wishlist | MoonAura Crystals</title>
+    <title>Your Wishlist - MoonAura Crystals</title>
     <meta name="robots" content="noindex, follow">
 
     <!-- Favicon -->

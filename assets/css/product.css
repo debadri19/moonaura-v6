@@ -223,11 +223,9 @@
 }
 
 .product-info-actions-unavailable .btn-disabled {
-    cursor: not-allowed;
     background: var(--bg);
     color: var(--text-light);
-    border: 1px solid var(--border);
-    opacity: .85;
+    border-color: var(--border);
 }
 
 

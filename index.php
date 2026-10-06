@@ -42,7 +42,7 @@ const HOMEPAGE_ZODIAC_SIGNS = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MoonAura Crystals | Natural Crystal Bracelets, Rings & Healing Stones</title>
+    <title>MoonAura Crystals - Natural Crystal Bracelets, Rings & Healing Stones</title>
 
     <!-- Favicon -->
     <link

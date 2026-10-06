@@ -23,7 +23,7 @@ require_once __DIR__ . '/includes/functions.php';
           content="MoonAura Crystals">
 
     <title>
-        Policies | MoonAura Crystals
+        Policies - MoonAura Crystals
     </title>
 
     <!-- Favicon -->

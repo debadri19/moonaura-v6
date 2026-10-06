@@ -462,7 +462,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Favicon -->
     <link rel="icon" type="image/webp" href="<?= asset_url('assets/images/icons/favicon/favicon.webp') ?>">
     <link rel="apple-touch-icon" href="<?= asset_url('assets/images/icons/favicon/apple-touch-icon.webp') ?>">
-    <title>Checkout | MoonAura Crystals</title>
+    <title>Checkout - MoonAura Crystals</title>
     <meta name="robots" content="noindex, follow">
 
     <!-- Google Fonts -->
@@ -737,6 +737,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'state'       => (string) ($address['state'] ?? ''),
         'postal_code' => (string) ($address['pincode'] ?? ''),
     ];
+    if (is_array($loggedInCustomer) && !empty($loggedInCustomer['id']) && (int) $loggedInCustomer['id'] > 0) {
+        $checkoutMatching['external_id'] = (string) (int) $loggedInCustomer['id'];
+    }
     meta_pixel_set_matching_context($checkoutMatching);
     ?>
     <?php include __DIR__ . '/includes/footer.php'; ?>

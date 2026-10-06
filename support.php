@@ -15,7 +15,7 @@ require_once __DIR__ . '/includes/functions.php';
     <link rel="icon" type="image/webp" href="<?= asset_url('assets/images/icons/favicon/favicon.webp') ?>">
     <link rel="apple-touch-icon" href="<?= asset_url('assets/images/icons/favicon/apple-touch-icon.webp') ?>">
 
-    <title>Support | MoonAura Crystals</title>
+    <title>Support - MoonAura Crystals</title>
 
     <!-- CSS Links-->
     <link rel="stylesheet" href="<?= versioned_asset('assets/css/style.css') ?>">

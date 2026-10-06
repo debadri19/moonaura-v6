@@ -138,7 +138,7 @@ $upiQrImagePath = get_setting('upi_qr_image_path', '');
     <!-- Favicon -->
     <link rel="icon" type="image/webp" href="<?= asset_url('assets/images/icons/favicon/favicon.webp') ?>">
     <link rel="apple-touch-icon" href="<?= asset_url('assets/images/icons/favicon/apple-touch-icon.webp') ?>">
-    <title>Complete Your Payment | MoonAura Crystals</title>
+    <title>Complete Your Payment - MoonAura Crystals</title>
     <meta name="robots" content="noindex, nofollow">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">

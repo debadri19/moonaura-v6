@@ -32,7 +32,7 @@ $orders = $stmt->fetchAll();
     <!-- Favicon -->
     <link rel="icon" type="image/webp" href="<?= asset_url('assets/images/icons/favicon/favicon.webp') ?>">
     <link rel="apple-touch-icon" href="<?= asset_url('assets/images/icons/favicon/apple-touch-icon.webp') ?>">
-    <title>My Orders | MoonAura Crystals</title>
+    <title>My Orders - MoonAura Crystals</title>
     <meta name="robots" content="noindex, nofollow">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">

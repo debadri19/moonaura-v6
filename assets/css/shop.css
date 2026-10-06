@@ -437,8 +437,7 @@ html.shop-filters-ready .shop-filter-native {
 /* ==========================================
    04. NEED HELP BUTTONS
    -------------------------------------------------------------------
-   MoonAura gold filled pills, shared height/radius/type, icon gap.
-   Scoped to .shop-need-help so about.php is untouched.
+   Layout only. Visuals come from the shared .btn system.
 ========================================== */
 
 .shop-need-help .help-buttons {
@@ -451,55 +450,6 @@ html.shop-filters-ready .shop-filter-native {
 
 .shop-need-help .help-buttons .btn {
     min-width: 220px;
-    height: 56px;
-    padding: 0 28px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    border-radius: 999px;
-    font-size: 16px;
-    font-weight: 600;
-    text-decoration: none;
-    box-sizing: border-box;
-    transition:
-        background .35s ease,
-        color .35s ease,
-        border-color .35s ease,
-        transform .35s ease,
-        box-shadow .35s ease;
-}
-
-.shop-need-help .help-buttons .btn i {
-    display: inline-block;
-    color: #222;
-    font-size: 18px;
-    line-height: 1;
-    transition: transform .35s ease;
-}
-
-.shop-need-help .help-buttons .btn-primary,
-.shop-need-help .help-buttons .btn-outline {
-    background: linear-gradient(135deg, #E8C14A, var(--gold));
-    color: #222;
-    border: none;
-    box-shadow: 0 12px 28px rgba(212, 175, 55, .35);
-}
-
-.shop-need-help .help-buttons .btn-primary:hover,
-.shop-need-help .help-buttons .btn-outline:hover {
-    background: linear-gradient(135deg, #F2CD5C, #DDB43E);
-    border: none;
-    color: #222;
-    transform: translateY(-3px);
-    box-shadow: 0 18px 36px rgba(212, 175, 55, .45);
-}
-
-.shop-need-help .help-buttons .btn:hover i,
-.shop-need-help .help-buttons .btn-primary:hover i,
-.shop-need-help .help-buttons .btn-outline:hover i {
-    transform: none;
-    color: #222;
 }
 
 
@@ -553,15 +503,10 @@ html.shop-filters-ready .shop-filter-native {
         gap: 12px;
     }
 
-    .shop-need-help .help-buttons .btn,
-    .shop-need-help .help-buttons .btn-primary,
-    .shop-need-help .help-buttons .btn-outline {
+    .shop-need-help .help-buttons .btn {
         flex: 1 1 0;
         min-width: 0;
         width: auto;
-        height: 56px;
-        padding: 0 12px;
-        font-size: 14px;
     }
 
 }
@@ -601,20 +546,11 @@ html.shop-filters-ready .shop-filter-native {
         gap: 10px;
     }
 
-    .shop-need-help .help-buttons .btn,
-    .shop-need-help .help-buttons .btn-primary,
-    .shop-need-help .help-buttons .btn-outline {
+    .shop-need-help .help-buttons .btn {
         flex: 1 1 0;
         min-width: 0;
         width: auto;
         max-width: none;
-        height: 48px;
-        padding: 0 10px;
-        font-size: 13px;
-    }
-
-    .shop-need-help .help-buttons .btn i {
-        font-size: 13px;
     }
 
 }

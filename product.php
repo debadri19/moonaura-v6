@@ -43,7 +43,7 @@ if (!$product) {
         <!-- Favicon -->
         <link rel="icon" type="image/webp" href="<?= asset_url('assets/images/icons/favicon/favicon.webp') ?>">
         <link rel="apple-touch-icon" href="<?= asset_url('assets/images/icons/favicon/apple-touch-icon.webp') ?>">
-        <title>Product Not Found | MoonAura Crystals</title>
+        <title>Product Not Found - MoonAura Crystals</title>
         <meta name="robots" content="noindex, follow">
 
         <link rel="stylesheet" href="<?= versioned_asset('assets/css/style.css') ?>">
@@ -162,7 +162,7 @@ $productSchema = [
          SEO METADATA
     ========================================== -->
 
-    <title><?= h($pageTitle) ?></title>
+    <title><?= h(str_replace(' | ', ' - ', $pageTitle)) ?></title>
     <meta name="description" content="<?= h($metaDescription) ?>">
     <link rel="canonical" href="<?= h($canonicalUrl) ?>">
 

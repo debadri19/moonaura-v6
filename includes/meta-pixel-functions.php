@@ -430,7 +430,7 @@ function meta_pixel_set_matching_context(array $context): void
 {
     $stored = &meta_pixel_matching_context_ref();
 
-    foreach (['email', 'phone', 'name', 'first_name', 'last_name', 'city', 'state', 'postal_code', 'country'] as $key) {
+    foreach (['email', 'phone', 'name', 'first_name', 'last_name', 'city', 'state', 'postal_code', 'country', 'external_id'] as $key) {
         if (!array_key_exists($key, $context)) {
             continue;
         }
@@ -587,7 +587,7 @@ function meta_pixel_session_customer_context(): array
         }
 
         try {
-            $stmt = db()->prepare('SELECT name, email, phone FROM customers WHERE id = ? LIMIT 1');
+            $stmt = db()->prepare('SELECT id, name, email, phone FROM customers WHERE id = ? LIMIT 1');
             $stmt->execute([$customerId]);
             $row = $stmt->fetch();
         } catch (Throwable $e) {
@@ -605,6 +605,11 @@ function meta_pixel_session_customer_context(): array
         if ($value !== '') {
             $context[$to] = $value;
         }
+    }
+
+    $customerId = trim((string) ($row['id'] ?? ''));
+    if ($customerId !== '' && ctype_digit($customerId) && (int) $customerId > 0) {
+        $context['external_id'] = $customerId;
     }
 
     return $context;
@@ -660,6 +665,11 @@ function meta_pixel_build_advanced_matching(array $context): array
     meta_pixel_assign_hashed($matching, 'st', meta_pixel_normalize_state((string) ($context['state'] ?? '')));
     meta_pixel_assign_hashed($matching, 'zp', meta_pixel_normalize_postal_code((string) ($context['postal_code'] ?? '')));
     meta_pixel_assign_hashed($matching, 'country', meta_pixel_normalize_country((string) ($context['country'] ?? '')));
+
+    $externalId = trim((string) ($context['external_id'] ?? ''));
+    if ($externalId !== '') {
+        meta_pixel_assign_hashed($matching, 'external_id', $externalId);
+    }
 
     return $matching;
 }

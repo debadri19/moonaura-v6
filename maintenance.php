@@ -13,7 +13,7 @@ $siteUrl = 'https://moonauracrystals.in';
     <meta name="robots" content="noindex, nofollow">
     <meta name="theme-color" content="#5B2E91">
 
-    <title>Under Maintenance | MoonAura Crystals</title>
+    <title>Under Maintenance - MoonAura Crystals</title>
 
     <link rel="icon" type="image/webp" href="/assets/images/icons/favicon/favicon.webp">
     <link rel="apple-touch-icon" href="/assets/images/icons/favicon/apple-touch-icon.webp">

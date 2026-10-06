@@ -22,7 +22,7 @@ $concernCategories = get_concern_categories_with_counts();
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop By Concern | MoonAura Crystals</title>
+    <title>Shop By Concern - MoonAura Crystals</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/webp" href="<?= asset_url('assets/images/icons/favicon/favicon.webp') ?>">

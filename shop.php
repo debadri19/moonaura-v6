@@ -55,7 +55,7 @@ $currentPageUrl = $_SERVER['REQUEST_URI'];
     <link rel="icon" type="image/webp" href="<?= asset_url('assets/images/icons/favicon/favicon.webp') ?>">
     <link rel="apple-touch-icon" href="<?= asset_url('assets/images/icons/favicon/apple-touch-icon.webp') ?>">
 
-    <title>Shop | MoonAura Crystals</title>
+    <title>Shop - MoonAura Crystals</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

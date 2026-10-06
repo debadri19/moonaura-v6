@@ -11,7 +11,7 @@ require_once __DIR__ . '/includes/functions.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>About Us | MoonAura Crystals</title>
+    <title>About Us - MoonAura Crystals</title>
 
     <!-- Favicon -->
     <link
@@ -469,13 +469,13 @@ require_once __DIR__ . '/includes/functions.php';
 
                 <div class="help-buttons">
 
-                    <a href="support.php" class="btn-primary">
+                    <a href="support.php" class="btn btn-primary">
 
                         Contact Us
 
                     </a>
 
-                </div
+                </div>
 
             </div>
 

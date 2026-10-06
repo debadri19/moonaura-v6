@@ -134,6 +134,12 @@
 
 }
 
+.hero-buttons .btn-primary {
+
+    height: 52px;
+
+}
+
 /* =========================
    HERO IMAGE
 ========================= */
@@ -300,9 +306,9 @@
 
         position: static;
 
-        justify-content:flex-start;
+        justify-content:center;
 
-        align-items:flex-start;
+        align-items:center;
 
         width:100%;
 
@@ -397,7 +403,6 @@
 
     .hero-buttons {
         justify-content: center;
-        align-items: center;
     }
 
 }
@@ -479,6 +484,12 @@
             min-width:200px;
 
             margin:0 auto;
+
+    }
+
+    .hero-buttons .btn-primary {
+
+        height: 48px;
 
     }
 
@@ -738,13 +749,13 @@
 
     justify-content: center;
 
-    background: var(--color-surface);
+    background: var(--color-icon-well);
 
     border: 1px solid var(--color-card-border);
 
     border-radius: 50%;
 
-    color: var(--primary);
+    color: var(--color-icon);
 
     font-size: 15px;
 
@@ -1103,6 +1114,8 @@
 
     height: 52px;
 
+    padding: 0 18px;
+
     background: var(--primary);
 
     color: #ffffff;
@@ -1166,9 +1179,9 @@
 
 .cart-btn {
 
-    width: 53px;
+    width: 52px;
 
-    height: 53px;
+    height: 52px;
 
     padding: 0;
 
@@ -1178,13 +1191,13 @@
 
     align-items: center;
 
-    border: 2px solid rgba(91, 46, 145, .12);
+    border: 2px solid var(--color-card-border);
 
     border-radius: 16px;
 
-    background: var(--color-surface);
+    background: var(--color-icon-well);
 
-    color: var(--primary);
+    color: var(--color-icon);
 
     cursor: pointer;
 
@@ -1224,9 +1237,9 @@
 
     color: #ffffff;
 
-    transform: translateY(-3px);
+    transform: translateY(-2px);
 
-    box-shadow: 0 10px 22px rgba(91, 46, 145, .25);
+    box-shadow: 0 10px 22px rgba(91, 46, 145, .22);
 
 }
 

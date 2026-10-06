@@ -12,6 +12,7 @@ require_once __DIR__ . '/cart-functions.php';
 require_once __DIR__ . '/wishlist-functions.php';
 $headerCartCount     = cart_count();
 $headerWishlistCount = wishlist_count();
+$headerHelpActive    = nav_is_current('support.php') || nav_is_current('policy.php');
 ?>
 
 <header class="site-header">
@@ -39,19 +40,20 @@ $headerWishlistCount = wishlist_count();
                 <ul>
 
                     <li>
-                        <a href="<?= site_url('index.php') ?>">Home</a>
+                        <a href="<?= site_url('index.php') ?>"<?= nav_link_attrs('index.php') ?>>Home</a>
                     </li>
 
                     <li>
-                        <a href="<?= site_url('shop.php') ?>">Shop</a>
+                        <a href="<?= site_url('shop.php') ?>"<?= nav_link_attrs('shop.php') ?>>Shop</a>
                     </li>
 
                     <li class="dropdown">
 
                         <button
-                            class="drop-btn"
+                            class="drop-btn<?= $headerHelpActive ? ' is-active' : '' ?>"
                             type="button"
                             aria-expanded="false"
+                            <?php if ($headerHelpActive): ?>aria-current="true"<?php endif; ?>
                         >
 
                             Help
@@ -62,12 +64,12 @@ $headerWishlistCount = wishlist_count();
 
                         <div class="dropdown-content">
 
-                            <a href="<?= site_url('policy.php') ?>">
+                            <a href="<?= site_url('policy.php') ?>"<?= nav_link_attrs('policy.php') ?>>
                                 <i class="fa-solid fa-file-contract"></i>
                                 Policies
                             </a>
 
-                            <a href="<?= site_url('support.php') ?>" class="dropdown-support">
+                            <a href="<?= site_url('support.php') ?>"<?= nav_link_attrs('support.php', 'dropdown-support') ?>>
                                 <i class="fa-solid fa-headset"></i>
                                 Support
                             </a>
@@ -87,7 +89,7 @@ $headerWishlistCount = wishlist_count();
                     </li>
 
                     <li>
-                        <a href="<?= site_url('about.php') ?>">About Us</a>
+                        <a href="<?= site_url('about.php') ?>"<?= nav_link_attrs('about.php') ?>>About Us</a>
                     </li>
 
                 </ul>
@@ -228,22 +230,22 @@ $headerWishlistCount = wishlist_count();
 
     <nav class="mobile-nav">
 
-        <a href="<?= site_url('index.php') ?>">
+        <a href="<?= site_url('index.php') ?>"<?= nav_link_attrs('index.php') ?>>
             <span class="mobile-nav-icon" aria-hidden="true"><i class="fa-solid fa-house"></i></span>
             <span class="mobile-nav-label">Home</span>
         </a>
 
-        <a href="<?= site_url('shop.php') ?>">
+        <a href="<?= site_url('shop.php') ?>"<?= nav_link_attrs('shop.php') ?>>
             <span class="mobile-nav-icon" aria-hidden="true"><i class="fa-solid fa-bag-shopping"></i></span>
             <span class="mobile-nav-label">Shop</span>
         </a>
 
-        <a href="<?= site_url('policy.php') ?>">
+        <a href="<?= site_url('policy.php') ?>"<?= nav_link_attrs('policy.php') ?>>
             <span class="mobile-nav-icon" aria-hidden="true"><i class="fa-solid fa-file-contract"></i></span>
             <span class="mobile-nav-label">Policy</span>
         </a>
 
-        <a href="<?= site_url('support.php') ?>">
+        <a href="<?= site_url('support.php') ?>"<?= nav_link_attrs('support.php') ?>>
             <span class="mobile-nav-icon" aria-hidden="true"><i class="fa-solid fa-headset"></i></span>
             <span class="mobile-nav-label">Support</span>
         </a>
@@ -258,7 +260,7 @@ $headerWishlistCount = wishlist_count();
             <span class="mobile-nav-label">FAQs</span>
         </a>
 
-        <a href="<?= site_url('about.php') ?>">
+        <a href="<?= site_url('about.php') ?>"<?= nav_link_attrs('about.php') ?>>
             <span class="mobile-nav-icon" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></span>
             <span class="mobile-nav-label">About Us</span>
         </a>

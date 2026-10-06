@@ -178,7 +178,7 @@ unset($_SESSION['last_order_number']);
     <!-- Favicon -->
     <link rel="icon" type="image/webp" href="<?= asset_url('assets/images/icons/favicon/favicon.webp') ?>">
     <link rel="apple-touch-icon" href="<?= asset_url('assets/images/icons/favicon/apple-touch-icon.webp') ?>">
-    <title>Order Confirmed | MoonAura Crystals</title>
+    <title>Order Confirmed - MoonAura Crystals</title>
     <meta name="robots" content="noindex, nofollow">
 
     <!-- Google Fonts -->
@@ -458,6 +458,10 @@ unset($_SESSION['last_order_number']);
         'phone' => (string) ($order['customer_phone'] ?? ''),
         'name'  => (string) ($order['customer_name'] ?? ''),
     ];
+    $orderUserId = trim((string) ($order['user_id'] ?? ''));
+    if ($orderUserId !== '' && ctype_digit($orderUserId) && (int) $orderUserId > 0) {
+        $metaMatchingContext['external_id'] = $orderUserId;
+    }
     if (is_array($orderAddress)) {
         $metaMatchingContext['city']        = (string) ($orderAddress['city'] ?? '');
         $metaMatchingContext['state']       = (string) ($orderAddress['state'] ?? '');
@@ -493,6 +497,7 @@ if (function_exists('fastcgi_finish_request')) {
 
 $metaCapiUserData = meta_capi_build_user_data(array_merge(
     is_array($metaMatchingContext ?? null) ? $metaMatchingContext : [],
+    meta_capi_click_ids_from_request(),
     [
         'client_ip_address' => (string) ($_SERVER['REMOTE_ADDR'] ?? ''),
         'client_user_agent' => (string) ($_SERVER['HTTP_USER_AGENT'] ?? ''),

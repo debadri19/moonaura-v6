@@ -402,9 +402,6 @@ html[data-theme-resolved="dark"] .checkout-form-card select {
 
 .checkout-form-card .btn-primary {
     margin-top: 24px;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
 }
 
 .checkout-sidebar {
@@ -434,11 +431,7 @@ html[data-theme-resolved="dark"] .checkout-form-card select {
 .checkout-place-order .btn-primary {
     width: auto;
     max-width: 240px;
-    min-width: 180px;
     margin-top: 0;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
 }
 
 .checkout-form-card .account-invoice-actions .btn,
