@@ -579,6 +579,8 @@ require_once __DIR__ . '/includes/functions.php';
                                 Nadia, West Bengal – 741248
                             </p>
 
+                            <p class="info-availability">Online Store Only • No Walk-in Store</p>
+
                         </div>
 
                     </div>

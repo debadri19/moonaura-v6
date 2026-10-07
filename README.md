@@ -1,306 +1,119 @@
+# MoonAura Crystals
+
+Custom PHP ecommerce storefront for **MoonAura Crystals** — an online shop for natural crystal bracelets, rings, pendants, trees, pyramids, and related products.
+
+> **Current documented product version: v0.6.7**
+> **Workspace:** `master` at commit `4e037bb`, plus unpublished storefront UI refinements in the working tree.
+> **Source of truth:** the current workspace. If a document conflicts with the code, the code wins.
+
 ## IMPORTANT FOR AI
 
-If you are unsure about any implementation detail, ASK before changing the existing frontend.
+- Preserve the current design and user experience.
+- Do not pull, reset, restore, clean, or checkout over unpublished work.
+- Do not introduce React, Vue, Angular, Next.js, Laravel, WordPress, Shopify, Bootstrap, or Tailwind.
+- Ask before changing existing frontend layout, colors, typography, or components.
+- Never commit or print secrets, API keys, tokens, or `.env` values.
 
-Preserving the current design and user experience is more important than introducing new UI or architectural changes.
+See `AI_INSTRUCTIONS.md` and `RECOVERY_PROMPT.md`.
 
-# MoonAura Crystals – E-commerce Website
-
-> **Latest project checkpoint (v0.6.7):** GA4 Measurement ID, Property ID, and credentials path are set in gitignored `.env`. Reporting API credentials stay outside the web root and are not committed. Admin Visitors card still uses realtime `activeUsers` and calendar-month `totalUsers` when the credentials file is readable. No database migration required.
-
+---
 
 ## Project Overview
 
-This project is a custom-built ecommerce website for **MoonAura Crystals**, an online store selling natural crystal bracelets, rings, pendants, crystal trees, pyramids, and related spiritual products.
+The site is a **server-rendered PHP 8 + MySQL/MariaDB** storefront with a separate **admin panel** under `dashboard/`. Pages are PHP templates with shared header/footer includes, page-specific CSS, and Vanilla JavaScript. There is **no SPA** and **no frontend framework**.
 
-The website frontend has already been designed and is currently built using **HTML, CSS, and Vanilla JavaScript**.
-
-The primary objective is to convert this existing static website into a **fully functional production-ready ecommerce platform** without changing the existing design.
+The original static HTML design was converted in place. The storefront is functionally complete for catalog, cart, checkout, accounts, payments, invoices, and email. Remaining work is primarily visual QA, production verification, admin Dark Mode, and an admin newsletter campaign system.
 
 ---
 
-# IMPORTANT
+## Technology Stack
 
-## The frontend design is already finalized.
+| Layer | Current implementation |
+|---|---|
+| Runtime | PHP 8+ |
+| Database | MySQL / MariaDB via PDO prepared statements |
+| Frontend | HTML5, CSS3, Vanilla JavaScript |
+| Admin | PHP pages under `dashboard/` |
+| Payments | Razorpay (online), Cash on Delivery, Manual UPI QR |
+| Email | Brevo SMTP + PHPMailer (transactional) |
+| Newsletter | Brevo Contacts API (storefront double opt-in only) |
+| Invoices | On-demand PDF via `SimplePdfWriter` |
+| Analytics | GA4 (gtag + optional Reporting API), Meta Pixel + CAPI |
 
-Do NOT redesign the website.
-
-Do NOT change:
-
-- Layout
-- UI
-- Colors
-- Typography
-- Spacing
-- Components
-- Animations
-- Icons
-- Overall visual appearance
-
-The existing frontend should remain visually identical.
-
-Only implement missing functionality and backend features.
+**Do not use:** React, Vue, Angular, Next.js, Laravel, WordPress, Shopify, Bootstrap, Tailwind.
 
 ---
 
-# Current Tech Stack
+## Architecture Summary
 
-Current:
+- Each public page is a PHP file that loads `config/config.php`, helpers, then renders HTML.
+- Shared chrome: `includes/header.php`, `includes/footer.php`.
+- Global CSS: `assets/css/style.css` (tokens, buttons, theme). Page CSS is loaded per route (`home.css`, `shop.css`, `about-us.css`, and so on).
+- Admin chrome: `dashboard/includes/admin-header.php`, `admin-sidebar.php`, `admin-footer.php`.
+- Business logic lives in `includes/*.php` (cart, orders, tax, stock, mail, payments, theme, analytics).
+- Public assets always load from `SITE_URL` via `asset_url()`. Admin-local assets stay on `ADMIN_URL`.
 
-- HTML5
-- CSS3
-- Vanilla JavaScript
-
-Target Stack:
-
-- PHP 8+
-- MySQL
-- HTML
-- CSS
-- Vanilla JavaScript
-
-Do NOT use:
-
-- React
-- Vue
-- Angular
-- Next.js
-- Laravel
-- WordPress
-- Shopify
-- Bootstrap
-- Tailwind CSS
+Details: `docs/FRONTEND_ARCHITECTURE.md`, `docs/BACKEND_INTEGRATION.md`.
 
 ---
 
-# Current Project Status
+## Major Implemented Functionality
 
-Completed:
-
-- Homepage (Partially)
-- Header
-- Footer
-- About Page
-- Support Page
-- Policy Page
-- Responsive Layout
-- Global Styling
-- Product Database Planning
-
-Remaining:
-
-- Dynamic Product System
-- Admin Panel
-- Shopping Cart
-- Checkout
-- Authentication
-- Orders
-- Inventory
-- Customer Management
-- Payment Integration
-- Shipping Integration
-- SEO
-- Security
-- Performance Optimization
+- Dynamic catalog: homepage, shop (search/filter/sort/pagination), product detail, concerns, zodiac
+- Session cart and wishlist, AJAX add/update/remove
+- Guest and customer checkout, Buy Now, saved addresses
+- Payments: Razorpay, COD, Manual UPI QR (admin verify/reject)
+- Customer accounts: register/login, orders, tracking timeline, profile, addresses, invoices, theme preference
+- Admin: products, categories, customers, orders (status/shipping/payment), manual order create, settings, invoice designer, TOTP 2FA
+- GST-inclusive pricing with intra/inter-state snapshots and GST invoices
+- Inventory deduction/restore tied to payment confirmation / cancel
+- Transactional email: password reset, order confirmation / shipped / delivered
+- Storefront newsletter signup (Brevo pending list → confirmation → confirmed list)
+- Light / Dark / System theme on the storefront
+- Dynamic `/sitemap.xml` (`sitemap.php`) and `robots.txt`
+- GA4 and Meta Pixel/CAPI hooks (enabled only when env IDs are configured)
 
 ---
 
-# Product Database
+## Setup Requirements
 
-The product information is maintained separately in a Google Sheets master database.
+You need PHP 8+, MySQL/MariaDB, and a web server (Apache, nginx, or PHP built-in). Full steps are in `SETUP.md`.
 
-The database includes:
+Minimum:
 
-- SKU
-- Product Name
-- Slug
-- Category
-- Crystal Type
-- Purpose
-- Zodiac
-- Chakra
-- Variant
-- Image Folder
-- Image Count
-- Display Order
-- MRP
-- Retail Sell Price
-- Short Description
-- Full Description
-- Care Instructions
-- Meta Title
-- Meta Description
-- Primary Benefits
-- Weight
-- Featured
-- Stock Quantity
-- Stock Status
-- Created Date
-- Updated Date
-- Crystal Origin
+1. Create database `moonaura` and import `database/schema.sql` then `database/seed.sql`.
+2. Configure gitignored `.env` or `config/config.local.php` (never commit credentials).
+3. Create the first admin at `dashboard/setup.php`, then remove that file.
+4. Set `SITE_URL`, database credentials, and (for live) Razorpay, Brevo, and 2FA keys.
 
-Images, Categories, and Attributes are maintained in separate sheets.
+See `DEPLOYMENT_CHECKLIST.md` for migrations and production checks.
 
 ---
 
-# Product Images
+## Development / Deployment Notes
 
-Do NOT generate product images.
-
-I will manually add product images later.
-
-Please write the code assuming images will exist inside:
-
-assets/images/products/
-
-Example:
-
-assets/images/products/
-
-    bracelet/
-        tiger-eye-bracelet/
-            1.webp
-            2.webp
-            3.webp
-
-    ring/
-        red-carnelian-ring/
-
-    pendant/
-
-    crystal-tree/
-
-Image paths should be generated dynamically.
+- Branch: `master`. Last recorded merge: GitHub `debadri19/moonaura-v6` `main` into this workspace (`4e037bb`).
+- Unpublished storefront UI CSS/PHP edits exist in the working tree. Treat them as current source, not discarded work.
+- Admin path on disk is `dashboard/` (not `admin/`). `ADMIN_URL` defaults to `SITE_URL/dashboard`.
+- Cashfree and PhonePe gateway classes are **not** present. Do not configure them.
+- Storefront newsletter exists. **Admin newsletter / email campaign management does not.**
+- Visual QA of recent UI work is **implementation complete, visual QA pending**. Do not treat code edits as production-verified.
 
 ---
 
-# Folder Structure
+## Documentation Map
 
-Keep the existing project structure whenever possible.
-
-Only improve it if absolutely necessary.
-
-Avoid unnecessary file renaming.
-
-Use reusable includes where appropriate.
-
----
-
-# Backend Requirements
-
-Build a complete ecommerce backend including:
-
-- MySQL Database
-- PHP Backend
-- Admin Dashboard
-- Product CRUD
-- Category CRUD
-- Customer Management
-- Orders
-- Inventory
-- Coupons
-- Website Settings
-
----
-
-# Product Features
-
-Implement:
-
-- Dynamic Products
-- Category Pages
-- Product Details
-- Product Gallery
-- Related Products
-- Search
-- Filters
-- Sorting
-- Pagination
-- Featured Products
-- New Arrivals
-- Best Sellers
-
----
-
-# Shopping Features
-
-Implement:
-
-- Shopping Cart
-- Mini Cart
-- Wishlist (optional)
-- Coupon System
-- GST Calculation
-- Shipping Calculation
-- Checkout
-- Order Confirmation
-
----
-
-# Security
-
-Implement production-ready security:
-
-- Prepared Statements
-- SQL Injection Protection
-- XSS Protection
-- CSRF Protection
-- Secure Sessions
-- Input Validation
-
----
-
-# SEO
-
-Support:
-
-- Clean URLs
-- Slugs
-- Meta Title
-- Meta Description
-- Canonical URLs
-- Open Graph
-- robots.txt
-- sitemap.xml
-- Structured Data (Schema.org)
-
----
-
-# Performance
-
-Optimize:
-
-- Lazy Loading
-- Responsive Images
-- Optimized Queries
-- Efficient File Structure
-- Clean Reusable Code
-
----
-
-# Coding Style
-
-- Write clean, modular code.
-- Reuse existing frontend components.
-- Avoid duplicate code.
-- Add comments only where necessary.
-- Follow industry best practices.
-
----
-
-# Workflow
-
-Before making any changes:
-
-1. Analyze the entire project.
-2. Understand the current frontend implementation.
-3. Identify missing functionality.
-4. Create an implementation plan.
-5. Implement features incrementally.
-6. Preserve the existing design throughout the project.
-
----
-
-# Goal
-
-The final outcome should be a complete, secure, scalable, production-ready ecommerce website suitable for real-world deployment while maintaining the existing MoonAura Crystals frontend design.
+| File | Purpose |
+|---|---|
+| `PROJECT_STATE.md` | Technical state, stack, modules, integrations |
+| `PROJECT_STATUS.md` | Completed / in progress / pending / QA |
+| `CHANGELOG.md` | Chronological verified changes |
+| `SETUP.md` | Local and production setup |
+| `DEPLOYMENT_CHECKLIST.md` | Migrations and launch checks |
+| `AI_INSTRUCTIONS.md` | Safe rules for AI coding agents |
+| `RECOVERY_PROMPT.md` | Safe Git recovery workflow |
+| `SINGLE_SHOT_RECOVERY_PROMPT.md` | Copy-paste recovery prompt |
+| `docs/DESIGN_SYSTEM.md` | Tokens, theme, typography, buttons, icons |
+| `docs/UI_RULES.md` | Binding UI rules (do / do not) |
+| `docs/FRONTEND_ARCHITECTURE.md` | PHP/CSS/JS structure |
+| `docs/BACKEND_INTEGRATION.md` | Payments, email, GST, analytics, endpoints |

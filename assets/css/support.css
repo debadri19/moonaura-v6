@@ -790,7 +790,7 @@ html[data-theme-resolved="dark"] .faq-search input {
 
     background: var(--color-icon-well);
 
-    color:var(--primary);
+    color: var(--color-icon);
 
     font-size:18px;
 
@@ -845,6 +845,22 @@ html[data-theme-resolved="dark"] .faq-search input {
     font-size:14px;
 
     line-height:1.7;
+
+}
+
+.info-content .info-availability{
+
+    margin-top:8px;
+
+    color:var(--color-text-muted);
+
+    font-size:12px;
+
+    font-weight:500;
+
+    letter-spacing:.02em;
+
+    line-height:1.5;
 
 }
 

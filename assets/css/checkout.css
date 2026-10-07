@@ -709,7 +709,7 @@ html[data-theme-resolved="dark"] .checkout-form-card select {
     height: 48px;
     border-radius: 50%;
     background: var(--color-icon-well);
-    color: var(--primary);
+    color: var(--color-icon);
     font-size: 20px;
 }
 

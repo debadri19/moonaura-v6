@@ -1,13 +1,15 @@
 # MoonAura Crystals — Setup Guide
 
-**Current version: v0.6.7** (Phases 1-5F.1, Phase 5D Steps 1-2, the
-Phase 5F **GST & Tax** architecture, **Phase 5G** GST-compliant invoice
-system, the Homepage/Frontend UX pass, the Concern UI Cleanup
-checkpoint, Parts 1-3 (UI & Responsive Fixes, Checkout/Buy Now/Saved
-Address/GST Display, Order Confirmation & My Account UX), and
-**Phase 6** (Advanced Invoice Designer System - see § 8a below) — all
-complete; database migration order finalized and live-verified;
-roadmap phase 5H pending — see `PROJECT_STATE.md` §2/§3).
+**Current version: v0.6.7.** Functional ecommerce (catalog, cart,
+checkout, Razorpay/COD/Manual UPI, accounts, admin, GST invoices,
+transactional email, storefront newsletter, Light/Dark/System theme)
+is implemented. Phase 5H POS / walk-in is **not** implemented.
+Admin newsletter campaigns and Admin Dark Mode are **not** implemented.
+See `PROJECT_STATE.md` and `PROJECT_STATUS.md`.
+
+The live admin directory is `dashboard/` (URLs use `ADMIN_URL`, default
+`SITE_URL/dashboard`). Older notes that say `admin/*.php` mean these
+dashboard files.
 
 This file explains how to set up and run the project. It was originally
 written after Phase 0 (PHP/MySQL foundation) and has grown with each
@@ -20,41 +22,30 @@ touches the database.
 
 ```
 Moonaura/
-├── dashboard/                Admin panel (login, dashboard foundation)
-│   ├── assets/css/admin.css  Admin panel styling (separate from storefront CSS)
-│   ├── includes/             Admin sidebar/topbar/footer templates
-│   ├── setup.php             Run ONCE to create your first admin account
-│   ├── login.php             Admin login page
-│   ├── logout.php            Admin logout handler
-│   └── dashboard.php         Admin dashboard (foundation only for now)
-│
-├── assets/                   Storefront CSS/JS/images (unchanged from original design)
-│
-├── archive/legacy/           Original static .html files, kept for reference only.
-│                             Nothing on the live site loads from here.
-│
-├── config/
-│   └── config.php            Database credentials + site settings (EDIT THIS FIRST)
-│
-├── database/
-│   ├── schema.sql            Full database structure
-│   └── seed.sql               Starter data (categories + one collection, no products yet)
-│
-├── includes/
-│   ├── db.php                 Database connection (PDO)
-│   ├── functions.php          General helper functions (escaping, CSRF, flash messages...)
-│   ├── tax-functions.php      GST & Tax authority (Phase 5F): rate validation, inclusive-tax
-│   │                          derivation, CGST/SGST/IGST split, intra/inter tax-type resolution
-│   ├── auth.php               Admin login/logout/session helpers
-│   ├── header.php              Site header (shared across all storefront pages)
-│   └── footer.php              Site footer (shared across all storefront pages)
-│
-├── index.php                  Homepage
-├── shop.php                   Shop page
-├── about.php                  About Us page
-├── support.php                 Support / Help Center page
-└── policy.php                  Policies page
+├── dashboard/                 Admin panel (not admin/)
+│   ├── assets/css/admin.css   Admin styling (no storefront Dark Mode)
+│   ├── includes/              Admin header / sidebar / footer
+│   ├── setup.php              Run ONCE to create the first admin, then remove
+│   ├── login.php / logout.php
+│   ├── dashboard.php
+│   ├── products.php, categories.php, customers.php, orders.php
+│   ├── settings.php, invoice-designer.php, 2fa-setup.php
+│   └── ...
+├── account/                   Customer account pages
+├── assets/css/                Storefront CSS (style.css + page CSS)
+├── assets/js/                 Vanilla JS (theme.js, cart, checkout, ga4, pixel)
+├── config/config.php          Env mapping (credentials from gitignored .env)
+├── database/                  schema.sql, seed.sql, migrations
+├── includes/                  Shared PHP (db, auth, cart, orders, tax, mail, payments)
+├── docs/                      Design system and architecture docs
+├── index.php, shop.php, product.php, cart.php, checkout.php
+├── about.php, support.php, policy.php, concerns.php
+├── newsletter-subscribe.php, newsletter-confirmed.php
+├── sitemap.php, robots.txt
+└── webhook-razorpay.php
 ```
+
+Full module lists: `PROJECT_STATE.md`. Do not commit `.env` or credential files.
 
 ---
 
@@ -132,9 +123,9 @@ or **Laragon**.
 3. Follow steps 2-4 above (database + config + first admin account).
 4. Visit `http://localhost/Moonaura/index.php` in your browser.
 
-Note: `.html` pages have been renamed to `.php` (e.g. `shop.html` is now
-`shop.php`) so the server can run PHP code on them - this is why a PHP-enabled
-server is required even though nothing dynamic is on those pages yet.
+Note: storefront pages are `.php` (not static `.html`). A PHP-enabled
+server is required. The catalog, cart, checkout, and accounts are
+dynamic against MySQL.
 
 ---
 

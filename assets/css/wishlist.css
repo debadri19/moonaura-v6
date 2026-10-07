@@ -59,7 +59,7 @@
 .wishlist-empty-icon i {
     margin: 0;
     font-size: 32px;
-    color: var(--primary);
+    color: var(--color-icon);
     line-height: 1;
 }
 

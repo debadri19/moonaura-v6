@@ -5,21 +5,65 @@ lists what changed at that milestone, not a running diff - see git
 history (if this project is under version control on your end) for
 line-level detail.
 
-**Versioning convention (normalized this checkpoint):** releases are
-tagged `v0.x.x` (current: **v0.6.7**). Work is scoped as Phase 5A-5H
-per the roadmap in `PROJECT_STATE.md` §3. Migration filenames retain
-their original historical numbering (`migration_phase5_*`,
-`migration_phase6_*`) and are deliberately NOT renamed - they map to
-Phase 5A and Phases 5F/5G respectively. Phase 5B shipped under its own
-real roadmap name (`migration_phase5b_*`). **Note:** the project
-roadmap's "Phase 5F" line item is inventory automation (shipped via
-`migration_phase6_stock_login.sql`); this checkpoint's **Phase 5F
-GST/Tax** work (below) is the production-ready GST & Tax architecture
-and ships under `migration_phase5f_gst_tax.sql`.
+**Versioning convention:** releases are tagged `v0.x.x` (current product
+version: **v0.6.7**). This documentation refresh does not bump the
+version. Historical Phase 5A–5H labels and migration filenames in
+older entries below are unchanged.
+
+Admin PHP paths in older entries may say `admin/`; the live path is
+`dashboard/`.
 
 ---
 
 ## Current Status
+
+**Workspace (unreleased on top of v0.6.7):** storefront UI refinements
+are in the working tree (CSS + `index.php` + `support.php`). They are
+**implementation complete, visual QA pending.** See the unreleased
+entry below.
+
+**Latest tagged product checkpoint remains v0.6.7:** GA4 env mapping,
+dynamic sitemap, storefront newsletter (Brevo Contacts), Razorpay as
+the only registered online gateway, Invoice Designer, GST snapshots.
+
+**Pending (verified against current source):**
+- Newsletter input + Subscribe button size/alignment
+- Admin Dark Mode
+- Admin Newsletter & Email Campaign Management (not in source)
+- Admin button style consistency / admin UI design audit
+- Phase 5H POS / walk-in sales (not started; storefront now states online-only)
+- Full Site Visual QA; Meta Pixel Events Manager QA; live deployment finalization; production audit
+
+**No longer pending (implemented in current CSS/PHP):** product CTA
+sizing, Home Hero padding, shop toolbar padding, Policy 2-column
+mobile shortcuts, zodiac stroke SVGs, Dark Mode scrollbar, Account and
+Home Dark Mode heading/link contrast, Policy Hero type, About mobile
+Promise 2×3 grid, Support online-only note.
+
+---
+
+## [Unreleased] — Storefront UI refinements + documentation refresh
+
+**Scope:** unpublished working-tree UI on `master` after merge `4e037bb`
+(GitHub `debadri19/moonaura-v6` `main`). No product version bump. No
+schema change. Visual QA pending.
+
+- Compact rectangular product CTAs: `.product-btn` / `.cart-btn` at 40px height, 16px radius (not pills).
+- Circular icon wells on Policy, About Promise, and mobile nav icons.
+- Desktop active nav: short gold bar under the item. Mobile: left gold inset bar unchanged in role.
+- Home Hero padding aligned with Shop Hero; shop toolbar vertical padding equalized.
+- Policy mobile shortcuts: 2-column grid. Policy Hero heading reduced; `MOONAURA POLICIES` eyebrow `white-space: nowrap`.
+- Homepage zodiac glyphs: Lucide-style stroke SVGs in `HOMEPAGE_ZODIAC_SIGNS`.
+- Dark Mode: scrollbar thumbs, `--color-heading` / `--color-link`, `.btn-outline` via `--color-outline`, raised icon wells.
+- About mobile: Our Promise `2 × 3` grid; section spacing tightened at mobile breakpoints only.
+- Support Address card: “Online Store Only • No Walk-in Store” under the existing address.
+- Documentation rewritten to match current source (`README.md`, `PROJECT_STATE.md`, `PROJECT_STATUS.md`, `SETUP.md`, `docs/*`, recovery/AI instruction files).
+
+**No database / migration changes.**
+
+---
+
+## Historical Current Status (v0.6.7 and earlier)
 
 **Resolved issues (this checkpoint):**
 - **Phase 5G - GST-compliant invoice system & invoice branding shipped** -

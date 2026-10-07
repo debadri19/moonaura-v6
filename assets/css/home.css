@@ -14,7 +14,7 @@
 
     position:relative;
 
-    padding:65px 0 80px;
+    padding:65px 0 40px;
 
     min-height:520px;
 
@@ -104,7 +104,7 @@
 
 .hero-title span {
 
-    color: var(--primary);
+    color: var(--color-heading);
 
 }
 
@@ -222,7 +222,7 @@
 
     .hero {
 
-        padding: 80px 0;
+        padding: 80px 0 40px;
 
     }
 
@@ -270,7 +270,7 @@
 
     .hero{
 
-        padding:60px 0 32px;
+        padding:60px 0 20px;
 
         min-height: 0;
 
@@ -407,7 +407,7 @@
 
     .hero{
 
-        padding:40px 0 32px;
+        padding:40px 0 16px;
 
         min-height: 0;
 
@@ -877,7 +877,7 @@
 
 .product-title a:hover {
 
-    color: var(--primary);
+    color: var(--color-link-hover);
 
 }
 
@@ -959,7 +959,7 @@
 
 .product-content h3:not(.product-title) a:hover {
 
-    color: var(--primary);
+    color: var(--color-link-hover);
 
 }
 
@@ -1102,9 +1102,9 @@
 
     align-items: center;
 
-    height: 52px;
+    height: 40px;
 
-    padding: 0 18px;
+    padding: 0 14px;
 
     background: var(--primary);
 
@@ -1114,7 +1114,7 @@
 
     text-decoration: none;
 
-    font-size: 15px;
+    font-size: 14px;
 
     font-weight: 600;
 
@@ -1169,9 +1169,9 @@
 
 .cart-btn {
 
-    width: 52px;
+    width: 40px;
 
-    height: 52px;
+    height: 40px;
 
     padding: 0;
 
@@ -1361,7 +1361,7 @@
 
     .product-btn {
 
-        height: 48px;
+        height: 38px;
 
         font-size: 14px;
 
@@ -1369,9 +1369,9 @@
 
     .cart-btn {
 
-        width: 48px;
+        width: 38px;
 
-        height: 48px;
+        height: 38px;
 
     }
 
@@ -1433,15 +1433,15 @@
 
     .product-btn {
 
-        height: 46px;
+        height: 36px;
 
     }
 
     .cart-btn {
 
-        width: 46px;
+        width: 36px;
 
-        height: 46px;
+        height: 36px;
 
     }
 
@@ -1584,7 +1584,7 @@
 
     background: var(--color-icon-well);
 
-    color: var(--primary);
+    color: var(--color-icon);
 
     transition:
         background .35s ease,
@@ -1752,6 +1752,16 @@
 
 .zodiac-glyph {
 
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 1em;
+
+    height: 1em;
+
     font-size: 30px;
 
     line-height: 1;
@@ -1759,6 +1769,26 @@
     color: var(--gold);
 
     transition: color .35s ease;
+
+}
+
+.zodiac-glyph svg {
+
+    width: 1em;
+
+    height: 1em;
+
+    display: block;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 2;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
 
 }
 
@@ -2122,7 +2152,7 @@
 
     background:var(--color-icon-well);
 
-    color:var(--primary);
+    color: var(--color-icon);
 
     font-size:18px;
 

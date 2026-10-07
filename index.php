@@ -19,18 +19,18 @@ $newsletterError     = flash_get('newsletter_error');
 // as-is, not a second classification. Card labels only; each links
 // to the existing shop.php?zodiac=... filter.
 const HOMEPAGE_ZODIAC_SIGNS = [
-    ['name' => 'Aries',       'glyph' => '♈'],
-    ['name' => 'Taurus',      'glyph' => '♉'],
-    ['name' => 'Gemini',      'glyph' => '♊'],
-    ['name' => 'Cancer',      'glyph' => '♋'],
-    ['name' => 'Leo',         'glyph' => '♌'],
-    ['name' => 'Virgo',       'glyph' => '♍'],
-    ['name' => 'Libra',       'glyph' => '♎'],
-    ['name' => 'Scorpio',     'glyph' => '♏'],
-    ['name' => 'Sagittarius', 'glyph' => '♐'],
-    ['name' => 'Capricorn',   'glyph' => '♑'],
-    ['name' => 'Aquarius',    'glyph' => '♒'],
-    ['name' => 'Pisces',      'glyph' => '♓'],
+    ['name' => 'Aries',       'glyph' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 20V9c0-3.2 2.2-5 4.2-5 1.3 0 1.6 2.2 1 4.8-.6-2.6-.3-4.8 1-4.8 2 0 4.2 1.8 4.2 5v11"/></svg>'],
+    ['name' => 'Taurus',      'glyph' => '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="15" r="5"/><path d="M6.5 11c0-4.2 2.6-6.5 5.5-6.5S17.5 6.8 17.5 11"/></svg>'],
+    ['name' => 'Gemini',      'glyph' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h10M7 19h10M9 5v14M15 5v14"/></svg>'],
+    ['name' => 'Cancer',      'glyph' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 8.5c-3.8.2-5 3.8-2.2 5.2 2.2 1.1 2.6 3.8-.6 4.3"/><path d="M14 15.5c3.8-.2 5-3.8 2.2-5.2-2.2-1.1-2.6-3.8.6-4.3"/></svg>'],
+    ['name' => 'Leo',         'glyph' => '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="13.5" r="4.5"/><path d="M15.2 13.5c3.8.2 5.3-5.5 1.2-7.8"/></svg>'],
+    ['name' => 'Virgo',      'glyph' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4v12.5c0 2.2 2.2 2.2 2.2 0M10.2 4v12.5c0 2.2 2.2 2.2 2.2 0M14.4 4v8.2c0 3.6 4.2 3.6 4.2 0V20"/></svg>'],
+    ['name' => 'Libra',      'glyph' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13h16M6 18h12M8 13a4 4 0 0 1 8 0"/></svg>'],
+    ['name' => 'Scorpio',     'glyph' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4v12.5c0 2.2 2.2 2.2 2.2 0M10.2 4v12.5c0 2.2 2.2 2.2 2.2 0M14.4 4v10.2L18 18h3M18 18v3"/></svg>'],
+    ['name' => 'Sagittarius', 'glyph' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18L18 6M11 6h7v7M8.5 10.5l6 6"/></svg>'],
+    ['name' => 'Capricorn',   'glyph' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7.5 10.2 16 14.5 7.5V17c0 2.8 3.8 3.6 4.8.6"/></svg>'],
+    ['name' => 'Aquarius',    'glyph' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5 8 6.5 12 9.5 16 6.5 20 9.5M4 16.5 8 13.5 12 16.5 16 13.5 20 16.5"/></svg>'],
+    ['name' => 'Pisces',      'glyph' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 5c-3.2 3-3.2 11 0 14M16.5 5c3.2 3 3.2 11 0 14M5 12h14"/></svg>'],
 ];
 ?>
 <!DOCTYPE html>

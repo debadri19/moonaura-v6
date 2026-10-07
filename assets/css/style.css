@@ -186,6 +186,14 @@ button {
 
     --color-accent: var(--gold);
 
+    --color-outline: var(--primary);
+
+    --color-heading: var(--primary);
+
+    --color-link: var(--primary);
+
+    --color-link-hover: var(--primary-dark);
+
     --color-header-bg: rgba(255, 255, 255, .95);
 
     --color-header-bg-scrolled: rgba(255, 255, 255, .98);
@@ -337,6 +345,14 @@ html[data-theme-resolved="dark"] {
 
     --color-accent: var(--gold);
 
+    --color-outline: var(--color-text);
+
+    --color-heading: var(--color-text);
+
+    --color-link: #eadff5;
+
+    --color-link-hover: #f4f1f8;
+
     --text: var(--color-text);
 
     --text-light: var(--color-text-muted);
@@ -347,11 +363,17 @@ html[data-theme-resolved="dark"] {
 
     --shadow: var(--color-shadow);
 
-    --scrollbar-track: rgba(91, 46, 145, .22);
+    --scrollbar-track: #1c1428;
+
+    --scrollbar-thumb: linear-gradient(180deg, #7a5a9e, #5a3f7a);
+
+    --scrollbar-thumb-hover: #9a7ab8;
 
     --scrollbar-thumb-border: 2px solid #221833;
 
-    --scrollbar-firefox-track: rgba(91, 46, 145, .28);
+    --scrollbar-firefox-thumb: #7a5a9e;
+
+    --scrollbar-firefox-track: #1c1428;
 
     --color-header-bg: rgba(22, 14, 34, .92);
 
@@ -363,9 +385,9 @@ html[data-theme-resolved="dark"] {
 
     --color-menu-overlay: rgba(22, 14, 34, .45);
 
-    --color-icon-well: #2a1d3f;
+    --color-icon-well: #403058;
 
-    --color-icon: var(--color-text-muted);
+    --color-icon: #eadff5;
 
     --color-loader-overlay: rgba(22, 14, 34, .62);
 
@@ -413,7 +435,7 @@ html[data-theme-resolved="dark"] {
 
     --color-success-border: #2e5a3c;
 
-    --color-empty-icon-well: #2a1d3f;
+    --color-empty-icon-well: #403058;
 
     --color-qty-btn-hover: rgba(212, 175, 55, .12);
 
@@ -491,6 +513,14 @@ html[data-theme-resolved="dark"] {
 
         --color-accent: var(--gold);
 
+        --color-outline: var(--color-text);
+
+        --color-heading: var(--color-text);
+
+        --color-link: #eadff5;
+
+        --color-link-hover: #f4f1f8;
+
         --text: var(--color-text);
 
         --text-light: var(--color-text-muted);
@@ -501,11 +531,17 @@ html[data-theme-resolved="dark"] {
 
         --shadow: var(--color-shadow);
 
-        --scrollbar-track: rgba(91, 46, 145, .22);
+        --scrollbar-track: #1c1428;
+
+        --scrollbar-thumb: linear-gradient(180deg, #7a5a9e, #5a3f7a);
+
+        --scrollbar-thumb-hover: #9a7ab8;
 
         --scrollbar-thumb-border: 2px solid #221833;
 
-        --scrollbar-firefox-track: rgba(91, 46, 145, .28);
+        --scrollbar-firefox-thumb: #7a5a9e;
+
+        --scrollbar-firefox-track: #1c1428;
 
         --color-header-bg: rgba(22, 14, 34, .92);
 
@@ -517,9 +553,9 @@ html[data-theme-resolved="dark"] {
 
         --color-menu-overlay: rgba(22, 14, 34, .45);
 
-        --color-icon-well: #2a1d3f;
+        --color-icon-well: #403058;
 
-        --color-icon: var(--color-text-muted);
+        --color-icon: #eadff5;
 
         --color-loader-overlay: rgba(22, 14, 34, .62);
 
@@ -567,7 +603,7 @@ html[data-theme-resolved="dark"] {
 
         --color-success-border: #2e5a3c;
 
-        --color-empty-icon-well: #2a1d3f;
+        --color-empty-icon-well: #403058;
 
         --color-qty-btn-hover: rgba(212, 175, 55, .12);
 
@@ -767,7 +803,7 @@ section {
 
     font-weight: 700;
 
-    color: var(--primary);
+    color: var(--color-heading);
 
     line-height: 1.1;
 
@@ -855,9 +891,9 @@ section {
 
 .btn-outline {
 
-    border-color: var(--primary);
+    border-color: var(--color-outline);
 
-    color: var(--primary);
+    color: var(--color-outline);
 
     background: transparent;
 
@@ -925,7 +961,7 @@ section {
 
     background: transparent;
 
-    color: var(--primary);
+    color: var(--color-link);
 
     letter-spacing: normal;
 
@@ -939,7 +975,7 @@ section {
 
 .btn-text:hover {
 
-    color: var(--primary-dark);
+    color: var(--color-link-hover);
 
     text-decoration-color: currentColor;
 
@@ -1399,7 +1435,7 @@ section {
 
     background:var(--color-icon-well);
 
-    color:var(--primary);
+    color: var(--color-icon);
 
     transition:
         background .35s ease,

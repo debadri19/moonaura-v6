@@ -53,6 +53,7 @@
     font-size: 26px;
     text-align: center;
     margin-bottom: 6px;
+    color: var(--color-heading);
 }
 
 .account-auth-subtitle {
@@ -80,7 +81,7 @@
     border: 1px solid var(--border);
     border-radius: 50%;
     background: var(--color-icon-well);
-    color: var(--primary);
+    color: var(--color-icon);
     font-family: inherit;
     font-size: 15px;
     line-height: 1;
@@ -296,7 +297,7 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
 
 .account-auth-box .pw-toggle:hover,
 .account-auth-box .pw-toggle:focus-visible {
-    color: var(--primary);
+    color: var(--color-link);
 }
 
 .account-auth-box .pw-toggle:focus {
@@ -321,7 +322,7 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
 }
 
 .account-auth-footer a {
-    color: var(--primary);
+    color: var(--color-link);
     font-weight: 600;
 }
 
@@ -338,6 +339,7 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
     font-family: 'Cormorant Garamond', serif;
     font-size: 30px;
     margin-bottom: 20px;
+    color: var(--color-heading);
 }
 
 
@@ -364,7 +366,7 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
 }
 
 .account-nav a:hover {
-    color: var(--primary);
+    color: var(--color-link);
 }
 
 .account-nav a.active {
@@ -401,7 +403,7 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
     border: 1px solid var(--border);
     border-radius: 999px;
     box-shadow: var(--shadow);
-    color: var(--primary);
+    color: var(--color-link);
     font-size: 14px;
     font-weight: 600;
     -webkit-tap-highlight-color: transparent;
@@ -424,8 +426,8 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
 }
 
 .account-nav-toggle:hover {
-    color: var(--primary-dark);
-    border-color: var(--primary);
+    color: var(--color-link-hover);
+    border-color: var(--color-link);
 }
 
 .account-nav-toggle i {
@@ -505,11 +507,11 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
 
 .account-nav-panel a:hover,
 .account-nav-theme-btn:hover {
-    color: var(--primary);
+    color: var(--color-link);
 }
 
 .account-nav-panel a.active {
-    color: var(--primary);
+    color: var(--color-link);
     font-weight: 600;
 }
 
@@ -691,15 +693,15 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
     box-shadow: var(--shadow);
     font-size: 14px;
     font-weight: 600;
-    color: var(--primary);
+    color: var(--color-link);
     text-decoration: none;
     white-space: nowrap;
     transition: var(--transition);
 }
 
 .account-back-to-orders:hover {
-    color: var(--primary-dark);
-    border-color: var(--primary);
+    color: var(--color-link-hover);
+    border-color: var(--color-link);
 }
 
 .account-invoice-actions {
@@ -725,7 +727,7 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
 
 .account-order-heading-number {
     margin: 0;
-    color: var(--primary);
+    color: var(--color-heading);
     font-size: 16px;
     font-weight: 600;
     word-break: break-word;
@@ -739,7 +741,7 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
 
 .account-page .checkout-form-card > h2,
 .account-page .checkout-summary > h2 {
-    color: var(--primary);
+    color: var(--color-heading);
     padding-bottom: 10px;
     border-bottom: 1px solid var(--color-gold-divider);
 }
@@ -760,7 +762,7 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
 .account-card h2 {
     font-size: 18px;
     margin-bottom: 16px;
-    color: var(--primary);
+    color: var(--color-heading);
     padding-bottom: 10px;
     border-bottom: 1px solid var(--color-gold-divider);
 }
@@ -836,7 +838,7 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
     font-family: 'Cormorant Garamond', serif;
     font-size: 28px;
     font-weight: 700;
-    color: var(--primary);
+    color: var(--color-heading);
     line-height: 1.2;
     margin-bottom: 10px;
     overflow-wrap: anywhere;
@@ -859,14 +861,14 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
     width: 40px;
     height: 40px;
     border-radius: 999px;
-    color: var(--primary);
+    color: var(--color-link);
     font-size: 16px;
     text-decoration: none;
     -webkit-tap-highlight-color: transparent;
 }
 
 .account-welcome-logout:hover {
-    color: var(--primary-dark);
+    color: var(--color-link-hover);
 }
 
 .account-welcome-logout:focus {
@@ -885,7 +887,7 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
 .account-recent-orders h2 {
     font-size: 18px;
     margin-bottom: 16px;
-    color: var(--primary);
+    color: var(--color-heading);
 }
 
 .account-order-cards {
@@ -903,7 +905,7 @@ html[data-theme-resolved="dark"] .account-auth-box input:not([type="checkbox"]):
 
 .account-order-card-number {
     display: block;
-    color: var(--primary);
+    color: var(--color-link);
     font-size: 16px;
     font-weight: 600;
     text-decoration: none;
@@ -1023,7 +1025,7 @@ html[data-theme-resolved="dark"] .account-card input:not([type="checkbox"]):not(
 
 .account-card .pw-toggle:hover,
 .account-card .pw-toggle:focus-visible {
-    color: var(--primary);
+    color: var(--color-link);
 }
 
 .account-card .pw-toggle:focus {
@@ -1110,7 +1112,7 @@ html[data-theme-resolved="dark"] .account-card input:not([type="checkbox"]):not(
    pulling in .btn-text's button sizing (this is inline table text,
    not a button). Replaces the old separate "View Details" column. */
 .account-order-id-link {
-    color: var(--primary);
+    color: var(--color-link);
     font-weight: 600;
     text-decoration: underline;
     text-decoration-color: transparent;
@@ -1119,7 +1121,7 @@ html[data-theme-resolved="dark"] .account-card input:not([type="checkbox"]):not(
 }
 
 .account-order-id-link:hover {
-    color: var(--primary-dark);
+    color: var(--color-link-hover);
     text-decoration-color: currentColor;
 }
 
@@ -1231,7 +1233,7 @@ html[data-theme-resolved="dark"] .account-card input:not([type="checkbox"]):not(
     border: none;
     border-radius: 0;
     background: transparent;
-    color: var(--primary);
+    color: var(--color-link);
     font-family: inherit;
     font-size: 13px;
     font-weight: 600;
@@ -1246,7 +1248,7 @@ html[data-theme-resolved="dark"] .account-card input:not([type="checkbox"]):not(
 }
 
 .account-address-actions form .account-address-action {
-    color: var(--primary-dark);
+    color: var(--color-link);
 }
 
 .account-address-action:hover,
@@ -1443,6 +1445,7 @@ html[data-theme-resolved="dark"] .account-card input:not([type="checkbox"]):not(
 .account-tracking h2 {
     font-size: 18px;
     margin-bottom: 20px;
+    color: var(--color-heading);
 }
 
 .timeline {
@@ -1510,7 +1513,7 @@ html[data-theme-resolved="dark"] .account-card input:not([type="checkbox"]):not(
 }
 
 .account-tracking a {
-    color: var(--primary);
+    color: var(--color-link);
     font-weight: 600;
     text-decoration: underline;
     text-decoration-color: transparent;
@@ -1519,7 +1522,7 @@ html[data-theme-resolved="dark"] .account-card input:not([type="checkbox"]):not(
 }
 
 .account-tracking a:hover {
-    color: var(--primary-dark);
+    color: var(--color-link-hover);
     text-decoration-color: currentColor;
 }
 
