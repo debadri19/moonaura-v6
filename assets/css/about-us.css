@@ -1391,7 +1391,7 @@
 
 .help-box .section-subtitle{
 
-    color:rgba(255,255,255,.78);
+    color:var(--gold);
 
     margin-bottom:14px;
 

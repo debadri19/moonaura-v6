@@ -132,7 +132,7 @@
 .product-info-category {
     display: inline-block;
     font-size: 13px;
-    color: var(--primary);
+    color: var(--color-heading);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: .04em;
@@ -253,7 +253,7 @@
 }
 
 .product-trust-badge i {
-    color: var(--primary);
+    color: var(--color-icon);
 }
 
 
@@ -273,7 +273,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 18px;
     font-weight: 700;
-    color: var(--primary);
+    color: var(--color-heading);
     margin: 0 0 4px;
     padding: 0;
     line-height: 1.3;
@@ -318,7 +318,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 18px;
     font-weight: 700;
-    color: var(--primary);
+    color: var(--color-heading);
     margin: 0 0 14px;
     padding-bottom: 10px;
     border-bottom: 1px solid var(--gold);
@@ -425,4 +425,15 @@
         padding-top: 28px;
     }
 
+}
+
+html[data-theme="dark"] .product-info-price .sale-price,
+html[data-theme-resolved="dark"] .product-info-price .sale-price {
+    color: var(--color-heading);
+}
+
+@media (prefers-color-scheme: dark) {
+    html[data-theme="system"] .product-info-price .sale-price {
+        color: var(--color-heading);
+    }
 }

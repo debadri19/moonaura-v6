@@ -1036,7 +1036,7 @@
 
 .current-price {
 
-    color: var(--primary);
+    color: var(--color-link);
 
     font-size: 1.35rem;
 
@@ -1067,7 +1067,7 @@
 
     order: 1;
 
-    color: var(--primary);
+    color: var(--color-link);
 
     font-size: 1.45rem;
 
@@ -2222,7 +2222,7 @@
 
     font-size:14px;
 
-    color:var(--primary);
+    color:var(--color-link);
 
 }
 
@@ -2646,6 +2646,8 @@
 
     height:54px;
 
+    min-height:54px;
+
     padding:0 18px;
 
     text-indent:0;
@@ -2657,6 +2659,8 @@
     border-radius:999px;
 
     background:var(--color-input-bg);
+
+    box-sizing:border-box;
 
     font-size:16px;
 
@@ -2684,7 +2688,17 @@
 
 .newsletter-form button{
 
-    height:var(--btn-height);
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-shrink:0;
+
+    height:54px;
+
+    min-height:54px;
 
     padding:0 var(--btn-padding-x);
 
@@ -2693,6 +2707,8 @@
     border-radius:var(--btn-radius);
 
     background:var(--gold);
+
+    box-sizing:border-box;
 
     color:var(--text);
 
@@ -2907,6 +2923,8 @@
 
         height:52px;
 
+        min-height:52px;
+
         padding:0 18px;
 
         border:none;
@@ -2927,7 +2945,9 @@
 
         width:100%;
 
-        height:var(--btn-height-sm);
+        height:52px;
+
+        min-height:52px;
 
         border-radius:var(--btn-radius);
 
@@ -2995,13 +3015,17 @@
 
         height:50px;
 
+        min-height:50px;
+
     }
 
     .newsletter-form button{
 
         width:100%;
 
-        height:var(--btn-height-sm);
+        height:50px;
+
+        min-height:50px;
 
     }
 

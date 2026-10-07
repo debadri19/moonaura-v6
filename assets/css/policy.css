@@ -51,7 +51,7 @@
     border:1px solid var(--border);
     border-radius:999px;
     background: var(--color-surface);
-    color:var(--primary);
+    color:var(--gold);
     font-size:13px;
     font-weight:600;
     text-transform:uppercase;
@@ -321,7 +321,7 @@
     position:absolute;
     left:0;
     top:2px;
-    color:var(--primary);
+    color:var(--color-icon);
     font-size:16px;
     font-weight:700;
 }
@@ -365,7 +365,7 @@
 .policy-help-icon{
     width:90px;
     height:90px;
-    margin:0 auto 26px;
+    margin:0 auto 18px;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -377,15 +377,15 @@
 }
 
 .policy-help h2{
-    margin-bottom:16px;
+    margin-bottom:12px;
     font-family:"Cormorant Garamond",serif;
     font-size:42px;
-    color:var(--primary);
+    color:var(--gold);
 }
 
 .policy-help p{
     max-width:700px;
-    margin:0 auto 35px;
+    margin:0 auto 20px;
     color:var(--text-light);
     line-height:1.9;
 }
@@ -623,14 +623,46 @@
         line-height:1.3;
     }
 
+    .policy-nav{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:16px;
+        align-items:stretch;
+    }
+
     .policy-nav-item{
-        padding:16px;
+        flex-direction:column;
+        align-items:center;
+        justify-content:flex-start;
+        text-align:center;
+        gap:10px;
+        padding:16px 12px;
+        min-height:132px;
+        min-width:0;
+        height:100%;
+        box-sizing:border-box;
+        overflow:hidden;
     }
 
     .policy-nav-item i{
         width:44px;
         height:44px;
         font-size:16px;
+        margin:0 auto;
+    }
+
+    .policy-nav-icon{
+        margin:0 auto;
+    }
+
+    .policy-nav-item span{
+        display:block;
+        width:100%;
+        text-align:center;
+        min-width:0;
+        overflow-wrap:normal;
+        word-break:normal;
+        hyphens:none;
+        line-height:1.35;
     }
 
     .policy-card{
