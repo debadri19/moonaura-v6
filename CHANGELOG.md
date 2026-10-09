@@ -28,10 +28,9 @@ the only registered online gateway, Invoice Designer, GST snapshots.
 
 **Pending (verified against current source):**
 - Newsletter input + Subscribe button size/alignment
-- Admin Dark Mode
-- Admin Newsletter & Email Campaign Management (not in source)
 - Admin button style consistency / admin UI design audit
 - Phase 5H POS / walk-in sales (not started; storefront now states online-only)
+- Newsletter campaign QA (browser, Brevo events, live DB, live sends)
 - Full Site Visual QA; Meta Pixel Events Manager QA; live deployment finalization; production audit
 
 **No longer pending (implemented in current CSS/PHP):** product CTA
@@ -39,6 +38,40 @@ sizing, Home Hero padding, shop toolbar padding, Policy 2-column
 mobile shortcuts, zodiac stroke SVGs, Dark Mode scrollbar, Account and
 Home Dark Mode heading/link contrast, Policy Hero type, About mobile
 Promise 2×3 grid, Support online-only note.
+
+---
+
+## [Unreleased] — Admin newsletter Phases 1–4 + storefront UI refinements
+
+**Scope:** Admin newsletter audience, composer, sending, and campaign
+history/analytics on the existing Brevo Contacts + SMTP stack. No
+product version bump. Visual QA and live campaign testing pending.
+
+### Newsletter Phase 4 — Campaign history & analytics
+
+- Campaign analytics overview on `dashboard/newsletter.php`: totals for
+  campaigns, draft/scheduled/sent/failed, unique recipients targeted,
+  accepted SMTP sends, and failed recipient sends.
+- Date range filter uses `newsletter_campaigns.created_at`.
+- Campaign history search/status/sort/pagination. Send log is paginated.
+- Composer shows accepted/failed counts, grouped failure reasons (no
+  recipient email list), and per-campaign send log.
+- Opens, clicks, deliveries, and bounces display as **Tracking not
+  configured**. No Brevo event webhook or engagement table exists.
+- Test emails are counted separately and excluded from recipient totals.
+- **No new SQL migration.** Reuses Phase 1–3 tables.
+
+### Newsletter Phases 1–3 (already in working tree)
+
+- Phase 1: subscriber cache, search/filter/CSV, add (DOI), unsubscribe.
+- Phase 2: local campaign drafts and composer.
+- Phase 3: Send Test / Send Now / Schedule, signed public unsubscribe,
+  `scripts/send-newsletter-campaigns.php`.
+
+**SQL (manual, not executed here):**
+- `database/migration_newsletter_admin.sql`
+- `database/migration_newsletter_campaign_sending.sql`
+- Fresh installs: `database/schema.sql` already includes these tables.
 
 ---
 

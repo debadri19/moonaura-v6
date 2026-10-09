@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/main
 # AI Tools
 .claude
 .gemini
@@ -175,6 +178,8 @@
 *.lz
 *.lzma
 *.iso
+<<<<<<< HEAD
+=======
 =======
 # ===================================================================
 # ENVIRONMENT / SECRETS
@@ -211,3 +216,4 @@ desktop.ini
 *.log
 error_log
 >>>>>>> 79181a60b4d89e91d3992bc90ff9c2e89a4aaa19
+>>>>>>> origin/main

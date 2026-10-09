@@ -96,7 +96,7 @@ See `DEPLOYMENT_CHECKLIST.md` for migrations and production checks.
 - Unpublished storefront UI CSS/PHP edits exist in the working tree. Treat them as current source, not discarded work.
 - Admin path on disk is `dashboard/` (not `admin/`). `ADMIN_URL` defaults to `SITE_URL/dashboard`.
 - Cashfree and PhonePe gateway classes are **not** present. Do not configure them.
-- Storefront newsletter exists. **Admin newsletter / email campaign management does not.**
+- Storefront newsletter exists. Admin newsletter campaigns (Phases 1–4) exist in `dashboard/`; open/click tracking is not configured. QA pending.
 - Visual QA of recent UI work is **implementation complete, visual QA pending**. Do not treat code edits as production-verified.
 
 ---

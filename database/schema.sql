@@ -869,4 +869,112 @@ CREATE TABLE customer_carts (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
+-- ===================================================================
+-- NEWSLETTER SUBSCRIBERS CACHE  (Admin Phase 1)
+-- -------------------------------------------------------------------
+-- Local cache of Brevo newsletter contacts for Admin search, filters,
+-- CSV export, and sync status. Brevo remains the source of truth.
+-- ===================================================================
+
+CREATE TABLE newsletter_subscribers (
+
+    email               VARCHAR(190)    NOT NULL PRIMARY KEY,
+    name                VARCHAR(160)    NULL,
+    status              ENUM('pending','confirmed','unsubscribed') NOT NULL,
+    source              VARCHAR(40)     NOT NULL DEFAULT 'brevo',
+    brevo_id            BIGINT UNSIGNED NULL,
+    subscribed_at       DATETIME        NULL,
+    confirmed_at        DATETIME        NULL,
+    unsubscribed_at     DATETIME        NULL,
+    last_modified_at    DATETIME        NULL,
+    synced_at           DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at          DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at          DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP
+                                         ON UPDATE CURRENT_TIMESTAMP,
+
+    INDEX idx_newsletter_subscribers_status (status),
+    INDEX idx_newsletter_subscribers_name (name),
+    INDEX idx_newsletter_subscribers_synced (synced_at)
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+-- ===================================================================
+-- NEWSLETTER CAMPAIGNS  (Admin Phase 2 drafts + Phase 3 sending)
+-- -------------------------------------------------------------------
+-- Admin campaign storage. Sending uses existing Brevo SMTP via
+-- includes/mailer.php. Recipients come from newsletter_subscribers.
+-- ===================================================================
+
+CREATE TABLE newsletter_campaigns (
+
+    id                  INT UNSIGNED    NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name                VARCHAR(160)    NOT NULL,
+    subject             VARCHAR(200)    NOT NULL DEFAULT '',
+    preview_text        VARCHAR(255)    NULL,
+    sender_name         VARCHAR(120)    NOT NULL,
+    sender_email        VARCHAR(190)    NOT NULL,
+    reply_to            VARCHAR(190)    NULL,
+    body_html           LONGTEXT        NOT NULL,
+    cta_text            VARCHAR(120)    NULL,
+    cta_url             VARCHAR(500)    NULL,
+    status              ENUM('draft','scheduled','sending','sent','failed','cancelled') NOT NULL DEFAULT 'draft',
+    scheduled_at        DATETIME        NULL,
+    started_at          DATETIME        NULL,
+    completed_at        DATETIME        NULL,
+    recipient_count     INT UNSIGNED    NOT NULL DEFAULT 0,
+    sent_count          INT UNSIGNED    NOT NULL DEFAULT 0,
+    failed_count        INT UNSIGNED    NOT NULL DEFAULT 0,
+    failure_reason      VARCHAR(255)    NULL,
+    locked_at           DATETIME        NULL,
+    created_at          DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at          DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP
+                                         ON UPDATE CURRENT_TIMESTAMP,
+
+    INDEX idx_newsletter_campaigns_status (status),
+    INDEX idx_newsletter_campaigns_updated (updated_at),
+    INDEX idx_newsletter_campaigns_scheduled (status, scheduled_at)
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE newsletter_campaign_sends (
+
+    id                  INT UNSIGNED    NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    campaign_id         INT UNSIGNED    NOT NULL,
+    campaign_name       VARCHAR(160)    NOT NULL,
+    status              ENUM('sending','sent','failed','cancelled') NOT NULL,
+    is_test             TINYINT(1)      NOT NULL DEFAULT 0,
+    recipient_count     INT UNSIGNED    NOT NULL DEFAULT 0,
+    sent_count          INT UNSIGNED    NOT NULL DEFAULT 0,
+    failed_count        INT UNSIGNED    NOT NULL DEFAULT 0,
+    scheduled_at        DATETIME        NULL,
+    started_at          DATETIME        NULL,
+    completed_at        DATETIME        NULL,
+    failure_reason      VARCHAR(255)    NULL,
+    created_at          DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    INDEX idx_newsletter_sends_campaign (campaign_id),
+    INDEX idx_newsletter_sends_created (created_at)
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE newsletter_campaign_recipients (
+
+    id                  INT UNSIGNED    NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    campaign_id         INT UNSIGNED    NOT NULL,
+    email               VARCHAR(190)    NOT NULL,
+    name                VARCHAR(160)    NULL,
+    status              ENUM('pending','sent','failed') NOT NULL DEFAULT 'pending',
+    error_message       VARCHAR(255)    NULL,
+    sent_at             DATETIME        NULL,
+    created_at          DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    UNIQUE KEY uq_newsletter_campaign_recipient (campaign_id, email),
+    INDEX idx_newsletter_recipients_status (campaign_id, status)
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
 SET FOREIGN_KEY_CHECKS = 1;

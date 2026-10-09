@@ -27,7 +27,8 @@ $headerHelpActive    = nav_is_current('support.php') || nav_is_current('policy.p
 
             <a href="<?= site_url('index.php') ?>" class="logo">
 
-                <img src="<?= asset_url('assets/images/icons/logos/logo-header.webp') ?>" alt="MoonAura Crystals">
+                <img class="logo-light" src="<?= asset_url('assets/images/icons/logos/logo-header.webp') ?>" alt="MoonAura Crystals">
+                <img class="logo-dark" src="<?= asset_url('assets/images/icons/logos/logo-header-dark.webp') ?>" alt="MoonAura Crystals">
 
             </a>
 

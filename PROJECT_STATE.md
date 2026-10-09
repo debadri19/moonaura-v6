@@ -112,8 +112,8 @@ Admin CSS: `dashboard/assets/css/admin.css` (no storefront Dark Mode tokens).
 | Manual UPI QR | Implemented | Customer submit + admin verify/reject |
 | Cashfree / PhonePe | **Not in use** | No gateway class |
 | Brevo SMTP | Implemented | Password reset + order confirmation/shipped/delivered |
-| Brevo Contacts newsletter | Implemented (storefront only) | Pending list 7, confirmed list 6 |
-| Admin newsletter campaigns | **Not implemented** | No campaign composer/sender in `dashboard/` |
+| Brevo Contacts newsletter | Implemented | Pending list 7, confirmed list 6 |
+| Admin newsletter campaigns | Implemented (QA pending) | Phases 1–4 in `dashboard/newsletter.php`; no open/click tracking |
 | GST / tax snapshots | Implemented | `includes/tax-functions.php` |
 | Invoice PDF + designer | Implemented | `includes/invoice-functions.php`, `dashboard/invoice-designer.php` |
 | Admin TOTP 2FA | Implemented | `includes/two-factor.php` |
@@ -131,7 +131,7 @@ The PHP/MySQL ecommerce conversion is **functionally implemented** for catalog, 
 
 Storefront Light / Dark / System theme is implemented (`assets/js/theme.js`, CSS tokens in `style.css`). Logged-in customers persist preference via `account/theme-save.php` and `customers.theme_preference`.
 
-**Admin Dark Mode is not implemented.**
+Admin Dark Mode is implemented (`dashboard/assets/css/admin.css`, Settings → Appearance).
 
 **Walk-in / POS (Phase 5H) is not implemented.** Support Address card states: "Online Store Only • No Walk-in Store".
 
@@ -147,12 +147,15 @@ Coupons are not implemented (`checkout.php` keeps discount at 0).
 - New / unconfirmed contacts go to pending list (default id 7)
 - Confirmation mail and move to confirmed list (default id 6) are handled by a **Brevo Automation**, not by this app
 - `newsletter-confirmed.php` is a landing page only
-- No local subscriber table
+- Admin cache table `newsletter_subscribers` (Brevo remains source of truth)
+- Admin campaigns: drafts, test/send/schedule, history, send analytics
+- Public signed unsubscribe: `newsletter-unsubscribe.php`
 
-**Not implemented**
+**Not implemented / not available**
 
-- Admin newsletter / email campaign management
-- In-app campaign composer, audience picker, or blast sender
+- Open, click, bounce, or confirmed-delivery tracking (no Brevo event webhook)
+- Fabricated engagement rates
+- Sending from an unsaved draft
 
 ### Payments (accurate)
 

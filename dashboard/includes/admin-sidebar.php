@@ -3,7 +3,7 @@
      -------------------------------------------------
      $activePage is set by the page that includes this
      file, so the matching link can be highlighted.
-     Products/Categories/Orders/Customers/Settings are live.
+     Products/Categories/Orders/Customers/Newsletter/Settings are live.
 
      #37 Settings Consolidation: Security (2fa-setup.php) and
      Invoice Designer (invoice-designer.php) no longer have their
@@ -58,6 +58,11 @@
         <a href="customers.php" title="Customers" class="<?= ($activePage ?? '') === 'customers' ? 'active' : '' ?>">
             <i class="fa-solid fa-users"></i>
             Customers
+        </a>
+
+        <a href="newsletter.php" title="Newsletter" class="<?= ($activePage ?? '') === 'newsletter' ? 'active' : '' ?>">
+            <i class="fa-solid fa-envelope-open-text"></i>
+            Newsletter
         </a>
 
         <a href="settings.php" title="Settings" class="<?= ($activePage ?? '') === 'settings' ? 'active' : '' ?>">

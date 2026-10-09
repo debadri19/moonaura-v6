@@ -44,9 +44,20 @@ idempotent; safe to re-run; a fresh install can instead load
      Invoice Designer admin panel (Phase 6). No ordering dependency on
      any other migration in this list.
 12. `database/migration_add_certificate_included.sql` —
-     `products.certificate_included` TINYINT(1) NOT NULL DEFAULT 1
-     (Certificate Included Yes/No). No ordering dependency on any
-     other migration in this list.
+      `products.certificate_included` TINYINT(1) NOT NULL DEFAULT 1
+      (Certificate Included Yes/No). No ordering dependency on any
+      other migration in this list.
+13. `database/migration_newsletter_admin.sql` — Admin newsletter
+      subscriber cache + campaign drafts (Phase 1/2). Apply after
+      existing-database upgrades that predate these tables.
+14. `database/migration_newsletter_campaign_sending.sql` — campaign
+      send/schedule columns plus `newsletter_campaign_sends` and
+      `newsletter_campaign_recipients` (Phase 3). Apply after 13.
+      Re-running ALTER statements may error if columns already exist.
+
+Phase 4 campaign analytics added **no** new SQL. Fresh installs get
+these tables from `database/schema.sql`. Execution of 13–14 in this
+workspace: Unknown (not run here).
 
 > **Warning:** migration 6 must be applied before 2FA is enabled, or the
 > admin Security page fails with a missing `two_factor_enabled` error.

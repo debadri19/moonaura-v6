@@ -4,7 +4,7 @@
 checkout, Razorpay/COD/Manual UPI, accounts, admin, GST invoices,
 transactional email, storefront newsletter, Light/Dark/System theme)
 is implemented. Phase 5H POS / walk-in is **not** implemented.
-Admin newsletter campaigns and Admin Dark Mode are **not** implemented.
+Admin newsletter campaigns (Phases 1–4) and Admin Dark Mode are implemented; live QA is pending. Open/click tracking is not configured.
 See `PROJECT_STATE.md` and `PROJECT_STATUS.md`.
 
 The live admin directory is `dashboard/` (URLs use `ADMIN_URL`, default

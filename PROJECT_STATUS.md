@@ -28,7 +28,8 @@
 | Checkout | Guest + logged-in, Buy Now, saved addresses | Complete | Pending | Not verified here |
 | Payments | Razorpay + COD + Manual UPI | Complete | Pending | Not verified here |
 | Accounts | Register/login, orders, tracking, invoices, theme | Complete | Pending | Not verified here |
-| Admin | Products, categories, customers, orders, settings, 2FA | Complete | N/A (no admin Dark Mode) | Not verified here |
+| Admin | Products, categories, customers, orders, settings, 2FA, Dark Mode | Complete | Pending | Not verified here |
+| Admin newsletter | Audience, composer, send/schedule, history/analytics | Complete | Pending | Not verified here |
 | GST / invoices | Inclusive GST snapshots, PDF, Invoice Designer | Complete | N/A | Not verified here |
 | Email | Brevo SMTP: reset + order confirmation/shipped/delivered | Complete | N/A | Not verified here |
 | Newsletter (storefront) | Brevo Contacts pending-list double opt-in | Complete | Pending (input/button alignment) | Not verified here |
@@ -86,7 +87,7 @@ No feature implementation is in progress in source beyond the unpublished CSS/PH
 |---|---|
 | Newsletter input + Subscribe button size/alignment | Pending (input `54px` vs button `--btn-height` `42px`) |
 | Full Site Visual QA (Light / Dark / System, desktop / tablet / mobile) | Pending |
-| Admin Panel Dark Mode | Not started |
+| Admin Panel Dark Mode | Implementation Complete, Visual QA Pending |
 | Admin button style consistency with storefront pills | Pending (pre-existing) |
 
 **Removed from pending** because they are implemented in current CSS/PHP:
@@ -105,7 +106,7 @@ No feature implementation is in progress in source beyond the unpublished CSS/PH
 
 | Item | Status |
 |---|---|
-| Admin Newsletter & Email Campaign Management System | **Not implemented** |
+| Admin Newsletter & Email Campaign Management System | Implementation Complete (Phases 1–4); QA Pending. Opens/clicks not tracked. |
 | Phase 5H POS / Walk-in Sales | Not started (storefront now states online-only) |
 | Coupons | Not implemented |
 | Account-linked (DB) wishlist | Not implemented |
@@ -131,8 +132,8 @@ These are **not claimed resolved** by this documentation pass:
 
 1. Full-site visual QA not signed off.
 2. Production env completeness (Razorpay live keys, Brevo SMTP, `ADMIN_2FA_ENCRYPTION_KEY`, `INVOICE_TOKEN_SECRET`, GA4/Pixel IDs) must be confirmed on the live host — not inferred from this workspace.
-3. Admin Newsletter campaign system is absent if that is a launch requirement.
-4. Admin Dark Mode is absent if that is a launch requirement.
+3. Newsletter campaign live sending, cron, and migration application must be confirmed on the host.
+4. Open/click/bounce tracking is not configured.
 5. Unpublished working-tree UI is not committed.
 
 This workspace does **not** record a production-verified go-live.
@@ -156,7 +157,14 @@ Before calling the storefront production-ready:
 
 ## Database Migrations
 
-Canonical order remains `DEPLOYMENT_CHECKLIST.md` §1 (12 files). Fresh install: `database/schema.sql` + `database/seed.sql`. No new migration is required for the unpublished UI or this documentation refresh.
+Canonical order remains `DEPLOYMENT_CHECKLIST.md` §1 (12 files). Fresh install: `database/schema.sql` + `database/seed.sql`.
+
+Newsletter Admin (manual, execution Unknown in this workspace):
+
+1. `database/migration_newsletter_admin.sql` — Phase 1/2 tables.
+2. `database/migration_newsletter_campaign_sending.sql` — Phase 3 send columns/tables.
+
+Phase 4 added **no** new SQL. Existing DBs must apply the two files above in order if not already applied.
 
 ---
 

@@ -31,7 +31,7 @@ $admin      = current_admin();
 $pageTitle  = 'Settings';
 $activePage = 'settings';
 
-$validSettingsPanels = ['payment', 'business', 'integrations'];
+$validSettingsPanels = ['payment', 'business', 'integrations', 'appearance'];
 $requestedPanel = $_SERVER['REQUEST_METHOD'] === 'POST'
     ? (string) ($_POST['settings_panel'] ?? $_GET['panel'] ?? '')
     : (string) ($_GET['panel'] ?? '');
@@ -41,6 +41,8 @@ if ($activePanel === 'payment') {
     $pageTitle = 'Payment Methods';
 } elseif ($activePanel === 'business') {
     $pageTitle = 'Business / GST Details';
+} elseif ($activePanel === 'appearance') {
+    $pageTitle = 'Appearance';
 } elseif ($activePanel === 'integrations') {
     $pageTitle = 'Integrations';
     require_once __DIR__ . '/../includes/newsletter-functions.php';
@@ -265,6 +267,7 @@ $successMessage = flash_get('success');
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<?php include __DIR__ . '/includes/admin-theme-boot.php'; ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -343,6 +346,14 @@ $successMessage = flash_get('success');
                             <i class="fa-solid fa-plug"></i>
                             <h3>Integrations</h3>
                             <p>Third-party service configuration status</p>
+                        </div>
+                    </a>
+
+                    <a href="settings.php?panel=appearance" style="text-decoration: none; color: inherit;">
+                        <div class="admin-placeholder-card">
+                            <i class="fa-solid fa-moon"></i>
+                            <h3>Appearance</h3>
+                            <p>Admin Light, Dark, or System theme</p>
                         </div>
                     </a>
 
@@ -566,6 +577,27 @@ $successMessage = flash_get('success');
                     </div>
 
                 </div>
+                <?php elseif ($activePanel === 'appearance'): ?>
+
+                <div class="admin-form-card">
+                    <h3>Admin Theme</h3>
+                    <p class="invoice-designer-hint">Applies only to the Admin panel. Storefront theme is unchanged. Your choice is saved in this browser.</p>
+                    <div class="admin-theme-picker" role="group" aria-label="Admin theme">
+                        <button type="button" data-admin-theme-mode="light">
+                            <i class="fa-solid fa-sun"></i>
+                            Light
+                        </button>
+                        <button type="button" data-admin-theme-mode="dark">
+                            <i class="fa-solid fa-moon"></i>
+                            Dark
+                        </button>
+                        <button type="button" data-admin-theme-mode="system">
+                            <i class="fa-solid fa-desktop"></i>
+                            System
+                        </button>
+                    </div>
+                </div>
+
                 <?php else: ?>
 
                 <div class="admin-form-card">
