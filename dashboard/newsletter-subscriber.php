@@ -122,7 +122,7 @@ if (newsletter_is_configured()) {
                 </div>
 
                 <div class="admin-form-card">
-                    <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--primary);">Subscriber</h3>
+                    <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--admin-link);">Subscriber</h3>
                     <div class="admin-detail-row">
                         <span>Email</span>
                         <span><?= h($subscriber['email']) ?></span>

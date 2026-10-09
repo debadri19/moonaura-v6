@@ -330,7 +330,7 @@ $successMessage = flash_get('success');
 
                 <div class="admin-form-card">
 
-                    <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--primary);">
+                    <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--admin-link);">
                         Order <?= h($order['order_number']) ?>
                     </h3>
 
@@ -390,7 +390,7 @@ $successMessage = flash_get('success');
 
                 <div class="admin-form-card">
 
-                    <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--primary);">
+                    <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--admin-link);">
                         Customer &amp; Shipping
                     </h3>
 
@@ -432,7 +432,7 @@ $successMessage = flash_get('success');
 
                     <div class="admin-form-card">
 
-                        <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--primary);">
+                        <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--admin-link);">
                             Update Order Status
                         </h3>
 
@@ -459,7 +459,7 @@ $successMessage = flash_get('success');
 
                     <div class="admin-form-card">
 
-                        <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--primary);">
+                        <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--admin-link);">
                             Update Payment Status
                         </h3>
 
@@ -499,7 +499,7 @@ $successMessage = flash_get('success');
 
                 <div class="admin-form-card" style="margin-top: 24px;">
 
-                    <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--primary);">
+                    <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--admin-link);">
                         Shipping &amp; Tracking
                     </h3>
 
@@ -551,7 +551,7 @@ $successMessage = flash_get('success');
 
                     <div class="admin-form-card" style="margin-top: 24px;">
 
-                        <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--primary);">
+                        <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--admin-link);">
                             Manual UPI Payment
                         </h3>
 
@@ -664,7 +664,7 @@ $successMessage = flash_get('success');
 
                     <div class="admin-detail-row" style="font-size: 16px;">
                         <span>Grand Total</span>
-                        <span style="color: var(--primary);"><?= h(format_price((float) $order['grand_total'])) ?></span>
+                        <span style="color: var(--admin-link);"><?= h(format_price((float) $order['grand_total'])) ?></span>
                     </div>
 
                 </div>

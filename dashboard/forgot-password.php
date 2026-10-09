@@ -125,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
 
         <p style="text-align: center; margin-top: 16px; font-size: 13px;">
-            <a href="login.php" style="color: var(--primary);">Back to Login</a>
+            <a href="login.php" style="color: var(--admin-link);">Back to Login</a>
         </p>
 
     </div>

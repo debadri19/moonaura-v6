@@ -1,0 +1,25 @@
+MoonAura Crystals — Current Build Export
+========================================
+
+Export date: 2026-10-09
+Source path: /tmp/moonaura
+Remote: https://github.com/debadri19/moonaura.git
+Branch: main
+HEAD commit: eadacf267d9544bfee2b736b81e04d25330cc5b1
+Commit message: Fix admin settings layout and newsletter spacing
+
+Working tree at export time: clean (no uncommitted changes).
+This ZIP is the local main branch at the commit above. It is ahead of GitHub origin/main by 1 commit because the previous push failed with a GitHub credential-helper error.
+
+Included in this commit / archive:
+- Admin Settings full-width layout (.settings-subpage max-width: none)
+- Newsletter Campaign Analytics spacing (32px desktop, 22px at 768px)
+- Admin Dark Mode text-contrast tokens (--admin-link, --admin-danger-button)
+
+Excluded from this ZIP:
+- .git/ history
+- .env / secret files (none were present in the clone)
+- vendor/ and node_modules/ (none were present; PHPMailer and similar dependencies must be installed on the target server)
+
+This archive is for backup and deployment preparation. It is not a Git clone.
+PHP and MySQL were not available in the export environment, so the site was not runtime-tested as part of this packaging step.

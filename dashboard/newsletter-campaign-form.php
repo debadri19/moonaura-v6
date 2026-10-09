@@ -225,7 +225,7 @@ if (!empty($campaign['scheduled_at'])) {
                     <?= csrf_field() ?>
 
                     <div class="admin-form-card">
-                        <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--primary);">Campaign</h3>
+                        <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--admin-link);">Campaign</h3>
 
                         <div class="admin-detail-row">
                             <span>Status</span>
@@ -321,7 +321,7 @@ if (!empty($campaign['scheduled_at'])) {
                     </div>
 
                     <div class="admin-form-card newsletter-composer-card">
-                        <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--primary);">Email content</h3>
+                        <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--admin-link);">Email content</h3>
                         <p class="admin-field-hint">Use {{first_name}} for personalization. Missing names fall back to “there”. Every campaign email includes a signed unsubscribe link.</p>
 
                         <?php if ($canEdit): ?>
@@ -352,7 +352,7 @@ if (!empty($campaign['scheduled_at'])) {
 
                 <?php if ($isEditing): ?>
                     <div class="admin-form-card newsletter-send-card">
-                        <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--primary);">Send</h3>
+                        <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--admin-link);">Send</h3>
                         <p class="admin-field-hint">Only confirmed subscribers are contacted. Pending and unsubscribed addresses are skipped. Open and click analytics are not recorded. Saving a draft never sends.</p>
 
                         <?php if ($canEdit): ?>
@@ -445,7 +445,7 @@ if (!empty($campaign['scheduled_at'])) {
 
                         <?php if (!empty($sendStats['logs'])): ?>
                             <div class="newsletter-send-block">
-                                <h3 style="margin-top: 0; color: var(--primary);">Send log</h3>
+                                <h3 style="margin-top: 0; color: var(--admin-link);">Send log</h3>
                                 <p class="admin-field-hint">Accepted send means SMTP accepted the message. Delivery and engagement are not recorded.</p>
                                 <table class="admin-table">
                                     <thead>

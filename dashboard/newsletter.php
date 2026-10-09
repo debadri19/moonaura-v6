@@ -234,7 +234,7 @@ $sendReady      = newsletter_campaign_tables_ready();
                 </div>
 
                 <div class="admin-form-card newsletter-analytics-card">
-                    <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--primary);">Campaign Analytics</h3>
+                    <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--admin-link);">Campaign Analytics</h3>
                     <p class="admin-field-hint">Counts come from local campaign and recipient rows. Accepted send means SMTP accepted the message. Delivery, opens, clicks, and bounces are not tracked.</p>
                     <form method="get" action="newsletter.php" class="admin-search-form newsletter-analytics-filter">
                         <?php if ($search !== ''): ?><input type="hidden" name="search" value="<?= h($search) ?>"><?php endif; ?>
@@ -299,7 +299,7 @@ $sendReady      = newsletter_campaign_tables_ready();
                 <div class="admin-detail-grid newsletter-admin-top">
 
                     <div class="admin-form-card">
-                        <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--primary);">Brevo Sync</h3>
+                        <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--admin-link);">Brevo Sync</h3>
                         <div class="admin-detail-row">
                             <span>Integration</span>
                             <span><?= $configured ? 'Configured' : 'Not configured' ?></span>
@@ -340,7 +340,7 @@ $sendReady      = newsletter_campaign_tables_ready();
                     </div>
 
                     <div class="admin-form-card">
-                        <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--primary);">Add Subscriber</h3>
+                        <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--admin-link);">Add Subscriber</h3>
                         <p class="admin-field-hint">Uses the existing pending-list double opt-in flow. Confirmed subscribers are not added twice.</p>
                         <form method="post">
                             <?= csrf_field() ?>

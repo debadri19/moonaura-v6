@@ -163,7 +163,7 @@ $orders = $stmt->fetchAll();
 
                     <div class="admin-form-card">
 
-                        <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--primary);">
+                        <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--admin-link);">
                             Profile
                         </h3>
 
@@ -200,7 +200,7 @@ $orders = $stmt->fetchAll();
 
                     <div class="admin-form-card">
 
-                        <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--primary);">
+                        <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--admin-link);">
                             Summary
                         </h3>
 
@@ -229,7 +229,7 @@ $orders = $stmt->fetchAll();
 
                 <div class="admin-form-card" style="margin-top: 24px;">
 
-                    <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--primary);">
+                    <h3 style="margin-top: 0; padding-top: 0; border-top: none; color: var(--admin-link);">
                         Addresses
                     </h3>
 
@@ -294,7 +294,7 @@ $orders = $stmt->fetchAll();
 
                 <div class="admin-table-card" style="margin-top: 24px;" id="customer-orders">
 
-                    <h3 style="margin: 16px 16px 0; color: var(--primary);">
+                    <h3 style="margin: 16px 16px 0; color: var(--admin-link);">
                         Order History
                     </h3>
 

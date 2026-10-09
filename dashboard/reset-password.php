@@ -152,7 +152,7 @@ if ($tokenIsValid && $_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php else: ?>
 
                 <p style="text-align: center;">
-                    <a href="forgot-password.php" style="color: var(--primary);">Request a new reset link</a>
+                    <a href="forgot-password.php" style="color: var(--admin-link);">Request a new reset link</a>
                 </p>
 
             <?php endif; ?>

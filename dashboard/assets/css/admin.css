@@ -44,10 +44,13 @@
     --admin-input-bg: #ffffff;
     --admin-input-border: #ece7f5;
     --admin-link: #5B2E91;
+    --admin-link-hover: #43206D;
     --admin-primary: #5B2E91;
     --admin-on-primary: #ffffff;
     --admin-danger: #b3261e;
     --admin-danger-hover: #8f1e18;
+    --admin-danger-button: #b3261e;
+    --admin-danger-button-hover: #8f1e18;
     --admin-danger-bg: #fdecea;
     --admin-danger-border: #f6c6c2;
     --admin-success: #1e7b34;
@@ -96,10 +99,13 @@ html[data-admin-theme-resolved="dark"] {
     --admin-input-bg: #1c1428;
     --admin-input-border: #4a3a63;
     --admin-link: #d4c0ef;
+    --admin-link-hover: #e6d9f8;
     --admin-primary: #5B2E91;
     --admin-on-primary: #ffffff;
     --admin-danger: #f3b4ae;
     --admin-danger-hover: #c62820;
+    --admin-danger-button: #c62820;
+    --admin-danger-button-hover: #8f1e18;
     --admin-danger-bg: #3a1c1a;
     --admin-danger-border: #6a3330;
     --admin-success: #8ee0a4;
@@ -115,7 +121,7 @@ html[data-admin-theme-resolved="dark"] {
     --admin-pending-bg: #3a2e14;
     --admin-shadow: 0 15px 40px rgba(0, 0, 0, .40);
     --admin-overlay: rgba(22, 14, 34, .72);
-    --admin-placeholder: #8d7ea6;
+    --admin-placeholder: #b5a6c8;
     --scrollbar-track: rgba(91, 46, 145, .22);
     --scrollbar-firefox-track: rgba(91, 46, 145, .22);
     color-scheme: dark;
@@ -133,10 +139,13 @@ html[data-admin-theme-resolved="dark"] {
         --admin-input-bg: #1c1428;
         --admin-input-border: #4a3a63;
         --admin-link: #d4c0ef;
+        --admin-link-hover: #e6d9f8;
         --admin-primary: #5B2E91;
         --admin-on-primary: #ffffff;
         --admin-danger: #f3b4ae;
         --admin-danger-hover: #c62820;
+        --admin-danger-button: #c62820;
+        --admin-danger-button-hover: #8f1e18;
         --admin-danger-bg: #3a1c1a;
         --admin-danger-border: #6a3330;
         --admin-success: #8ee0a4;
@@ -152,7 +161,7 @@ html[data-admin-theme-resolved="dark"] {
         --admin-pending-bg: #3a2e14;
         --admin-shadow: 0 15px 40px rgba(0, 0, 0, .40);
         --admin-overlay: rgba(22, 14, 34, .72);
-        --admin-placeholder: #8d7ea6;
+        --admin-placeholder: #b5a6c8;
         --scrollbar-track: rgba(91, 46, 145, .22);
         --scrollbar-firefox-track: rgba(91, 46, 145, .22);
         color-scheme: dark;
@@ -198,6 +207,14 @@ body {
     background: var(--bg);
 }
 
+h1, h2, h3, h4, h5, h6 {
+    color: var(--admin-heading);
+}
+
+.admin-form-card h3 {
+    color: var(--admin-link);
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -228,7 +245,7 @@ a {
 
 .admin-auth-box h1 {
     font-size: 24px;
-    color: var(--primary);
+    color: var(--admin-link);
     margin-bottom: 8px;
     text-align: center;
 }
@@ -309,7 +326,7 @@ a {
 
 .admin-auth-box .pw-toggle:hover,
 .admin-auth-box .pw-toggle:focus-visible {
-    color: var(--primary);
+    color: var(--admin-link);
 }
 
 .admin-auth-box .pw-toggle:focus-visible {
@@ -344,13 +361,13 @@ a {
     text-align: center;
     margin-top: 16px;
     font-size: 13px;
-    color: var(--primary);
+    color: var(--admin-link);
     text-decoration: none;
     transition: var(--transition);
 }
 
 .admin-auth-link:hover {
-    color: var(--primary-dark);
+    color: var(--admin-link-hover);
     text-decoration: underline;
 }
 
@@ -545,7 +562,7 @@ a {
 .admin-menu-toggle {
     display: none;
     margin-right: 12px;
-    color: var(--primary);
+    color: var(--admin-link);
     background: var(--bg);
     border: 1px solid var(--border);
 }
@@ -685,13 +702,13 @@ a {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: var(--primary);
+    color: var(--admin-link);
     font-weight: 600;
     transition: var(--transition);
 }
 
 .admin-logout-link:hover {
-    color: var(--primary-dark);
+    color: var(--admin-link-hover);
 }
 
 /* Logout is now a POST <button> (CSRF-protected) styled to match the
@@ -877,7 +894,7 @@ a {
     padding: 0;
     border: none;
     font-size: 15px;
-    color: var(--primary);
+    color: var(--admin-link);
 }
 
 .settings-integration-card > .admin-field-hint {
@@ -895,12 +912,25 @@ a {
 
 .settings-subpage {
     width: 100%;
-    max-width: 1080px;
+    max-width: none;
 }
 
 .settings-subpage .admin-form-card {
     max-width: none;
     width: 100%;
+}
+
+.settings-subpage .admin-form-card input[type="text"],
+.settings-subpage .admin-form-card input[type="number"],
+.settings-subpage .admin-form-card input[type="email"],
+.settings-subpage .admin-form-card input[type="password"],
+.settings-subpage .admin-form-card input[type="tel"],
+.settings-subpage .admin-form-card input[type="url"],
+.settings-subpage .admin-form-card input[type="file"],
+.settings-subpage .admin-form-card input[readonly],
+.settings-subpage .admin-form-card select,
+.settings-subpage .admin-form-card textarea {
+    max-width: 640px;
 }
 
 .settings-subpage .admin-form-card + .admin-form-card {
@@ -912,7 +942,7 @@ a {
     padding-top: 0;
     border-top: none;
     font-size: 15px;
-    color: var(--primary);
+    color: var(--admin-link);
 }
 
 .settings-panel > h3 {
@@ -920,7 +950,7 @@ a {
     padding-top: 16px;
     border-top: 1px solid var(--border);
     font-size: 15px;
-    color: var(--primary);
+    color: var(--admin-link);
 }
 
 .settings-panel > h3:first-child {
@@ -1171,12 +1201,12 @@ a {
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
-    background: var(--admin-danger);
+    background: var(--admin-danger-button);
     color: var(--admin-on-primary);
 }
 
 .admin-btn-danger:hover {
-    background: var(--admin-danger-hover);
+    background: var(--admin-danger-button-hover);
 }
 
 .admin-btn-small {
@@ -1275,7 +1305,7 @@ a {
 }
 
 .admin-table-actions a {
-    color: var(--primary);
+    color: var(--admin-link);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1490,7 +1520,7 @@ a {
 
 .admin-image-selector-title {
     margin: 0 0 6px;
-    color: var(--primary);
+    color: var(--admin-link);
     font-size: 14px;
     font-weight: 600;
 }
@@ -1569,7 +1599,7 @@ a {
     padding-top: 16px;
     border-top: 1px solid var(--border);
     font-size: 15px;
-    color: var(--primary);
+    color: var(--admin-link);
 }
 
 .admin-form-card form > h3:first-child {
@@ -1665,6 +1695,30 @@ a {
     color: var(--text);
     line-height: 1.4;
     color-scheme: inherit;
+}
+
+html[data-admin-theme-resolved="dark"] .admin-form-card select,
+html[data-admin-theme-resolved="dark"] .admin-search-form select,
+html[data-admin-theme-resolved="dark"] .invoice-designer-field-row select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23d4c0ef' d='M1.41.3 6 4.89 10.59.3 12 1.71 6 7.71 0 1.71z'/%3E%3C/svg%3E");
+}
+
+html[data-admin-theme-resolved="dark"] .invoice-layout-section {
+    background: rgba(212, 192, 239, .08);
+}
+
+html[data-admin-theme-resolved="dark"] .invoice-layout-section:hover {
+    background: rgba(212, 192, 239, .14);
+}
+
+html[data-admin-theme-resolved="dark"] .admin-form-card input:disabled,
+html[data-admin-theme-resolved="dark"] .admin-form-card select:disabled,
+html[data-admin-theme-resolved="dark"] .admin-form-card textarea:disabled,
+html[data-admin-theme-resolved="dark"] .admin-search-form input:disabled,
+html[data-admin-theme-resolved="dark"] .admin-search-form select:disabled {
+    color: var(--admin-text-muted);
+    background: var(--admin-surface-alt);
+    opacity: 1;
 }
 
 .admin-form-card select:focus,
@@ -1921,7 +1975,7 @@ a {
     box-shadow: none !important;
 }
 .invoice-designer-card-toggle:hover {
-    color: var(--primary);
+    color: var(--admin-link);
 }
 .invoice-designer-card-toggle:focus-visible {
     outline: 2px solid var(--primary);
@@ -2047,7 +2101,7 @@ a {
 
 .invoice-designer-callout i {
     font-size: 20px;
-    color: var(--primary);
+    color: var(--admin-link);
 }
 
 .invoice-designer-callout div {
@@ -2165,7 +2219,7 @@ a {
     font-size: 12px;
 }
 .invoice-layout-builder-help strong { color: var(--text); font-size: 13px; }
-.invoice-layout-builder-help span::before { content: '• '; color: var(--primary); }
+.invoice-layout-builder-help span::before { content: '• '; color: var(--admin-link); }
 
 .admin-theme-picker {
     display: flex;
@@ -2828,7 +2882,7 @@ a {
 }
 
 .newsletter-analytics-card {
-    margin: 0 0 24px;
+    margin: 32px 0 24px;
 }
 
 .newsletter-analytics-filter,
@@ -2868,6 +2922,10 @@ a {
 }
 
 @media (max-width: 768px) {
+    .newsletter-analytics-card {
+        margin-top: 22px;
+    }
+
     .newsletter-admin-top {
         margin-bottom: 16px;
     }

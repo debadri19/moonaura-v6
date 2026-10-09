@@ -728,7 +728,7 @@ $grandTotal = max(0.0, $subtotal - $discount + $shippingCharge);
 
                             <div class="admin-detail-row" style="font-size: 16px; margin-top: 10px;">
                                 <span>Grand Total</span>
-                                <span id="oc-grand-total" style="color: var(--primary);">
+                                <span id="oc-grand-total" style="color: var(--admin-link);">
                                     <?= h(format_price($grandTotal)) ?>
                                 </span>
                             </div>
